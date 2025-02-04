@@ -1,24 +1,18 @@
 import { motion } from 'framer-motion'
-import { FiMail, FiMapPin, FiPhone } from 'react-icons/fi'
+import { FiMail, FiMapPin } from 'react-icons/fi'
 
 const contactInfo = [
   {
     icon: FiMail,
     label: 'Email',
-    value: 'contacto@cotrasoft.com',
-    href: 'mailto:contacto@cotrasoft.com'
-  },
-  {
-    icon: FiPhone,
-    label: 'Teléfono',
-    value: '+57 (1) 234-5678',
-    href: 'tel:+5712345678'
+    value: 'gerencia@cotrasoft.com',
+    href: 'mailto:gerencia@cotrasoft.com'
   },
   {
     icon: FiMapPin,
     label: 'Ubicación',
-    value: 'Bogotá, Colombia',
-    href: 'https://maps.google.com'
+    value: 'Colombia',
+    // href: 'https://maps.google.com'
   }
 ]
 
@@ -43,7 +37,7 @@ const CTA = () => {
                 Únete a Nuestra Comunidad de Desarrolladores
               </h2>
               <p className="text-xl mb-8 text-white/90">
-                Sé parte de una cooperativa innovadora donde tu talento y creatividad son valorados. Juntos construimos el futuro del desarrollo de software.
+                Sé parte de una cooperativa innovadora donde tu talento y creatividad son valorados. Juntos construimos el futuro del desarrollo de software en Colombia.
               </p>
               <div className="space-y-4">
                 {contactInfo.map((info) => {

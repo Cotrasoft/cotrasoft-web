@@ -45,13 +45,10 @@ const Hero = () => {
           transition={{ duration: 0.5 }}
         >
           <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold text-white mb-6">
-            Excelencia en Desarrollo{' '}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-white/60">
-              Cooperativo
-            </span>
+            Tu futuro tech merece más que solo un salario
           </h1>
           <p className="text-xl sm:text-2xl text-white/90 mb-8 max-w-3xl mx-auto">
-            Uniendo talento y tecnología para crear soluciones innovadoras en un ambiente colaborativo
+            Crecimiento profesional, respaldo financiero y <br /> comunidad en un solo lugar
           </p>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -62,7 +59,7 @@ const Hero = () => {
               href="#unete"
               className="inline-block btn-primary text-lg sm:text-xl"
             >
-              Únete a Nuestra Cooperativa
+              Descubre los beneficios
             </a>
           </motion.div>
         </motion.div>
@@ -75,16 +72,15 @@ const Hero = () => {
           className="mt-16 grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-4xl mx-auto"
         >
           {[
-            { label: 'Desarrolladores', value: '50+' },
-            { label: 'Proyectos Completados', value: '200+' },
-            { label: 'Años de Experiencia', value: '100+' },
+            { label: 'Creditos', },
+            { label: 'Educación' },
+            { label: 'Comunidad' },
           ].map((stat) => (
             <div
               key={stat.label}
               className="glass-card p-6 text-white"
             >
-              <div className="text-3xl font-bold mb-2">{stat.value}</div>
-              <div className="text-white/80">{stat.label}</div>
+              <div className="text-3xl font-bold mb-2">{stat.label}</div>
             </div>
           ))}
         </motion.div>
