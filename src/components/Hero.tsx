@@ -23,7 +23,7 @@ const FloatingElement = ({ icon: Icon, delay }: { icon: React.ElementType; delay
 
 const Hero = () => {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-primary via-secondary to-accent">
+    <section className="py-24 relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-primary via-secondary to-accent">
       {/* Floating Elements */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-1/4 left-1/4">
