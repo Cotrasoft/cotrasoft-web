@@ -5,7 +5,7 @@ import Image from "next/image";
 const Dedicated = () => {
   return (
     <section className="relative bg-cover bg-center dark:bg-darkmode overflow-hidden">
-      <div className="container mx-auto lg:max-w-screen-xl md:max-w-screen-md">
+      <div className="container mx-auto lg:max-w-(--breakpoint-xl) md:max-w-(--breakpoint-md)">
         <div className="grid grid-cols-1 lg:grid-cols-12">
           <Image
             src="/images/dedicated/spiral.svg"

@@ -24,7 +24,7 @@ const Hero = () => {
       className="relative md:pt-40 md:pb-28 py-20 overflow-hidden z-1"
       id="main-banner"
     >
-      <div className="container mx-auto lg:max-w-screen-xl px-4">
+      <div className="container mx-auto lg:max-w-(--breakpoint-xl) px-4">
         <div className="grid grid-cols-12 justify-center items-center">
           <div className="col-span-5">
             <div className="py-2 px-5 bg-primary/15 rounded-full w-fit">

@@ -5,7 +5,7 @@ import Link from "next/link";
 const Beliefs = () => {
   return (
     <section className="bg-cover bg-center dark:bg-darkmode overflow-hidden">
-      <div className="container mx-auto lg:max-w-screen-xl md:max-w-screen-md">
+      <div className="container mx-auto lg:max-w-(--breakpoint-xl) md:max-w-(--breakpoint-md)">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
           {/* COLUMN-1 */}
 

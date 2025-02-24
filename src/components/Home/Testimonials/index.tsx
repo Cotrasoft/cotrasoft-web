@@ -103,7 +103,7 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({ items }) => {
 const Testimonial: React.FC = () => {
   return (
     <section className="bg-testimonial dark:bg-darkmode bg-cover bg-center overflow-hidden before:absolute before:w-full before:h-full before:bg-[url('/images/wework/elipse.svg')] before:bg-no-repeat before:bg-center" id="testimonial-section">
-      <div className="container mx-auto lg:max-w-screen-xl md:max-w-screen-md">
+      <div className="container mx-auto lg:max-w-(--breakpoint-xl) md:max-w-(--breakpoint-md)">
         <div className="">
           <div className="text-center">
             <h3 className="text-4xl sm:text-6xl font-bold text-black dark:text-white my-3">

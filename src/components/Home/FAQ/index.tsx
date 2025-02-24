@@ -6,7 +6,7 @@ import { Disclosure } from "@headlessui/react";
 const FAQ = () => {
   return (
     <section className="relative py-1 bg-cover bg-center overflow-hidde dark:bg-darkmode">
-      <div className="container mx-auto lg:max-w-screen-xl md:max-w-screen-md">
+      <div className="container mx-auto lg:max-w-(--breakpoint-xl) md:max-w-(--breakpoint-md)">
         <div className="relative rounded-2xl py-24 bg-faqBg bg-no-repeat bg-cover bg-primary">
           <p className="text-lg font-normal text-white text-center mb-6">FAQ</p>
           <h2 className="text-6xl font-semibold text-center text-white mx-72">
@@ -17,7 +17,7 @@ const FAQ = () => {
               <Disclosure>
                 {({ open }) => (
                   <>
-                    <Disclosure.Button className="flex w-full justify-between items-center text-left text-2xl font-medium focus:outline-none ">
+                    <Disclosure.Button className="flex w-full justify-between items-center text-left text-2xl font-medium focus:outline-hidden ">
                       <span className="text-black">Can you design my site?</span>
                       <div
                         className={`h-5 w-5 transform transition-transform duration-300 ${open ? "rotate-180" : ""
@@ -41,7 +41,7 @@ const FAQ = () => {
               <Disclosure as="div" className="mt-2">
                 {({ open }) => (
                   <>
-                    <Disclosure.Button className="flex w-full justify-between items-center rounded-lg text-left text-2xl font-medium focus:outline-none">
+                    <Disclosure.Button className="flex w-full justify-between items-center rounded-lg text-left text-2xl font-medium focus:outline-hidden">
                       <span className="text-black">Can you code my site?</span>
                       <div
                         className={`h-5 w-5 transform transition-transform duration-300 ${open ? "rotate-180" : ""
@@ -66,7 +66,7 @@ const FAQ = () => {
               <Disclosure as="div" className="mt-2">
                 {({ open }) => (
                   <>
-                    <Disclosure.Button className="flex w-full justify-between items-center rounded-lg text-left text-2xl font-medium focus:outline-none">
+                    <Disclosure.Button className="flex w-full justify-between items-center rounded-lg text-left text-2xl font-medium focus:outline-hidden">
                       <span className="text-black">Where are you located?</span>
                       <div
                         className={`h-5 w-5 transform transition-transform duration-300 ${open ? "rotate-180" : ""

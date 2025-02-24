@@ -50,7 +50,7 @@ const settings = {
 const Work = () => {
   return (
     <section className="relative dark:bg-darkmode py-4 bg-cover bg-center overflow-hidden before:absolute before:w-full before:h-full before:bg-[url('/images/wework/elipse.svg')] before:bg-no-repeat before:bg-center after:absolute after:w-1/3 after:h-1/3 after:bg-[url('/images/wework/vector.svg')] after:bg-no-repeat after:top-28 after:-right-12 after:-z-10">
-      <div className="container mx-auto lg:max-w-screen-xl md:max-w-screen-md">
+      <div className="container mx-auto lg:max-w-(--breakpoint-xl) md:max-w-(--breakpoint-md)">
         <div className="text-center">
           <h3 className="text-4xl sm:text-6xl font-bold text-black dark:text-white my-2">
             We work in several verticals.

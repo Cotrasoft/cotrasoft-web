@@ -9,10 +9,10 @@ const Blog: React.FC = () => {
 
     return (
         <section className="flex flex-wrap justify-center py-24 " id="blog">
-            <div className="container mx-auto lg:max-w-screen-xl md:max-w-screen-md">
+            <div className="container mx-auto lg:max-w-(--breakpoint-xl) md:max-w-(--breakpoint-md)">
                 <div className="flex items-baseline justify-between flex-wrap">
                     <h2 className="sm:mb-11 mb-3 text-36 font-bold text-midnight_text dark:text-white" data-aos="fade-right" data-aos-delay="200" data-aos-duration="1000">Latest blog & news</h2>
-                    <Link href="#" className="flex items-center gap-3 text-17 text-midnight_text dark:text-white hover:dark:text-primary font-medium hover:text-primary sm:pb-0 pb-3" data-aos="fade-left" data-aos-delay="200" data-aos-duration="1000">
+                    <Link href="#" className="flex items-center gap-3 text-17 text-midnight_text dark:text-white dark:hover:text-primary font-medium hover:text-primary sm:pb-0 pb-3" data-aos="fade-left" data-aos-delay="200" data-aos-duration="1000">
                         View More
                         <span>
                             <Icon

@@ -4,7 +4,7 @@ import Image from "next/image";
 const Team = () => {
   return (
     <section className="overflow-x-hidden">
-      <div className="container mx-auto lg:max-w-screen-xl md:max-w-screen-md relative">
+      <div className="container mx-auto lg:max-w-(--breakpoint-xl) md:max-w-(--breakpoint-md) relative">
         <h2 className="text-6xl font-bold text-center mx-20">
           Our team belives you deserve only the best.
         </h2>

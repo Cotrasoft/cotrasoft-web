@@ -5,7 +5,7 @@ import Link from "next/link";
 const Join = () => {
   return (
     <section className="overflow-hidden dark:bg-darkmode bg-joinus">
-      <div className="container mx-auto lg:max-w-screen-xl md:max-w-screen-md">
+      <div className="container mx-auto lg:max-w-(--breakpoint-xl) md:max-w-(--breakpoint-md)">
         <div className="text-center">
           <h3 className="text-blue text-lg font-normal tracking-widest uppercase">
             Join us
@@ -25,7 +25,7 @@ const Join = () => {
             <div>
               <input
                 type="name"
-                className="my-4 py-4 sm:pl-6 lg:text-xl text-black sm:rounded-full bg-transparent pl-1 focus:outline-none bg-emailbg focus:text-black"
+                className="my-4 py-4 sm:pl-6 lg:text-xl text-black sm:rounded-full bg-transparent pl-1 focus:outline-hidden bg-emailbg focus:text-black"
                 placeholder="Your name"
                 autoComplete="off"
               />
@@ -33,7 +33,7 @@ const Join = () => {
             <div>
               <input
                 type="email"
-                className="my-4 py-4 sm:pl-6 lg:text-xl text-black sm:border-l border-linegrey bg-transparent focus:outline-none bg-emailbg focus:text-black"
+                className="my-4 py-4 sm:pl-6 lg:text-xl text-black sm:border-l border-linegrey bg-transparent focus:outline-hidden bg-emailbg focus:text-black"
                 placeholder="Your email"
                 autoComplete="off"
               />

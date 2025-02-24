@@ -39,7 +39,7 @@ const settings = {
 const Articles = () => {
   return (
     <section className="relative dark:bg-midnight_text bg-grey overflow-hidden">
-      <div className="container mx-auto lg:max-w-screen-xl md:max-w-screen-md relative">
+      <div className="container mx-auto lg:max-w-(--breakpoint-xl) md:max-w-(--breakpoint-md) relative">
         <div className="text-center">
           <h3 className="text-blue text-22 font-normal tracking-widest">
             ARTICLES

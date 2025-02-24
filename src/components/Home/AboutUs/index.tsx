@@ -7,7 +7,7 @@ import { Aboutdata } from "@/app/api/data";
 const Aboutus = () => {
   return (
     <section className=" bg-cover bg-center dark:bg-darkmode overflow-hidden">
-      <div className="container mx-auto lg:max-w-screen-xl relative z-1 md:max-w-screen-md">
+      <div className="container mx-auto lg:max-w-(--breakpoint-xl) relative z-1 md:max-w-(--breakpoint-md)">
         <div className="lg:p-12 px-2 bg-grey dark:bg-darkmode rounded-3xl">
           <Image
             src="/images/aboutus/dots.svg"
