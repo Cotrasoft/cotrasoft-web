@@ -14,7 +14,7 @@ const Insta = () => {
             alt="instaOne"
             className="w-full"
           />
-          <div className="absolute inset-0 bg-black bg-opacity-60 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+          <div className="absolute inset-0 bg-black/60 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
           <Link href={"https://instagram.com"} target="_blank">
             <button
               className="hidden absolute z-10 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white font-semibold group-hover:block"
@@ -38,7 +38,7 @@ const Insta = () => {
             alt="instaTwo"
             className="w-full"
           />
-          <div className="absolute inset-0 bg-black bg-opacity-60 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+          <div className="absolute inset-0 bg-black/60 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
           <Link href={"https://instagram.com"} target="_blank">
             <button
               className="hidden absolute z-10 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white font-semibold group-hover:block"
@@ -62,7 +62,7 @@ const Insta = () => {
             alt="instaThree"
             className="w-full"
           />
-          <div className="absolute inset-0 bg-black bg-opacity-60 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+          <div className="absolute inset-0 bg-black/60 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
           <Link href={"https://instagram.com"} target="_blank">
             <button
               className="hidden absolute z-10 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white font-semibold group-hover:block"
@@ -86,7 +86,7 @@ const Insta = () => {
             alt="instaFour"
             className="w-full"
           />
-          <div className="absolute inset-0 bg-black bg-opacity-60 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+          <div className="absolute inset-0 bg-black/60 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
           <Link href={"https://instagram.com"} target="_blank">
             <button
               className="hidden absolute z-10 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white font-semibold group-hover:block"

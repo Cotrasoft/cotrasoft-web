@@ -2,8 +2,8 @@ export const LogoConfiguration = () => {
   return (
     <>
       <h3 className=" text-xl font-semibold mt-8 text-black">Logo</h3>
-      <div className="p-6 rounded-md border mt-4 border-dark_border border-opacity-60">
-        <p className="text-base font-medium text-muted text-opacity-60 flex lg:flex-row flex-col">
+      <div className="p-6 rounded-md border mt-4 border-dark_border/60">
+        <p className="text-base font-medium text-muted/60 flex lg:flex-row flex-col">
           1. Change Logo over here :{" "}
           <span className="font-semibold text-base overflow-x-auto">
             {" "}

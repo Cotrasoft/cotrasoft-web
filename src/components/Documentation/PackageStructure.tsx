@@ -15,7 +15,7 @@ export const PackageStructure = () => {
       <h3 className="text-2xl font-semibold mt-8 text-black">
         Pacakge Structure
       </h3>
-      <div className="rounded-md p-6 pt-3 border border-dark_border border-opacity-60 mt-6">
+      <div className="rounded-md p-6 pt-3 border border-dark_border/60 mt-6">
         <div className="flex items-center gap-4">
           <h5 className="text-base font-medium text-muted mt-3 mb-1">
             Desgy Tailwind NextJs Template

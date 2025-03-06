@@ -109,10 +109,10 @@ const Testimonial: React.FC = () => {
             <h3 className="text-4xl sm:text-6xl font-bold text-black dark:text-white my-3">
               See what others are saying.
             </h3>
-            <h3 className="text-4xl sm:text-6xl font-bold text-black dark:text-white text-opacity-50 lg:mr-48 my-4">
+            <h3 className="text-4xl sm:text-6xl font-bold text-black/50 dark:text-white/50 lg:mr-48 my-4">
               See what others are saying.
             </h3>
-            <h3 className="text-4xl sm:text-6xl font-bold text-black dark:text-white text-opacity-25 lg:-mr-32 my-4">
+            <h3 className="text-4xl sm:text-6xl font-bold text-black/25 dark:text-white/25 lg:-mr-32 my-4">
               See what others are saying.
             </h3>
           </div>

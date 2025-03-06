@@ -13,7 +13,7 @@ const Join = () => {
           <h2 className="text-6xl font-bold my-6">
             Take your business to the new level.
           </h2>
-          <p className="text-black/50 text-base font-normal">
+          <p className="text-black/50 dark:text-white text-base font-normal">
             Craven omni memoria patriae zombieland clairvius narcisse religionis
             sunt diri undead  historiarum. Golums, zombies unrelenting et
             Raimi fascinati beheading.

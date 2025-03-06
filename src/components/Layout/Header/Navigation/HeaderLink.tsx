@@ -24,8 +24,8 @@ const HeaderLink: React.FC<{ item: HeaderItem }> = ({ item }) => {
     >
       <Link
         href={item.href}
-        className={`text-lg flex hover:text-black capitalized  ${
-          path === item.href ? "text-black/75 " : " text-black/75 "
+        className={`text-lg flex opacity-75 hover:opacity-100 capitalized  ${
+          path === item.href ? "font-bold " : ""
         }`}
       >
         {item.label}
@@ -49,7 +49,7 @@ const HeaderLink: React.FC<{ item: HeaderItem }> = ({ item }) => {
       </Link>
       {submenuOpen && (
         <div
-          className={`absolute py-2 left-0 mt-0.5 w-60 bg-white dark:bg-darklight dark:text-white shadow-lg rounded-lg `}
+          className={`absolute py-2 left-0 mt-0.5 w-60 bg-white dark:bg-darkmode dark:text-white shadow-lg rounded-lg `}
           data-aos="fade-up"
           data-aos-duration="500"
         >

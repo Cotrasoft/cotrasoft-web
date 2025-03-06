@@ -39,7 +39,7 @@ const Dedicated = () => {
             <p className="text-6xl font-bold sm:leading-tight text-center -mr-1 lg:text-start">
               “Dedicated to help people’s design needs.”
             </p>
-            <p className="font-medium text-black/55 text-2xl mt-5 text-center lg:text-start -ml-1">
+            <p className="font-medium text-black/55 dark:text-white/80 text-2xl mt-5 text-center lg:text-start -ml-1">
               Quis ipsum suspendisse ultrices gravida risus commodo viverra
               maecenas accumsan lacus vel facilisis
             </p>

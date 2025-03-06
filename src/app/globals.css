@@ -36,12 +36,39 @@
   --z-index-2: 2;
   --z-index-999: 999;
 
+  /* base */
+  --color-primary: #99E39E;
+  --color-secondary: #1DC8CD;
+  --color-midnight_text: #263238;
+  --color-muted: #d8dbdb;
+  --color-error: #CF3127;
+  --color-warning: #F7931A;
+  --color-light_grey: #505050;
+  --color-grey: #F5F7FA;
+  --color-dark_grey: #1E2229;
+  --color-border: #E1E1E1;
+  --color-success: #3cd278;
+  --color-section: #737373;
+  --color-darkmode: #000510;
+  --color-darklight: #0c372a;
+  --color-dark_border: #959595;
+  --color-tealGreen: #477E70;
+  --color-charcoalGray: #666C78;
+  --color-deep-slate: #282C36;
+  --color-slateGray: #2F3543;
+
+  /* themed */
   --color-primary: #0066ff;
   --color-purple: #1e013a;
   --color-grey: #f4f5f6;
   --color-border: #dbdbdb;
   --color-darkmode: #00224a;
   --color-deep-slate: #02398a;
+  /* no verify  */
+  --color-darkHeroBg: #000;
+  --color-dark: #000;
+
+
 
   --text-80: 5rem;
   --text-80--line-height: 1.4;
@@ -61,6 +88,7 @@
   color utility to any element that depends on these defaults.
 */
 @layer base {
+
   *,
   ::after,
   ::before,

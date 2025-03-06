@@ -49,7 +49,7 @@ export const Introduction = () => {
       <div id="version" className="md:scroll-m-[180px] scroll-m-28">
         {docNavbarOpen && (
           <div
-            className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 z-40"
+            className="fixed top-0 left-0 w-full h-full bg-black/50 z-40"
             onClick={() => setDocNavbarOpen(false)}
           />
         )}
@@ -64,13 +64,13 @@ export const Introduction = () => {
           </button>
         </div>
 
-        <div className="w-full flex justify-between lg:gap-0 gap-6 lg:flex-nowrap flex-wrap p-6 rounded-md border border-dark_border border-opacity-60">
+        <div className="w-full flex justify-between lg:gap-0 gap-6 lg:flex-nowrap flex-wrap p-6 rounded-md border border-dark_border/60">
           {PackageVersions &&
             PackageVersions.map((item) => {
               return (
                 <div
                   key={item.id}
-                  className="lg:w-1/5 md:w-full text-center lg:border-b-0 border-b lg:border-e lg:last:border-e-0 last:border-b-0 border-dark_border border-opacity-60"
+                  className="lg:w-1/5 md:w-full text-center lg:border-b-0 border-b lg:border-e lg:last:border-e-0 last:border-b-0 border-dark_border/60"
                 >
                   <Image
                     src={item.img}
@@ -86,15 +86,15 @@ export const Introduction = () => {
             })}
         </div>
         <div className="mt-5">
-          <p className="text-base font-medium text-muted text-opacity-60">
+          <p className="text-base font-medium text-muted/60">
             Desgy Tailwind NextJs Template is built with Tailwindcss and
             Nextjs.
           </p>
-          <p className="text-base font-medium text-muted text-opacity-60">
+          <p className="text-base font-medium text-muted/60">
             These theme is ready to use and you can totally customize as per
             your requirement.
           </p>
-          <p className="text-base font-medium text-muted text-opacity-60">
+          <p className="text-base font-medium text-muted/60">
             For Customize, You should have knowledge of NextJs, ReactJs,
             Tailwind and JSX to be able to modify these template.
           </p>

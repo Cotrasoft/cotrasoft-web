@@ -71,13 +71,13 @@ const Header: React.FC = () => {
 
   return (
     <header
-      className={`fixed top-0 z-40 w-full transition-all duration-300 border-b border-black/60 ${sticky ? " shadow-lg bg-white" : "shadow-none"
+      className={`fixed top-0 z-40 w-full transition-all duration-300 border-b border-black/60 dark:border-white/60 ${sticky ? " shadow-lg bg-white dark:bg-black" : "shadow-none"
         }`}
     >
       <div className="lg:py-0 py-2">
         <div className="container mx-auto lg:max-w-(--breakpoint-xl) md:max-w-(--breakpoint-md) flex items-center justify-between px-4">
           <div
-            className={`pr-16 border-r border-black/60 duration-300 ${sticky ? "py-3" : "py-7"
+            className={`pr-16 border-r border-black/60 dark:border-white/60 duration-300 ${sticky ? "py-3" : "py-7"
               }`}
           >
             <Logo />
@@ -88,11 +88,17 @@ const Header: React.FC = () => {
             ))}
           </nav>
           <div
-            className={`flex items-center gap-4 pl-16 border-l border-black/60 duration-300 ${sticky ? "py-3" : "py-7"
+            className={`flex items-center gap-4 pl-16 border-l border-black/60 dark:border-white/60 duration-300 ${sticky ? "py-3" : "py-7"
               }`}
           >
             <button
-              className="hidden lg:block bg-transparent text-darkmode border hover:bg-darkmode border-darkmode hover:text-white px-4 py-2 rounded-lg"
+              className="hidden lg:block bg-transparent 
+                text-darkmode 
+                dark:text-white 
+                border border-darkmode dark:border-white
+                hover:text-white dark:hover:text-darkmode
+                hover:bg-darkmode dark:hover:bg-white
+                px-4 py-2 rounded-lg"
               onClick={() => {
                 setIsSignInOpen(true);
               }}
@@ -100,10 +106,10 @@ const Header: React.FC = () => {
               Sign In
             </button>
             {isSignInOpen && (
-              <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center z-50">
+              <div className="fixed top-0 left-0 w-full h-full bg-black/50 flex items-center justify-center z-50">
                 <div
                   ref={signInRef}
-                  className="relative mx-auto w-full max-w-md overflow-hidden rounded-lg px-8 pt-14 pb-8 text-center bg-dark_grey bg-opacity-90 backdrop-blur-md"
+                  className="relative mx-auto w-full max-w-md overflow-hidden rounded-lg px-8 pt-14 pb-8 text-center bg-dark_grey/90 backdrop-blur-md"
                 >
                   <button
                     onClick={() => setIsSignInOpen(false)}
@@ -128,10 +134,10 @@ const Header: React.FC = () => {
               Sign Up
             </button>
             {isSignUpOpen && (
-              <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center z-50">
+              <div className="fixed top-0 left-0 w-full h-full bg-black/50 flex items-center justify-center z-50">
                 <div
                   ref={signUpRef}
-                  className="relative mx-auto w-full max-w-md overflow-hidden rounded-lg bg-dark_grey bg-opacity-90 backdrop-blur-md px-8 pt-14 pb-8 text-center"
+                  className="relative mx-auto w-full max-w-md overflow-hidden rounded-lg bg-dark_grey/90 backdrop-blur-md px-8 pt-14 pb-8 text-center"
                 >
                   <button
                     onClick={() => setIsSignUpOpen(false)}
@@ -159,7 +165,7 @@ const Header: React.FC = () => {
           </div>
         </div>
         {navbarOpen && (
-          <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 z-40" />
+          <div className="fixed top-0 left-0 w-full h-full bg-black/50 z-40" />
         )}
         <div
           ref={mobileMenuRef}

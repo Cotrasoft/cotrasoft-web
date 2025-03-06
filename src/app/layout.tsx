@@ -17,8 +17,8 @@ export default function RootLayout({
       <body className={`${font.className}`}>
         <ThemeProvider
           attribute="class"
-          // enableSystem={true}
-          defaultTheme="light"
+          enableSystem={true}
+          defaultTheme="system"
         >
           <Aoscompo>
             <Header />
