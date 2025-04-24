@@ -96,15 +96,17 @@
   ::file-selector-button {
     border-color: var(--color-gray-200, currentColor);
   }
+
+  section {
+    @apply py-32;
+  }
 }
 
 html {
   scroll-behavior: smooth;
 }
 
-section {
-  @apply py-32;
-}
+
 
 .slick-next {
   right: -70px !important;

@@ -77,7 +77,7 @@ const Header: React.FC = () => {
       <div className="lg:py-0 py-2">
         <div className="container mx-auto lg:max-w-(--breakpoint-xl) md:max-w-(--breakpoint-md) flex items-center justify-between px-4">
           <div
-            className={`pr-16 border-r border-black/60 dark:border-white/60 duration-300 ${sticky ? "py-3" : "py-7"
+            className={`pr-16 lg:border-r border-black/60 dark:border-white/60 duration-300 ${sticky ? "py-3" : "py-7"
               }`}
           >
             <Logo />
@@ -88,7 +88,7 @@ const Header: React.FC = () => {
             ))}
           </nav>
           <div
-            className={`flex items-center gap-4 pl-16 border-l border-black/60 dark:border-white/60 duration-300 ${sticky ? "py-3" : "py-7"
+            className={`flex items-center gap-4 lg:pl-16 lg:border-l border-black/60 dark:border-white/60 duration-300 ${sticky ? "py-3" : "py-7"
               }`}
           >
             <button
@@ -155,7 +155,7 @@ const Header: React.FC = () => {
             )}
             <button
               onClick={() => setNavbarOpen(!navbarOpen)}
-              className="block lg:hidden p-2 rounded-lg"
+              className="block bg-charcoalGray lg:hidden p-2 rounded-lg"
               aria-label="Toggle mobile menu"
             >
               <span className="block w-6 h-0.5 bg-white"></span>

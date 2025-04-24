@@ -38,7 +38,7 @@ const Join = () => {
                 autoComplete="off"
               />
             </div>
-            <div className="sm:mr-3">
+            <div className="sm:mr-3 ">
               <Link
                 href="#"
                 className="w-full sm:w-0 text-xl text-white font-semibold text-center rounded-xl sm:rounded-full bg-primary py-5 px-12 hover:bg-darkmode duration-300"

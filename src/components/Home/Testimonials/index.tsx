@@ -102,7 +102,7 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({ items }) => {
 
 const Testimonial: React.FC = () => {
   return (
-    <section className="bg-testimonial dark:bg-darkmode bg-cover bg-center overflow-hidden before:absolute before:w-full before:h-full before:bg-[url('/images/wework/elipse.svg')] before:bg-no-repeat before:bg-center" id="testimonial-section">
+    <section className="bg-testimonial dark:bg-darkmode bg-cover bg-center overflow-hidden before:absolute before:w-full before:h-full before:bg-[url('/images/wework/elipse.svg')] before:bg-no-repeat before:bg-center before:pointer-events-none" id="testimonial-section">
       <div className="container mx-auto lg:max-w-(--breakpoint-xl) md:max-w-(--breakpoint-md)">
         <div className="">
           <div className="text-center">

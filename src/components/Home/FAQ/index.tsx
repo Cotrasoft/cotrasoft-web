@@ -9,7 +9,7 @@ const FAQ = () => {
       <div className="container mx-auto lg:max-w-(--breakpoint-xl) md:max-w-(--breakpoint-md)">
         <div className="relative rounded-2xl py-24 bg-faqBg bg-no-repeat bg-cover bg-primary">
           <p className="text-lg font-normal text-white text-center mb-6">FAQ</p>
-          <h2 className="text-6xl font-semibold text-center text-white mx-72">
+          <h2 className="text-6xl font-semibold text-center text-white max-w-45 mx-auto">
             Frequently asked questions.
           </h2>
           <div className="w-full px-4 pt-16">

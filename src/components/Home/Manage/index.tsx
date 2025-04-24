@@ -110,7 +110,7 @@ const Manage = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-16 gap-14 manage">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-16 gap-14 p-2.5 manage">
           {filteredData.map((items, i) => (
             <div className="shadow-manage-shadow border border-border text-center p-10" key={i}>
               <h4 className="text-2xl font-bold mb-3">{items.heading}</h4>
