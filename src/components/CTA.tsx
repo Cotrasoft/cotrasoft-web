@@ -5,8 +5,8 @@ const contactInfo = [
   {
     icon: FiMail,
     label: 'Email',
-    value: 'gerencia@cotrasoft.com',
-    href: 'mailto:gerencia@cotrasoft.com'
+    value: 'gerencia@cotrasoft.co',
+    href: 'mailto:gerencia@cotrasoft.co'
   },
   {
     icon: FiMapPin,
