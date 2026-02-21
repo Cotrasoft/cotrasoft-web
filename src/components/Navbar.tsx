@@ -11,7 +11,7 @@ const Navbar = ({ isDarkMode, toggleDarkMode }: NavbarProps) => {
   const [isOpen, setIsOpen] = useState(false)
 
   const menuItems = [
-    // { title: 'Servicios', href: '#servicios' },
+    { title: 'Servicios', href: '#servicios' },
     // { title: 'Miembros', href: '#miembros' },
     // { title: 'Proyectos', href: '#proyectos' },
     { title: 'Beneficios', href: '#beneficios' },
