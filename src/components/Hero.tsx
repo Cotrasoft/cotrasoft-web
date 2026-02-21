@@ -23,7 +23,7 @@ const FloatingElement = ({ icon: Icon, delay }: { icon: React.ElementType; delay
 
 const Hero = () => {
   return (
-    <section className="py-24 relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-primary via-secondary to-accent">
+    <section className="py-24 relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-primary-950 via-primary-800 to-primary-600">
       {/* Floating Elements */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-1/4 left-1/4">
@@ -57,7 +57,7 @@ const Hero = () => {
           >
             <a
               href="#unete"
-              className="inline-block btn-primary text-lg sm:text-xl"
+              className="inline-block px-8 py-4 rounded-full bg-white text-primary-800 font-semibold hover:bg-primary-50 transition-all duration-300 shadow-lg hover:shadow-xl text-lg sm:text-xl"
             >
               Descubre los beneficios
             </a>

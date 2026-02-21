@@ -29,7 +29,10 @@ const Navbar = ({ isDarkMode, toggleDarkMode }: NavbarProps) => {
             animate={{ opacity: 1 }}
             className="flex-shrink-0"
           >
-            <span className="text-2xl font-bold gradient-text">Cotrasoft</span>
+            <div className="flex items-center space-x-2">
+              <img src="/cotrasoft_logo.svg" alt="Cotrasoft" className="h-8 w-8" />
+              <span className="text-2xl font-bold text-primary-950 dark:text-white">cotrasoft</span>
+            </div>
           </motion.div>
 
           {/* Desktop Menu */}

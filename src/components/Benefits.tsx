@@ -72,7 +72,7 @@ const Benefits = () => {
                 className="p-6 rounded-xl bg-gray-50 dark:bg-gray-800 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
               >
                 <div className="flex items-center mb-4">
-                  <div className="flex items-center justify-center w-12 h-12 rounded-full bg-gradient-to-r from-primary to-secondary text-white">
+                  <div className="flex items-center justify-center w-12 h-12 rounded-full bg-primary-100 text-primary-700">
                     <Icon className="w-6 h-6" />
                   </div>
                   <h3 className="ml-4 text-xl font-semibold dark:text-white">
