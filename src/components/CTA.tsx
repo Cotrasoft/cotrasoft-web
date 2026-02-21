@@ -20,7 +20,7 @@ const CTA = () => {
   return (
     <section id="unete" className="relative">
       {/* Gradient Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-primary via-secondary to-accent opacity-90" />
+      <div className="absolute inset-0 bg-gradient-to-br from-primary-950 via-primary-800 to-primary-600" />
 
       {/* Content */}
       <div className="relative section-padding">
@@ -64,29 +64,29 @@ const CTA = () => {
               initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="bg-white/10 backdrop-blur-lg rounded-xl p-8 shadow-xl"
+              className="bg-white rounded-xl p-8 shadow-xl"
             >
               <form className="space-y-6">
                 <div>
-                  <label className="block text-white mb-2">Nombre Completo</label>
+                  <label className="block text-gray-700 font-medium mb-2">Nombre Completo</label>
                   <input
                     type="text"
-                    className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder-white/50 focus:outline-none focus:border-white/20"
+                    className="input-field"
                     placeholder="Tu nombre"
                   />
                 </div>
                 <div>
-                  <label className="block text-white mb-2">Email</label>
+                  <label className="block text-gray-700 font-medium mb-2">Email</label>
                   <input
                     type="email"
-                    className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder-white/50 focus:outline-none focus:border-white/20"
+                    className="input-field"
                     placeholder="tu@email.com"
                   />
                 </div>
                 <div>
-                  <label className="block text-white mb-2">Mensaje</label>
+                  <label className="block text-gray-700 font-medium mb-2">Mensaje</label>
                   <textarea
-                    className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder-white/50 focus:outline-none focus:border-white/20 h-32"
+                    className="input-field h-32"
                     placeholder="Cuéntanos sobre ti y tu experiencia..."
                   />
                 </div>

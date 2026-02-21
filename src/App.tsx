@@ -4,6 +4,7 @@ import Hero from './components/Hero'
 // import Features from './components/Features'
 // import Stats from './components/Stats'
 // import Projects from './components/Projects'
+import Services from './components/Services'
 import Benefits from './components/Benefits'
 import CTA from './components/CTA'
 
@@ -30,6 +31,7 @@ function App() {
         <Hero />
         {/* <Features /> */}
         {/* <Stats /> */}
+        <Services />
         <Benefits />
         {/* <Projects /> */}
         <CTA />
