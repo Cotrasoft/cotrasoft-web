@@ -1,14 +1,42 @@
 {
   "meta": {
-    "title": "Cotrasoft - Developer Cooperative",
-    "description": "Cotrasoft is a developer cooperative committed to excellence in software development and innovative technology solutions."
+    "title": "Cotrasoft - Software Developer Cooperative in Colombia",
+    "description": "Cotrasoft is a Colombian developer cooperative. We offer MVP rescue, accelerated development, and technical consulting with AI-powered senior teams.",
+    "keywords": "software development Colombia, MVP rescue service, accelerated development, technical consulting software, nearshore development Colombia, hire Colombian developers, developer cooperative Colombia",
+    "ogTitle": "Cotrasoft - AI-Powered Senior Colombian Dev Teams",
+    "ogDescription": "MVP rescue, accelerated development, and technical consulting. Join our developer cooperative or hire our senior teams.",
+    "ogImageAlt": "Cotrasoft - Software Developer Cooperative in Colombia",
+    "faq": [
+      {
+        "question": "What is Cotrasoft?",
+        "answer": "Cotrasoft is a software developer cooperative based in Colombia. We operate under a solidarity economy model, combining senior talent with artificial intelligence to deliver high-quality software."
+      },
+      {
+        "question": "What development services does Cotrasoft offer?",
+        "answer": "We offer three main services: MVP Rescue (code audit and fix for technical debt in 2 weeks), Accelerated Development (senior teams with AI delivering functional software in days), and Technical Consulting (architecture assessment and technical roadmaps)."
+      },
+      {
+        "question": "How can I join the Cotrasoft cooperative?",
+        "answer": "You can join by filling out the contact form on our website or emailing us at gerencia@cotrasoft.co. We are open to Colombian developers who want to be part of our cooperative model."
+      },
+      {
+        "question": "What are the benefits of being a Cotrasoft member?",
+        "answer": "Members enjoy access to cooperative credits, continuous education and training, a collaborative community, technical mentorship, participation in international projects, and profit sharing and decision-making involvement."
+      },
+      {
+        "question": "Where is Cotrasoft located?",
+        "answer": "Cotrasoft is based in Colombia and works with clients across Latin America and worldwide. Our team operates remotely, allowing us to offer nearshore development services to companies in North America and Europe."
+      }
+    ]
   },
   "navbar": {
     "services": "Services",
     "benefits": "Benefits",
     "join": "Join Us",
     "darkModeToggle": "Toggle dark mode",
-    "toggleMenu": "Toggle menu"
+    "toggleMenu": "Toggle menu",
+    "mainNavigation": "Main navigation",
+    "login": "Login"
   },
   "hero": {
     "heading": "Your tech future deserves more than just a salary",
@@ -128,6 +156,21 @@
       "messagePlaceholder": "Tell us about yourself and your experience...",
       "submit": "Submit Application"
     }
+  },
+  "footer": {
+    "description": "Colombian software developer cooperative. We combine solidarity economy with cutting-edge technology.",
+    "navLabel": "Footer navigation",
+    "links": {
+      "services": "Services",
+      "benefits": "Benefits",
+      "join": "Join Us"
+    },
+    "contact": {
+      "heading": "Contact",
+      "email": "gerencia@cotrasoft.co",
+      "location": "Colombia"
+    },
+    "rights": "All rights reserved."
   },
   "features": {
     "heading": "Our Services",

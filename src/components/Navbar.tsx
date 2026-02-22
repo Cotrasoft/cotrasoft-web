@@ -17,7 +17,7 @@ const Navbar = () => {
   ]
 
   return (
-    <nav className="fixed w-full z-50 bg-white/70 dark:bg-gray-900/70 backdrop-blur-lg">
+    <nav aria-label={t('navbar.mainNavigation')} className="fixed w-full z-50 bg-white/70 dark:bg-gray-900/70 backdrop-blur-lg">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
@@ -44,6 +44,12 @@ const Navbar = () => {
                   {item.title}
                 </a>
               ))}
+              <a
+                href="https://app.cotrasoft.co/"
+                className="px-4 py-2 rounded-full bg-primary text-white font-semibold hover:bg-primary-700 transition-all duration-300 text-sm"
+              >
+                {t('navbar.login')}
+              </a>
               <LanguageSwitcher />
               {/* <button
                 onClick={toggleDarkMode}
@@ -105,6 +111,13 @@ const Navbar = () => {
               {item.title}
             </a>
           ))}
+          <a
+            href="https://app.cotrasoft.co/"
+            className="block px-3 py-2 rounded-md text-primary font-semibold hover:bg-primary-50 dark:hover:bg-gray-800 transition-colors duration-200"
+            onClick={() => setIsOpen(false)}
+          >
+            {t('navbar.login')}
+          </a>
         </div>
       </motion.div>
     </nav>

@@ -1,14 +1,42 @@
 {
   "meta": {
-    "title": "Cotrasoft - Cooperativa de Desarrolladores",
-    "description": "Cotrasoft es una cooperativa de desarrolladores comprometida con la excelencia en el desarrollo de software y soluciones tecnológicas innovadoras."
+    "title": "Cotrasoft - Cooperativa de Desarrolladores de Software en Colombia",
+    "description": "Cotrasoft es una cooperativa de desarrolladores colombianos. Ofrecemos rescate de MVP, desarrollo acelerado y consultoría técnica con equipos senior potenciados por IA.",
+    "keywords": "cooperativa desarrolladores Colombia, desarrollo software Colombia, rescate MVP, desarrollo acelerado, consultoría técnica software, economía solidaria tech, comunidad desarrolladores Colombia, crédito para desarrolladores, beneficios cooperativa programadores",
+    "ogTitle": "Cotrasoft - Equipos Senior Colombianos Potenciados por IA",
+    "ogDescription": "Rescate de MVP, desarrollo acelerado y consultoría técnica. Únete a la cooperativa de desarrolladores o contrata nuestros servicios.",
+    "ogImageAlt": "Cotrasoft - Cooperativa de Desarrolladores de Software en Colombia",
+    "faq": [
+      {
+        "question": "¿Qué es Cotrasoft?",
+        "answer": "Cotrasoft es una cooperativa de desarrolladores de software con sede en Colombia. Operamos bajo el modelo de economía solidaria, combinando talento senior con inteligencia artificial para entregar software de alta calidad."
+      },
+      {
+        "question": "¿Qué servicios de desarrollo ofrece Cotrasoft?",
+        "answer": "Ofrecemos tres servicios principales: Rescate de MVP (auditoría y corrección de código con deuda técnica en 2 semanas), Desarrollo Acelerado (equipos senior con IA que entregan software funcional en días) y Consultoría Técnica (evaluación de arquitectura y hojas de ruta técnicas)."
+      },
+      {
+        "question": "¿Cómo puedo unirme a la cooperativa Cotrasoft?",
+        "answer": "Puedes unirte completando el formulario de contacto en nuestra página web o escribiéndonos a gerencia@cotrasoft.co. Estamos abiertos a desarrolladores colombianos que quieran ser parte de nuestro modelo cooperativo."
+      },
+      {
+        "question": "¿Cuáles son los beneficios de ser miembro de Cotrasoft?",
+        "answer": "Los miembros disfrutan de acceso a créditos cooperativos, educación y capacitación continua, comunidad colaborativa, mentoría técnica, participación en proyectos internacionales y participación en ganancias y toma de decisiones."
+      },
+      {
+        "question": "¿Dónde está ubicada Cotrasoft?",
+        "answer": "Cotrasoft tiene sede en Colombia y trabaja con clientes de toda Latinoamérica y el mundo. Nuestro equipo opera de forma remota, lo que nos permite ofrecer servicios de nearshore development a empresas en Norteamérica y Europa."
+      }
+    ]
   },
   "navbar": {
     "services": "Servicios",
     "benefits": "Beneficios",
     "join": "Únete",
     "darkModeToggle": "Cambiar modo oscuro",
-    "toggleMenu": "Alternar menú"
+    "toggleMenu": "Alternar menú",
+    "mainNavigation": "Navegación principal",
+    "login": "Iniciar Sesión"
   },
   "hero": {
     "heading": "Tu futuro tech merece más que solo un salario",
@@ -128,6 +156,21 @@
       "messagePlaceholder": "Cuéntanos sobre ti y tu experiencia...",
       "submit": "Enviar Solicitud"
     }
+  },
+  "footer": {
+    "description": "Cooperativa de desarrolladores de software colombianos. Combinamos economía solidaria con tecnología de punta.",
+    "navLabel": "Navegación del pie de página",
+    "links": {
+      "services": "Servicios",
+      "benefits": "Beneficios",
+      "join": "Únete"
+    },
+    "contact": {
+      "heading": "Contacto",
+      "email": "gerencia@cotrasoft.co",
+      "location": "Colombia"
+    },
+    "rights": "Todos los derechos reservados."
   },
   "features": {
     "heading": "Nuestros Servicios",
