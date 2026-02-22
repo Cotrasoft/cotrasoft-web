@@ -7,43 +7,15 @@ import {
   FiCloud,
   FiShield
 } from 'react-icons/fi'
+import { useTranslation } from 'react-i18next'
 
-const features = [
-  {
-    icon: FiCode,
-    title: 'Desarrollo Web',
-    description: 'Creación de aplicaciones web modernas y responsivas con las últimas tecnologías'
-  },
-  {
-    icon: FiSmartphone,
-    title: 'Desarrollo Móvil',
-    description: 'Aplicaciones nativas y multiplataforma para iOS y Android'
-  },
-  {
-    icon: FiDatabase,
-    title: 'Bases de Datos',
-    description: 'Diseño e implementación de bases de datos escalables y seguras'
-  },
-  {
-    icon: FiCloud,
-    title: 'Cloud Computing',
-    description: 'Soluciones en la nube utilizando AWS, Azure y Google Cloud'
-  },
-  {
-    icon: FiGlobe,
-    title: 'APIs y Microservicios',
-    description: 'Desarrollo de APIs RESTful y arquitecturas de microservicios'
-  },
-  {
-    icon: FiShield,
-    title: 'Seguridad',
-    description: 'Implementación de mejores prácticas de seguridad y protección de datos'
-  }
-]
+const featureIcons = [FiCode, FiSmartphone, FiDatabase, FiCloud, FiGlobe, FiShield]
 
-const FeatureCard = ({ feature, index }: { feature: typeof features[0]; index: number }) => {
-  const Icon = feature.icon
-
+const FeatureCard = ({ feature, index, icon: Icon }: {
+  feature: { title: string; description: string }
+  index: number
+  icon: React.ElementType
+}) => {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -62,6 +34,13 @@ const FeatureCard = ({ feature, index }: { feature: typeof features[0]; index: n
 }
 
 const Features = () => {
+  const { t } = useTranslation()
+
+  const items = t('features.items', { returnObjects: true }) as Array<{
+    title: string
+    description: string
+  }>
+
   return (
     <section id="servicios" className="section-padding bg-gray-50 dark:bg-gray-800">
       <div className="max-w-7xl mx-auto">
@@ -72,7 +51,7 @@ const Features = () => {
             viewport={{ once: true }}
             className="text-3xl sm:text-4xl font-bold mb-4 gradient-text"
           >
-            Nuestros Servicios
+            {t('features.heading')}
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -81,13 +60,13 @@ const Features = () => {
             transition={{ delay: 0.2 }}
             className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto"
           >
-            Ofrecemos una amplia gama de servicios de desarrollo para satisfacer todas tus necesidades tecnológicas
+            {t('features.subheading')}
           </motion.p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {features.map((feature, index) => (
-            <FeatureCard key={feature.title} feature={feature} index={index} />
+          {items.map((feature, index) => (
+            <FeatureCard key={index} feature={feature} index={index} icon={featureIcons[index]} />
           ))}
         </div>
       </div>

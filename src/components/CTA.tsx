@@ -1,22 +1,24 @@
 import { motion } from 'framer-motion'
 import { FiMail, FiMapPin } from 'react-icons/fi'
-
-const contactInfo = [
-  {
-    icon: FiMail,
-    label: 'Email',
-    value: 'gerencia@cotrasoft.co',
-    href: 'mailto:gerencia@cotrasoft.co'
-  },
-  {
-    icon: FiMapPin,
-    label: 'Ubicación',
-    value: 'Colombia',
-    // href: 'https://maps.google.com'
-  }
-]
+import { useTranslation } from 'react-i18next'
 
 const CTA = () => {
+  const { t } = useTranslation()
+
+  const contactInfo = [
+    {
+      icon: FiMail,
+      label: 'Email',
+      value: t('cta.contact.email'),
+      href: `mailto:${t('cta.contact.email')}`
+    },
+    {
+      icon: FiMapPin,
+      label: t('cta.contact.location'),
+      value: t('cta.contact.location'),
+    }
+  ]
+
   return (
     <section id="unete" className="relative">
       {/* Gradient Background */}
@@ -34,10 +36,10 @@ const CTA = () => {
               className="text-white"
             >
               <h2 className="text-3xl sm:text-4xl font-bold mb-6">
-                Únete a Nuestra Comunidad de Desarrolladores
+                {t('cta.heading')}
               </h2>
               <p className="text-xl mb-8 text-white/90">
-                Sé parte de una cooperativa innovadora donde tu talento y creatividad son valorados. Juntos construimos el futuro del desarrollo de software en Colombia.
+                {t('cta.description')}
               </p>
               <div className="space-y-4">
                 {contactInfo.map((info) => {
@@ -68,33 +70,33 @@ const CTA = () => {
             >
               <form className="space-y-6">
                 <div>
-                  <label className="block text-gray-700 font-medium mb-2">Nombre Completo</label>
+                  <label className="block text-gray-700 font-medium mb-2">{t('cta.form.fullName')}</label>
                   <input
                     type="text"
                     className="input-field"
-                    placeholder="Tu nombre"
+                    placeholder={t('cta.form.fullNamePlaceholder')}
                   />
                 </div>
                 <div>
-                  <label className="block text-gray-700 font-medium mb-2">Email</label>
+                  <label className="block text-gray-700 font-medium mb-2">{t('cta.form.email')}</label>
                   <input
                     type="email"
                     className="input-field"
-                    placeholder="tu@email.com"
+                    placeholder={t('cta.form.emailPlaceholder')}
                   />
                 </div>
                 <div>
-                  <label className="block text-gray-700 font-medium mb-2">Mensaje</label>
+                  <label className="block text-gray-700 font-medium mb-2">{t('cta.form.message')}</label>
                   <textarea
                     className="input-field h-32"
-                    placeholder="Cuéntanos sobre ti y tu experiencia..."
+                    placeholder={t('cta.form.messagePlaceholder')}
                   />
                 </div>
                 <button
                   type="submit"
                   className="w-full btn-primary py-4 text-lg font-semibold"
                 >
-                  Enviar Solicitud
+                  {t('cta.form.submit')}
                 </button>
               </form>
             </motion.div>

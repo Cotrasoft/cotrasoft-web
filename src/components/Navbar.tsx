@@ -1,22 +1,19 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { FiMenu, FiX, FiMoon, FiSun } from 'react-icons/fi'
+import { FiMenu, FiX } from 'react-icons/fi'
+import { useTranslation } from 'react-i18next'
+import { useParams } from 'react-router-dom'
+import LanguageSwitcher from './LanguageSwitcher'
 
-interface NavbarProps {
-  isDarkMode: boolean
-  toggleDarkMode: () => void
-}
-
-const Navbar = ({ isDarkMode, toggleDarkMode }: NavbarProps) => {
+const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false)
+  const { t } = useTranslation()
+  const { lang } = useParams()
 
   const menuItems = [
-    { title: 'Servicios', href: '#servicios' },
-    // { title: 'Miembros', href: '#miembros' },
-    // { title: 'Proyectos', href: '#proyectos' },
-    { title: 'Beneficios', href: '#beneficios' },
-    { title: 'Únete', href: '#unete' },
-    // { title: 'Nosotros', href: '#nosotros' },
+    { title: t('navbar.services'), href: `/${lang}/#servicios` },
+    { title: t('navbar.benefits'), href: `/${lang}/#beneficios` },
+    { title: t('navbar.join'), href: `/${lang}/#unete` },
   ]
 
   return (
@@ -29,10 +26,10 @@ const Navbar = ({ isDarkMode, toggleDarkMode }: NavbarProps) => {
             animate={{ opacity: 1 }}
             className="flex-shrink-0"
           >
-            <div className="flex items-center space-x-2">
+            <a href={`/${lang}/`} className="flex items-center space-x-2">
               <img src="/cotrasoft_logo.svg" alt="Cotrasoft" className="h-8 w-8" />
               <span className="text-2xl font-bold text-primary-950 dark:text-white">cotrasoft</span>
-            </div>
+            </a>
           </motion.div>
 
           {/* Desktop Menu */}
@@ -40,44 +37,46 @@ const Navbar = ({ isDarkMode, toggleDarkMode }: NavbarProps) => {
             <div className="ml-10 flex items-center space-x-8">
               {menuItems.map((item) => (
                 <a
-                  key={item.title}
+                  key={item.href}
                   href={item.href}
                   className="text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors duration-200"
                 >
                   {item.title}
                 </a>
               ))}
-              <button
+              <LanguageSwitcher />
+              {/* <button
                 onClick={toggleDarkMode}
                 className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200"
-                aria-label="Cambiar modo oscuro"
+                aria-label={t('navbar.darkModeToggle')}
               >
                 {isDarkMode ? (
                   <FiSun className="w-5 h-5" />
                 ) : (
                   <FiMoon className="w-5 h-5" />
                 )}
-              </button>
+              </button> */}
             </div>
           </div>
 
           {/* Mobile menu button */}
           <div className="md:hidden flex items-center">
-            <button
+            <LanguageSwitcher />
+            {/* <button
               onClick={toggleDarkMode}
-              className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200 mr-2"
-              aria-label="Cambiar modo oscuro"
+              className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200 ml-2"
+              aria-label={t('navbar.darkModeToggle')}
             >
               {isDarkMode ? (
                 <FiSun className="w-5 h-5" />
               ) : (
                 <FiMoon className="w-5 h-5" />
               )}
-            </button>
+            </button> */}
             <button
               onClick={() => setIsOpen(!isOpen)}
               className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200"
-              aria-label="Alternar menú"
+              aria-label={t('navbar.toggleMenu')}
             >
               {isOpen ? (
                 <FiX className="w-6 h-6" />
@@ -98,7 +97,7 @@ const Navbar = ({ isDarkMode, toggleDarkMode }: NavbarProps) => {
         <div className="px-2 pt-2 pb-3 space-y-1 bg-white dark:bg-gray-900">
           {menuItems.map((item) => (
             <a
-              key={item.title}
+              key={item.href}
               href={item.href}
               className="block px-3 py-2 rounded-md text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors duration-200"
               onClick={() => setIsOpen(false)}

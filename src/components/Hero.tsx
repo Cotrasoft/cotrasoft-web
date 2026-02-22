@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import { FiCode, FiDatabase, FiLayout } from 'react-icons/fi'
+import { useTranslation } from 'react-i18next'
 
 const FloatingElement = ({ icon: Icon, delay }: { icon: React.ElementType; delay: number }) => (
   <motion.div
@@ -22,6 +23,14 @@ const FloatingElement = ({ icon: Icon, delay }: { icon: React.ElementType; delay
 )
 
 const Hero = () => {
+  const { t } = useTranslation()
+
+  const stats = [
+    { label: t('hero.stats.credits') },
+    { label: t('hero.stats.education') },
+    { label: t('hero.stats.community') },
+  ]
+
   return (
     <section className="py-24 relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-primary-950 via-primary-800 to-primary-600">
       {/* Floating Elements */}
@@ -45,10 +54,10 @@ const Hero = () => {
           transition={{ duration: 0.5 }}
         >
           <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold text-white mb-6">
-            Tu futuro tech merece más que solo un salario
+            {t('hero.heading')}
           </h1>
           <p className="text-xl sm:text-2xl text-white/90 mb-8 max-w-3xl mx-auto">
-            Crecimiento profesional, respaldo financiero y <br /> comunidad en un solo lugar
+            {t('hero.subheading')}
           </p>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -59,7 +68,7 @@ const Hero = () => {
               href="#unete"
               className="inline-block px-8 py-4 rounded-full bg-white text-primary-800 font-semibold hover:bg-primary-50 transition-all duration-300 shadow-lg hover:shadow-xl text-lg sm:text-xl"
             >
-              Descubre los beneficios
+              {t('hero.cta')}
             </a>
           </motion.div>
         </motion.div>
@@ -71,11 +80,7 @@ const Hero = () => {
           transition={{ delay: 0.4, duration: 0.5 }}
           className="mt-16 grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-4xl mx-auto"
         >
-          {[
-            { label: 'Creditos', },
-            { label: 'Educación' },
-            { label: 'Comunidad' },
-          ].map((stat) => (
+          {stats.map((stat) => (
             <div
               key={stat.label}
               className="glass-card p-6 text-white"

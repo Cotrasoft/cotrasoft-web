@@ -1,4 +1,7 @@
-import { useState, useEffect } from 'react'
+import { useEffect } from 'react'
+import { Routes, Route, Navigate, useParams, useNavigate, useLocation } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
+import { supportedLanguages, type SupportedLanguage } from './i18n'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 // import Features from './components/Features'
@@ -7,26 +10,41 @@ import Hero from './components/Hero'
 import Services from './components/Services'
 import Benefits from './components/Benefits'
 import CTA from './components/CTA'
+import SEOHead from './components/SEOHead'
 
-function App() {
-  const [isDarkMode, setIsDarkMode] = useState(false)
+function LanguageRedirect() {
+  const { i18n } = useTranslation()
+  const location = useLocation()
 
+  const detected = i18n.language?.substring(0, 2) as SupportedLanguage
+  const lang = supportedLanguages.includes(detected) ? detected : 'es'
+
+  return <Navigate to={`/${lang}/${location.hash}`} replace />
+}
+
+function LocalizedApp() {
+  const { lang } = useParams()
+  const { i18n } = useTranslation()
+  const navigate = useNavigate()
   useEffect(() => {
-    // Check system preference for dark mode
-    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      setIsDarkMode(true)
-      document.documentElement.classList.add('dark')
+    if (!lang || !supportedLanguages.includes(lang as SupportedLanguage)) {
+      navigate('/es/', { replace: true })
+      return
     }
-  }, [])
+    if (i18n.language !== lang) {
+      i18n.changeLanguage(lang)
+    }
+    document.documentElement.lang = lang
+  }, [lang, i18n, navigate])
 
-  const toggleDarkMode = () => {
-    setIsDarkMode(!isDarkMode)
-    document.documentElement.classList.toggle('dark')
+  if (!lang || !supportedLanguages.includes(lang as SupportedLanguage)) {
+    return null
   }
 
   return (
-    <div className={`min-h-screen bg-white dark:bg-gray-900 ${isDarkMode ? 'dark' : ''}`}>
-      <Navbar isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />
+    <div className="min-h-screen bg-white dark:bg-gray-900">
+      <SEOHead />
+      <Navbar />
       <main>
         <Hero />
         {/* <Features /> */}
@@ -37,6 +55,16 @@ function App() {
         <CTA />
       </main>
     </div>
+  )
+}
+
+function App() {
+  return (
+    <Routes>
+      <Route path="/:lang/*" element={<LocalizedApp />} />
+      <Route path="/" element={<LanguageRedirect />} />
+      <Route path="*" element={<Navigate to="/" replace />} />
+    </Routes>
   )
 }
 
