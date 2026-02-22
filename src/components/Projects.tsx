@@ -1,58 +1,35 @@
 import { motion } from 'framer-motion'
 import { FiExternalLink, FiStar } from 'react-icons/fi'
+import { useTranslation } from 'react-i18next'
 
-const projects = [
-  {
-    title: 'Sistema de Gestión Financiera',
-    description: 'Plataforma integral para gestión de finanzas empresariales',
-    image: 'https://picsum.photos/seed/1/600/400',
-    tags: ['React', 'Node.js', 'PostgreSQL'],
-    metrics: {
-      performance: '45% más rápido',
-      satisfaction: '98% satisfacción',
-      users: '10k+ usuarios'
-    },
-    testimonial: {
-      content: 'La solución superó nuestras expectativas en todos los aspectos.',
-      author: 'María González',
-      role: 'CTO, FinTech Solutions'
-    }
-  },
-  {
-    title: 'App de Comercio Electrónico',
-    description: 'Aplicación móvil para comercio electrónico B2B',
-    image: 'https://picsum.photos/seed/2/600/400',
-    tags: ['React Native', 'Firebase', 'Stripe'],
-    metrics: {
-      performance: '99.9% uptime',
-      satisfaction: '4.8/5 estrellas',
-      users: '50k+ descargas'
-    },
-    testimonial: {
-      content: 'Incrementamos nuestras ventas en un 200% desde el lanzamiento.',
-      author: 'Carlos Ruiz',
-      role: 'CEO, MegaStore'
-    }
-  },
-  {
-    title: 'Plataforma Educativa',
-    description: 'Sistema de gestión de aprendizaje en línea',
-    image: 'https://picsum.photos/seed/3/600/400',
-    tags: ['Vue.js', 'Python', 'MongoDB'],
-    metrics: {
-      performance: '30% mejor retención',
-      satisfaction: '96% satisfacción',
-      users: '100k+ estudiantes'
-    },
-    testimonial: {
-      content: 'Transformó completamente nuestra forma de enseñar en línea.',
-      author: 'Ana Martínez',
-      role: 'Directora, EduTech'
-    }
+interface ProjectItem {
+  title: string
+  description: string
+  metrics: {
+    performance: string
+    satisfaction: string
+    users: string
   }
+  testimonial: {
+    content: string
+    author: string
+    role: string
+  }
+}
+
+const projectImages = [
+  'https://picsum.photos/seed/1/600/400',
+  'https://picsum.photos/seed/2/600/400',
+  'https://picsum.photos/seed/3/600/400',
 ]
 
-const ProjectCard = ({ project }: { project: typeof projects[0] }) => {
+const projectTags = [
+  ['React', 'Node.js', 'PostgreSQL'],
+  ['React Native', 'Firebase', 'Stripe'],
+  ['Vue.js', 'Python', 'MongoDB'],
+]
+
+const ProjectCard = ({ project, index }: { project: ProjectItem; index: number }) => {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -62,7 +39,7 @@ const ProjectCard = ({ project }: { project: typeof projects[0] }) => {
     >
       <div className="relative h-48 overflow-hidden">
         <img
-          src={project.image}
+          src={projectImages[index]}
           alt={project.title}
           className="w-full h-full object-cover transform hover:scale-110 transition-transform duration-300"
         />
@@ -75,7 +52,7 @@ const ProjectCard = ({ project }: { project: typeof projects[0] }) => {
           {project.description}
         </p>
         <div className="flex flex-wrap gap-2 mb-4">
-          {project.tags.map((tag) => (
+          {projectTags[index].map((tag) => (
             <span
               key={tag}
               className="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm text-gray-700 dark:text-gray-300"
@@ -84,7 +61,7 @@ const ProjectCard = ({ project }: { project: typeof projects[0] }) => {
             </span>
           ))}
         </div>
-        
+
         {/* Metrics */}
         <div className="grid grid-cols-3 gap-4 mb-6">
           {Object.entries(project.metrics).map(([key, value]) => (
@@ -123,6 +100,10 @@ const ProjectCard = ({ project }: { project: typeof projects[0] }) => {
 }
 
 const Projects = () => {
+  const { t } = useTranslation()
+
+  const items = t('projects.items', { returnObjects: true }) as ProjectItem[]
+
   return (
     <section id="proyectos" className="section-padding bg-gray-50 dark:bg-gray-900">
       <div className="max-w-7xl mx-auto">
@@ -133,16 +114,16 @@ const Projects = () => {
           className="text-center mb-16"
         >
           <h2 className="text-3xl sm:text-4xl font-bold mb-4 gradient-text">
-            Proyectos Destacados
+            {t('projects.heading')}
           </h2>
           <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-            Descubre cómo hemos ayudado a empresas a alcanzar sus objetivos tecnológicos
+            {t('projects.subheading')}
           </p>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project) => (
-            <ProjectCard key={project.title} project={project} />
+          {items.map((project, index) => (
+            <ProjectCard key={index} project={project} index={index} />
           ))}
         </div>
 
@@ -156,7 +137,7 @@ const Projects = () => {
             href="#contacto"
             className="btn-primary inline-flex items-center space-x-2"
           >
-            <span>Ver Más Proyectos</span>
+            <span>{t('projects.cta')}</span>
             <FiExternalLink />
           </a>
         </motion.div>

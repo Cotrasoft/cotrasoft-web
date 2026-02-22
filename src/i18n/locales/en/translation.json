@@ -1,0 +1,217 @@
+{
+  "meta": {
+    "title": "Cotrasoft - Developer Cooperative",
+    "description": "Cotrasoft is a developer cooperative committed to excellence in software development and innovative technology solutions."
+  },
+  "navbar": {
+    "services": "Services",
+    "benefits": "Benefits",
+    "join": "Join Us",
+    "darkModeToggle": "Toggle dark mode",
+    "toggleMenu": "Toggle menu"
+  },
+  "hero": {
+    "heading": "Your tech future deserves more than just a salary",
+    "subheading": "Professional growth, financial support, and community in one place",
+    "cta": "Discover the benefits",
+    "stats": {
+      "credits": "Credits",
+      "education": "Education",
+      "community": "Community"
+    }
+  },
+  "services": {
+    "heading": "Our Services",
+    "subheading": "Senior teams powered by AI delivering functional software in days, not months. Structured sprints with clear scopes and predictable outcomes.",
+    "cta": "Schedule a Consultation",
+    "rescue": {
+      "title": "MVP Rescue",
+      "description": "Your MVP was built with AI or by a junior team and has critical technical debt. In a 2-week sprint we audit, fix, and instrument your code to eliminate launch risks.",
+      "deliverables": [
+        "Complete code audit",
+        "Merged PRs with fixes",
+        "Operations runbook",
+        "Go/no-go decision memo"
+      ]
+    },
+    "accelerated": {
+      "title": "Accelerated Development",
+      "description": "Teams of senior Colombian developers, augmented with cutting-edge AI models, compress development cycles. Usable software delivered in days with built-in security and full code ownership.",
+      "deliverables": [
+        "Clear scopes and predictable timelines",
+        "Built-in security from day one",
+        "Full source code ownership",
+        "Post-delivery support included"
+      ]
+    },
+    "consulting": {
+      "title": "Technical Consulting",
+      "description": "We evaluate your current architecture, identify bottlenecks, and design a technical roadmap aligned with your business goals. Informed decisions backed by cooperative expertise.",
+      "deliverables": [
+        "Architecture assessment",
+        "Technical roadmap",
+        "Prioritized recommendations",
+        "Knowledge transfer sessions"
+      ]
+    },
+    "process": {
+      "heading": "Our Process",
+      "subheading": "2-week sprints with clear phases and defined deliverables",
+      "phases": [
+        {
+          "title": "Discovery",
+          "days": "Days 1-2",
+          "description": "Technical audit, scope definition, and risk prioritization with your team."
+        },
+        {
+          "title": "Execution",
+          "days": "Days 3-7",
+          "description": "Intensive development with daily deliveries, code review, and continuous deployment."
+        },
+        {
+          "title": "Validation",
+          "days": "Days 8-9",
+          "description": "Integration testing, security review, and quality assurance."
+        },
+        {
+          "title": "Delivery",
+          "days": "Day 10",
+          "description": "Production deployment, complete documentation, and knowledge transfer."
+        }
+      ]
+    }
+  },
+  "benefits": {
+    "heading": "Member Benefits",
+    "subheading": "Join our cooperative and enjoy exclusive advantages designed to boost your career",
+    "cta": "Discover More Benefits",
+    "items": [
+      {
+        "title": "Collaborative Community",
+        "description": "Be part of a network of talented and passionate developers"
+      },
+      {
+        "title": "Professional Growth",
+        "description": "Continuous development and learning opportunities"
+      },
+      {
+        "title": "Learning Resources",
+        "description": "Access to courses, workshops, and educational materials"
+      },
+      {
+        "title": "Mutual Support",
+        "description": "Mentorship and technical support from the community"
+      },
+      {
+        "title": "Global Projects",
+        "description": "Participate in challenging international projects"
+      },
+      {
+        "title": "Cooperative Benefits",
+        "description": "Profit sharing and decision-making participation"
+      }
+    ]
+  },
+  "cta": {
+    "heading": "Join Our Developer Community",
+    "description": "Be part of an innovative cooperative where your talent and creativity are valued. Together we build the future of software development in Colombia.",
+    "contact": {
+      "email": "gerencia@cotrasoft.co",
+      "location": "Colombia"
+    },
+    "form": {
+      "fullName": "Full Name",
+      "fullNamePlaceholder": "Your name",
+      "email": "Email",
+      "emailPlaceholder": "you@email.com",
+      "message": "Message",
+      "messagePlaceholder": "Tell us about yourself and your experience...",
+      "submit": "Submit Application"
+    }
+  },
+  "features": {
+    "heading": "Our Services",
+    "subheading": "We offer a wide range of development services to meet all your technology needs",
+    "items": [
+      {
+        "title": "Web Development",
+        "description": "Building modern and responsive web applications with the latest technologies"
+      },
+      {
+        "title": "Mobile Development",
+        "description": "Native and cross-platform applications for iOS and Android"
+      },
+      {
+        "title": "Databases",
+        "description": "Design and implementation of scalable and secure databases"
+      },
+      {
+        "title": "Cloud Computing",
+        "description": "Cloud solutions using AWS, Azure, and Google Cloud"
+      },
+      {
+        "title": "APIs & Microservices",
+        "description": "RESTful API development and microservices architectures"
+      },
+      {
+        "title": "Security",
+        "description": "Implementation of security best practices and data protection"
+      }
+    ]
+  },
+  "stats": {
+    "developers": "Developers",
+    "projects": "Successful Projects",
+    "experience": "Years of Experience",
+    "satisfaction": "Client Satisfaction"
+  },
+  "projects": {
+    "heading": "Featured Projects",
+    "subheading": "Discover how we've helped companies achieve their technology goals",
+    "cta": "View More Projects",
+    "items": [
+      {
+        "title": "Financial Management System",
+        "description": "Comprehensive platform for enterprise financial management",
+        "metrics": {
+          "performance": "45% faster",
+          "satisfaction": "98% satisfaction",
+          "users": "10k+ users"
+        },
+        "testimonial": {
+          "content": "The solution exceeded our expectations in every aspect.",
+          "author": "María González",
+          "role": "CTO, FinTech Solutions"
+        }
+      },
+      {
+        "title": "E-Commerce App",
+        "description": "Mobile application for B2B e-commerce",
+        "metrics": {
+          "performance": "99.9% uptime",
+          "satisfaction": "4.8/5 stars",
+          "users": "50k+ downloads"
+        },
+        "testimonial": {
+          "content": "We increased our sales by 200% since launch.",
+          "author": "Carlos Ruiz",
+          "role": "CEO, MegaStore"
+        }
+      },
+      {
+        "title": "Educational Platform",
+        "description": "Online learning management system",
+        "metrics": {
+          "performance": "30% better retention",
+          "satisfaction": "96% satisfaction",
+          "users": "100k+ students"
+        },
+        "testimonial": {
+          "content": "It completely transformed our way of teaching online.",
+          "author": "Ana Martínez",
+          "role": "Director, EduTech"
+        }
+      }
+    ]
+  }
+}

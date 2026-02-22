@@ -6,78 +6,30 @@ import {
   FiCheck,
   FiArrowRight
 } from 'react-icons/fi'
+import { useTranslation } from 'react-i18next'
 
-const services = [
-  {
-    icon: FiLifeBuoy,
-    title: 'Rescate de MVP',
-    description:
-      'Tu MVP fue construido con IA o por un equipo junior y tiene deuda técnica crítica. En un sprint de 2 semanas auditamos, corregimos e instrumentamos tu código para eliminar riesgos de lanzamiento.',
-    deliverables: [
-      'Auditoría completa del código',
-      'PRs fusionados con correcciones',
-      'Runbook de operaciones',
-      'Memo de decisión go/no-go'
-    ]
-  },
-  {
-    icon: FiZap,
-    title: 'Desarrollo Acelerado',
-    description:
-      'Equipos de desarrolladores senior colombianos, aumentados con modelos de IA de última generación, comprimen ciclos de desarrollo. Software usable entregado en días con seguridad integrada y propiedad total del código.',
-    deliverables: [
-      'Alcances claros y cronogramas predecibles',
-      'Seguridad integrada desde el día uno',
-      'Propiedad total del código fuente',
-      'Soporte post-entrega incluido'
-    ]
-  },
-  {
-    icon: FiCompass,
-    title: 'Consultoría Técnica',
-    description:
-      'Evaluamos tu arquitectura actual, identificamos cuellos de botella y diseñamos una hoja de ruta técnica alineada con tus objetivos de negocio. Decisiones informadas respaldadas por experiencia cooperativa.',
-    deliverables: [
-      'Evaluación de arquitectura',
-      'Hoja de ruta técnica',
-      'Recomendaciones priorizadas',
-      'Sesiones de transferencia de conocimiento'
-    ]
-  }
-]
-
-const phases = [
-  {
-    step: '01',
-    title: 'Descubrimiento',
-    days: 'Días 1-2',
-    description:
-      'Auditoría técnica, definición de alcance y priorización de riesgos con tu equipo.'
-  },
-  {
-    step: '02',
-    title: 'Ejecución',
-    days: 'Días 3-7',
-    description:
-      'Desarrollo intensivo con entregas diarias, revisión de código y despliegue continuo.'
-  },
-  {
-    step: '03',
-    title: 'Validación',
-    days: 'Días 8-9',
-    description:
-      'Pruebas de integración, revisión de seguridad y aseguramiento de calidad.'
-  },
-  {
-    step: '04',
-    title: 'Entrega',
-    days: 'Día 10',
-    description:
-      'Despliegue a producción, documentación completa y transferencia de conocimiento.'
-  }
-]
+const serviceIcons = [FiLifeBuoy, FiZap, FiCompass]
+const serviceKeys = ['rescue', 'accelerated', 'consulting'] as const
 
 const Services = () => {
+  const { t } = useTranslation()
+
+  const services = serviceKeys.map((key, i) => ({
+    icon: serviceIcons[i],
+    title: t(`services.${key}.title`),
+    description: t(`services.${key}.description`),
+    deliverables: t(`services.${key}.deliverables`, { returnObjects: true }) as string[],
+  }))
+
+  const phases = (t('services.process.phases', { returnObjects: true }) as Array<{
+    title: string
+    days: string
+    description: string
+  }>).map((phase, i) => ({
+    step: String(i + 1).padStart(2, '0'),
+    ...phase,
+  }))
+
   return (
     <section id="servicios" className="section-padding bg-gray-50 dark:bg-gray-800">
       <div className="max-w-7xl mx-auto">
@@ -89,11 +41,10 @@ const Services = () => {
           className="text-center mb-16"
         >
           <h2 className="text-3xl sm:text-4xl font-bold mb-4 gradient-text">
-            Nuestros Servicios
+            {t('services.heading')}
           </h2>
           <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-            Equipos senior potenciados con IA que entregan software funcional en días, no meses.
-            Sprints estructurados con alcances claros y resultados predecibles.
+            {t('services.subheading')}
           </p>
         </motion.div>
 
@@ -103,7 +54,7 @@ const Services = () => {
             const Icon = service.icon
             return (
               <motion.div
-                key={service.title}
+                key={index}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
@@ -122,8 +73,8 @@ const Services = () => {
                   {service.description}
                 </p>
                 <ul className="space-y-2">
-                  {service.deliverables.map((item) => (
-                    <li key={item} className="flex items-start space-x-2">
+                  {service.deliverables.map((item, i) => (
+                    <li key={i} className="flex items-start space-x-2">
                       <FiCheck className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
                       <span className="text-gray-600 dark:text-gray-300 text-sm">
                         {item}
@@ -145,10 +96,10 @@ const Services = () => {
         >
           <div className="text-center mb-12">
             <h3 className="text-2xl sm:text-3xl font-bold mb-3 gradient-text">
-              Nuestro Proceso
+              {t('services.process.heading')}
             </h3>
             <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-              Sprints de 2 semanas con fases claras y entregables definidos
+              {t('services.process.subheading')}
             </p>
           </div>
 
@@ -190,7 +141,7 @@ const Services = () => {
             href="#unete"
             className="btn-primary inline-flex items-center space-x-2"
           >
-            <span>Agenda una Consulta</span>
+            <span>{t('services.cta')}</span>
             <FiArrowRight className="w-5 h-5" />
           </a>
         </motion.div>

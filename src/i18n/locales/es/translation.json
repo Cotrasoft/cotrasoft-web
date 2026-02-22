@@ -1,0 +1,217 @@
+{
+  "meta": {
+    "title": "Cotrasoft - Cooperativa de Desarrolladores",
+    "description": "Cotrasoft es una cooperativa de desarrolladores comprometida con la excelencia en el desarrollo de software y soluciones tecnológicas innovadoras."
+  },
+  "navbar": {
+    "services": "Servicios",
+    "benefits": "Beneficios",
+    "join": "Únete",
+    "darkModeToggle": "Cambiar modo oscuro",
+    "toggleMenu": "Alternar menú"
+  },
+  "hero": {
+    "heading": "Tu futuro tech merece más que solo un salario",
+    "subheading": "Crecimiento profesional, respaldo financiero y comunidad en un solo lugar",
+    "cta": "Descubre los beneficios",
+    "stats": {
+      "credits": "Creditos",
+      "education": "Educación",
+      "community": "Comunidad"
+    }
+  },
+  "services": {
+    "heading": "Nuestros Servicios",
+    "subheading": "Equipos senior potenciados con IA que entregan software funcional en días, no meses. Sprints estructurados con alcances claros y resultados predecibles.",
+    "cta": "Agenda una Consulta",
+    "rescue": {
+      "title": "Rescate de MVP",
+      "description": "Tu MVP fue construido con IA o por un equipo junior y tiene deuda técnica crítica. En un sprint de 2 semanas auditamos, corregimos e instrumentamos tu código para eliminar riesgos de lanzamiento.",
+      "deliverables": [
+        "Auditoría completa del código",
+        "PRs fusionados con correcciones",
+        "Runbook de operaciones",
+        "Memo de decisión go/no-go"
+      ]
+    },
+    "accelerated": {
+      "title": "Desarrollo Acelerado",
+      "description": "Equipos de desarrolladores senior colombianos, aumentados con modelos de IA de última generación, comprimen ciclos de desarrollo. Software usable entregado en días con seguridad integrada y propiedad total del código.",
+      "deliverables": [
+        "Alcances claros y cronogramas predecibles",
+        "Seguridad integrada desde el día uno",
+        "Propiedad total del código fuente",
+        "Soporte post-entrega incluido"
+      ]
+    },
+    "consulting": {
+      "title": "Consultoría Técnica",
+      "description": "Evaluamos tu arquitectura actual, identificamos cuellos de botella y diseñamos una hoja de ruta técnica alineada con tus objetivos de negocio. Decisiones informadas respaldadas por experiencia cooperativa.",
+      "deliverables": [
+        "Evaluación de arquitectura",
+        "Hoja de ruta técnica",
+        "Recomendaciones priorizadas",
+        "Sesiones de transferencia de conocimiento"
+      ]
+    },
+    "process": {
+      "heading": "Nuestro Proceso",
+      "subheading": "Sprints de 2 semanas con fases claras y entregables definidos",
+      "phases": [
+        {
+          "title": "Descubrimiento",
+          "days": "Días 1-2",
+          "description": "Auditoría técnica, definición de alcance y priorización de riesgos con tu equipo."
+        },
+        {
+          "title": "Ejecución",
+          "days": "Días 3-7",
+          "description": "Desarrollo intensivo con entregas diarias, revisión de código y despliegue continuo."
+        },
+        {
+          "title": "Validación",
+          "days": "Días 8-9",
+          "description": "Pruebas de integración, revisión de seguridad y aseguramiento de calidad."
+        },
+        {
+          "title": "Entrega",
+          "days": "Día 10",
+          "description": "Despliegue a producción, documentación completa y transferencia de conocimiento."
+        }
+      ]
+    }
+  },
+  "benefits": {
+    "heading": "Beneficios para Miembros",
+    "subheading": "Únete a nuestra cooperativa y disfruta de ventajas exclusivas diseñadas para impulsar tu carrera",
+    "cta": "Descubre Más Beneficios",
+    "items": [
+      {
+        "title": "Comunidad Colaborativa",
+        "description": "Forma parte de una red de desarrolladores talentosos y apasionados"
+      },
+      {
+        "title": "Crecimiento Profesional",
+        "description": "Oportunidades de desarrollo y aprendizaje continuo"
+      },
+      {
+        "title": "Recursos de Aprendizaje",
+        "description": "Acceso a cursos, workshops y materiales educativos"
+      },
+      {
+        "title": "Soporte Mutuo",
+        "description": "Mentorías y apoyo técnico de la comunidad"
+      },
+      {
+        "title": "Proyectos Globales",
+        "description": "Participa en proyectos internacionales desafiantes"
+      },
+      {
+        "title": "Beneficios Cooperativos",
+        "description": "Participación en ganancias y toma de decisiones"
+      }
+    ]
+  },
+  "cta": {
+    "heading": "Únete a Nuestra Comunidad de Desarrolladores",
+    "description": "Sé parte de una cooperativa innovadora donde tu talento y creatividad son valorados. Juntos construimos el futuro del desarrollo de software en Colombia.",
+    "contact": {
+      "email": "gerencia@cotrasoft.co",
+      "location": "Colombia"
+    },
+    "form": {
+      "fullName": "Nombre Completo",
+      "fullNamePlaceholder": "Tu nombre",
+      "email": "Email",
+      "emailPlaceholder": "tu@email.com",
+      "message": "Mensaje",
+      "messagePlaceholder": "Cuéntanos sobre ti y tu experiencia...",
+      "submit": "Enviar Solicitud"
+    }
+  },
+  "features": {
+    "heading": "Nuestros Servicios",
+    "subheading": "Ofrecemos una amplia gama de servicios de desarrollo para satisfacer todas tus necesidades tecnológicas",
+    "items": [
+      {
+        "title": "Desarrollo Web",
+        "description": "Creación de aplicaciones web modernas y responsivas con las últimas tecnologías"
+      },
+      {
+        "title": "Desarrollo Móvil",
+        "description": "Aplicaciones nativas y multiplataforma para iOS y Android"
+      },
+      {
+        "title": "Bases de Datos",
+        "description": "Diseño e implementación de bases de datos escalables y seguras"
+      },
+      {
+        "title": "Cloud Computing",
+        "description": "Soluciones en la nube utilizando AWS, Azure y Google Cloud"
+      },
+      {
+        "title": "APIs y Microservicios",
+        "description": "Desarrollo de APIs RESTful y arquitecturas de microservicios"
+      },
+      {
+        "title": "Seguridad",
+        "description": "Implementación de mejores prácticas de seguridad y protección de datos"
+      }
+    ]
+  },
+  "stats": {
+    "developers": "Desarrolladores",
+    "projects": "Proyectos Exitosos",
+    "experience": "Años de Experiencia",
+    "satisfaction": "Satisfacción del Cliente"
+  },
+  "projects": {
+    "heading": "Proyectos Destacados",
+    "subheading": "Descubre cómo hemos ayudado a empresas a alcanzar sus objetivos tecnológicos",
+    "cta": "Ver Más Proyectos",
+    "items": [
+      {
+        "title": "Sistema de Gestión Financiera",
+        "description": "Plataforma integral para gestión de finanzas empresariales",
+        "metrics": {
+          "performance": "45% más rápido",
+          "satisfaction": "98% satisfacción",
+          "users": "10k+ usuarios"
+        },
+        "testimonial": {
+          "content": "La solución superó nuestras expectativas en todos los aspectos.",
+          "author": "María González",
+          "role": "CTO, FinTech Solutions"
+        }
+      },
+      {
+        "title": "App de Comercio Electrónico",
+        "description": "Aplicación móvil para comercio electrónico B2B",
+        "metrics": {
+          "performance": "99.9% uptime",
+          "satisfaction": "4.8/5 estrellas",
+          "users": "50k+ descargas"
+        },
+        "testimonial": {
+          "content": "Incrementamos nuestras ventas en un 200% desde el lanzamiento.",
+          "author": "Carlos Ruiz",
+          "role": "CEO, MegaStore"
+        }
+      },
+      {
+        "title": "Plataforma Educativa",
+        "description": "Sistema de gestión de aprendizaje en línea",
+        "metrics": {
+          "performance": "30% mejor retención",
+          "satisfaction": "96% satisfacción",
+          "users": "100k+ estudiantes"
+        },
+        "testimonial": {
+          "content": "Transformó completamente nuestra forma de enseñar en línea.",
+          "author": "Ana Martínez",
+          "role": "Directora, EduTech"
+        }
+      }
+    ]
+  }
+}

@@ -7,41 +7,18 @@ import {
   FiGlobe,
   FiHeart
 } from 'react-icons/fi'
+import { useTranslation } from 'react-i18next'
 
-const benefits = [
-  {
-    icon: FiUsers,
-    title: 'Comunidad Colaborativa',
-    description: 'Forma parte de una red de desarrolladores talentosos y apasionados'
-  },
-  {
-    icon: FiTrendingUp,
-    title: 'Crecimiento Profesional',
-    description: 'Oportunidades de desarrollo y aprendizaje continuo'
-  },
-  {
-    icon: FiBook,
-    title: 'Recursos de Aprendizaje',
-    description: 'Acceso a cursos, workshops y materiales educativos'
-  },
-  {
-    icon: FiLifeBuoy,
-    title: 'Soporte Mutuo',
-    description: 'Mentorías y apoyo técnico de la comunidad'
-  },
-  {
-    icon: FiGlobe,
-    title: 'Proyectos Globales',
-    description: 'Participa en proyectos internacionales desafiantes'
-  },
-  {
-    icon: FiHeart,
-    title: 'Beneficios Cooperativos',
-    description: 'Participación en ganancias y toma de decisiones'
-  }
-]
+const benefitIcons = [FiUsers, FiTrendingUp, FiBook, FiLifeBuoy, FiGlobe, FiHeart]
 
 const Benefits = () => {
+  const { t } = useTranslation()
+
+  const items = t('benefits.items', { returnObjects: true }) as Array<{
+    title: string
+    description: string
+  }>
+
   return (
     <section id="beneficios" className="section-padding bg-white dark:bg-gray-900">
       <div className="max-w-7xl mx-auto">
@@ -52,19 +29,19 @@ const Benefits = () => {
           className="text-center mb-16"
         >
           <h2 className="text-3xl sm:text-4xl font-bold mb-4 gradient-text">
-            Beneficios para Miembros
+            {t('benefits.heading')}
           </h2>
           <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-            Únete a nuestra cooperativa y disfruta de ventajas exclusivas diseñadas para impulsar tu carrera
+            {t('benefits.subheading')}
           </p>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {benefits.map((benefit, index) => {
-            const Icon = benefit.icon
+          {items.map((benefit, index) => {
+            const Icon = benefitIcons[index]
             return (
               <motion.div
-                key={benefit.title}
+                key={index}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
@@ -97,7 +74,7 @@ const Benefits = () => {
             href="#unete"
             className="btn-primary inline-flex items-center space-x-2"
           >
-            <span>Descubre Más Beneficios</span>
+            <span>{t('benefits.cta')}</span>
           </a>
         </motion.div>
       </div>
