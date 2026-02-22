@@ -20,7 +20,7 @@ const CTA = () => {
   ]
 
   return (
-    <section id="unete" className="relative">
+    <section id="unete" aria-labelledby="cta-heading" className="relative">
       {/* Gradient Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-primary-950 via-primary-800 to-primary-600" />
 
@@ -35,7 +35,7 @@ const CTA = () => {
               viewport={{ once: true }}
               className="text-white"
             >
-              <h2 className="text-3xl sm:text-4xl font-bold mb-6">
+              <h2 id="cta-heading" className="text-3xl sm:text-4xl font-bold mb-6">
                 {t('cta.heading')}
               </h2>
               <p className="text-xl mb-8 text-white/90">
@@ -70,24 +70,27 @@ const CTA = () => {
             >
               <form className="space-y-6">
                 <div>
-                  <label className="block text-gray-700 font-medium mb-2">{t('cta.form.fullName')}</label>
+                  <label htmlFor="cta-fullname" className="block text-gray-700 font-medium mb-2">{t('cta.form.fullName')}</label>
                   <input
+                    id="cta-fullname"
                     type="text"
                     className="input-field"
                     placeholder={t('cta.form.fullNamePlaceholder')}
                   />
                 </div>
                 <div>
-                  <label className="block text-gray-700 font-medium mb-2">{t('cta.form.email')}</label>
+                  <label htmlFor="cta-email" className="block text-gray-700 font-medium mb-2">{t('cta.form.email')}</label>
                   <input
+                    id="cta-email"
                     type="email"
                     className="input-field"
                     placeholder={t('cta.form.emailPlaceholder')}
                   />
                 </div>
                 <div>
-                  <label className="block text-gray-700 font-medium mb-2">{t('cta.form.message')}</label>
+                  <label htmlFor="cta-message" className="block text-gray-700 font-medium mb-2">{t('cta.form.message')}</label>
                   <textarea
+                    id="cta-message"
                     className="input-field h-32"
                     placeholder={t('cta.form.messagePlaceholder')}
                   />

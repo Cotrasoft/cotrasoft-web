@@ -32,7 +32,7 @@ const Hero = () => {
   ]
 
   return (
-    <section className="py-24 relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-primary-950 via-primary-800 to-primary-600">
+    <section aria-labelledby="hero-heading" className="py-24 relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-primary-950 via-primary-800 to-primary-600">
       {/* Floating Elements */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-1/4 left-1/4">
@@ -53,7 +53,7 @@ const Hero = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold text-white mb-6">
+          <h1 id="hero-heading" className="text-4xl sm:text-6xl lg:text-7xl font-bold text-white mb-6">
             {t('hero.heading')}
           </h1>
           <p className="text-xl sm:text-2xl text-white/90 mb-8 max-w-3xl mx-auto">
