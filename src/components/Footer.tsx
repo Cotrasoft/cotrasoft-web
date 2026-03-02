@@ -8,7 +8,7 @@ const Footer = () => {
   const navLinks = [
     { label: t('footer.links.services'), href: `/${lang}/#servicios` },
     { label: t('footer.links.benefits'), href: `/${lang}/#beneficios` },
-    { label: t('footer.links.join'), href: `/${lang}/#unete` },
+    { label: t('footer.links.join'), href: 'https://app.cotrasoft.co/registro' },
   ]
 
   return (

@@ -138,7 +138,7 @@ const Services = () => {
           className="mt-16 text-center"
         >
           <a
-            href="#unete"
+            href="https://app.cotrasoft.co/registro"
             className="btn-primary inline-flex items-center space-x-2"
           >
             <span>{t('services.cta')}</span>

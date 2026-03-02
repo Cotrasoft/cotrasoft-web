@@ -9,7 +9,7 @@ import Hero from './components/Hero'
 // import Projects from './components/Projects'
 import Services from './components/Services'
 import Benefits from './components/Benefits'
-import CTA from './components/CTA'
+// import CTA from './components/CTA'
 import Footer from './components/Footer'
 import SEOHead from './components/SEOHead'
 
@@ -53,7 +53,7 @@ function LocalizedApp() {
         <Services />
         <Benefits />
         {/* <Projects /> */}
-        <CTA />
+        {/* <CTA /> */}
       </main>
       <Footer />
     </div>

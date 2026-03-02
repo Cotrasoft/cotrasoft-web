@@ -13,7 +13,7 @@ const Navbar = () => {
   const menuItems = [
     { title: t('navbar.services'), href: `/${lang}/#servicios` },
     { title: t('navbar.benefits'), href: `/${lang}/#beneficios` },
-    { title: t('navbar.join'), href: `/${lang}/#unete` },
+    { title: t('navbar.join'), href: 'https://app.cotrasoft.co/registro' },
   ]
 
   return (

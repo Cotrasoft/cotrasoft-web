@@ -65,7 +65,7 @@ const Hero = () => {
             transition={{ delay: 0.2, duration: 0.5 }}
           >
             <a
-              href="#unete"
+              href="https://app.cotrasoft.co/registro"
               className="inline-block px-8 py-4 rounded-full bg-white text-primary-800 font-semibold hover:bg-primary-50 transition-all duration-300 shadow-lg hover:shadow-xl text-lg sm:text-xl"
             >
               {t('hero.cta')}
