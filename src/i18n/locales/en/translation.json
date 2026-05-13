@@ -1,11 +1,11 @@
 {
   "meta": {
-    "title": "Cotrasoft - Software Developer Cooperative in Colombia",
+    "title": "Cotrasoft - software developer cooperative in Colombia",
     "description": "Cotrasoft is a Colombian developer cooperative. We offer MVP rescue, accelerated development, and technical consulting with AI-powered senior teams.",
-    "keywords": "software development Colombia, MVP rescue service, accelerated development, technical consulting software, nearshore development Colombia, hire Colombian developers, developer cooperative Colombia",
-    "ogTitle": "Cotrasoft - AI-Powered Senior Colombian Dev Teams",
+    "keywords": "Software development Colombia, MVP rescue service, accelerated development, technical consulting software, nearshore development Colombia, hire Colombian developers, developer cooperative Colombia",
+    "ogTitle": "Cotrasoft - AI-powered senior Colombian dev teams",
     "ogDescription": "MVP rescue, accelerated development, and technical consulting. Join our developer cooperative or hire our senior teams.",
-    "ogImageAlt": "Cotrasoft - Software Developer Cooperative in Colombia",
+    "ogImageAlt": "Cotrasoft - software developer cooperative in Colombia",
     "faq": [
       {
         "question": "What is Cotrasoft?",
@@ -13,7 +13,7 @@
       },
       {
         "question": "What development services does Cotrasoft offer?",
-        "answer": "We offer three main services: MVP Rescue (code audit and fix for technical debt in 2 weeks), Accelerated Development (senior teams with AI delivering functional software in days), and Technical Consulting (architecture assessment and technical roadmaps)."
+        "answer": "We offer three main services: MVP rescue (code audit and fix for technical debt in 2 weeks), accelerated development (senior teams with AI delivering functional software in days), and technical consulting (architecture assessment and technical roadmaps)."
       },
       {
         "question": "How can I join the Cotrasoft cooperative?",
@@ -32,7 +32,7 @@
   "navbar": {
     "services": "Services",
     "benefits": "Benefits",
-    "join": "Join Us",
+    "join": "Join us",
     "darkModeToggle": "Toggle dark mode",
     "toggleMenu": "Toggle menu",
     "mainNavigation": "Main navigation",
@@ -49,11 +49,11 @@
     }
   },
   "services": {
-    "heading": "Our Services",
+    "heading": "Our services",
     "subheading": "Senior teams powered by AI delivering functional software in days, not months. Structured sprints with clear scopes and predictable outcomes.",
-    "cta": "Schedule a Consultation",
+    "cta": "Schedule a consultation",
     "rescue": {
-      "title": "MVP Rescue",
+      "title": "MVP rescue",
       "description": "Your MVP was built with AI or by a junior team and has critical technical debt. In a 2-week sprint we audit, fix, and instrument your code to eliminate launch risks.",
       "deliverables": [
         "Complete code audit",
@@ -63,7 +63,7 @@
       ]
     },
     "accelerated": {
-      "title": "Accelerated Development",
+      "title": "Accelerated development",
       "description": "Teams of senior Colombian developers, augmented with cutting-edge AI models, compress development cycles. Usable software delivered in days with built-in security and full code ownership.",
       "deliverables": [
         "Clear scopes and predictable timelines",
@@ -73,7 +73,7 @@
       ]
     },
     "consulting": {
-      "title": "Technical Consulting",
+      "title": "Technical consulting",
       "description": "We evaluate your current architecture, identify bottlenecks, and design a technical roadmap aligned with your business goals. Informed decisions backed by cooperative expertise.",
       "deliverables": [
         "Architecture assessment",
@@ -83,7 +83,7 @@
       ]
     },
     "process": {
-      "heading": "Our Process",
+      "heading": "Our process",
       "subheading": "2-week sprints with clear phases and defined deliverables",
       "phases": [
         {
@@ -110,51 +110,51 @@
     }
   },
   "benefits": {
-    "heading": "Member Benefits",
+    "heading": "Member benefits",
     "subheading": "Join our cooperative and enjoy exclusive advantages designed to boost your career",
-    "cta": "Discover More Benefits",
+    "cta": "Discover more benefits",
     "items": [
       {
-        "title": "Collaborative Community",
+        "title": "Collaborative community",
         "description": "Be part of a network of talented and passionate developers"
       },
       {
-        "title": "Professional Growth",
+        "title": "Professional growth",
         "description": "Continuous development and learning opportunities"
       },
       {
-        "title": "Learning Resources",
+        "title": "Learning resources",
         "description": "Access to courses, workshops, and educational materials"
       },
       {
-        "title": "Mutual Support",
+        "title": "Mutual support",
         "description": "Mentorship and technical support from the community"
       },
       {
-        "title": "Global Projects",
+        "title": "Global projects",
         "description": "Participate in challenging international projects"
       },
       {
-        "title": "Cooperative Benefits",
+        "title": "Cooperative benefits",
         "description": "Profit sharing and decision-making participation"
       }
     ]
   },
   "cta": {
-    "heading": "Join Our Developer Community",
+    "heading": "Join our developer community",
     "description": "Be part of an innovative cooperative where your talent and creativity are valued. Together we build the future of software development in Colombia.",
     "contact": {
       "email": "gerencia@cotrasoft.co",
       "location": "Colombia"
     },
     "form": {
-      "fullName": "Full Name",
+      "fullName": "Full name",
       "fullNamePlaceholder": "Your name",
       "email": "Email",
       "emailPlaceholder": "you@email.com",
       "message": "Message",
       "messagePlaceholder": "Tell us about yourself and your experience...",
-      "submit": "Submit Application"
+      "submit": "Submit application"
     }
   },
   "footer": {
@@ -163,7 +163,7 @@
     "links": {
       "services": "Services",
       "benefits": "Benefits",
-      "join": "Join Us"
+      "join": "Join us"
     },
     "contact": {
       "heading": "Contact",
@@ -173,15 +173,15 @@
     "rights": "All rights reserved."
   },
   "features": {
-    "heading": "Our Services",
+    "heading": "Our services",
     "subheading": "We offer a wide range of development services to meet all your technology needs",
     "items": [
       {
-        "title": "Web Development",
+        "title": "Web development",
         "description": "Building modern and responsive web applications with the latest technologies"
       },
       {
-        "title": "Mobile Development",
+        "title": "Mobile development",
         "description": "Native and cross-platform applications for iOS and Android"
       },
       {
@@ -189,11 +189,11 @@
         "description": "Design and implementation of scalable and secure databases"
       },
       {
-        "title": "Cloud Computing",
+        "title": "Cloud computing",
         "description": "Cloud solutions using AWS, Azure, and Google Cloud"
       },
       {
-        "title": "APIs & Microservices",
+        "title": "APIs & microservices",
         "description": "RESTful API development and microservices architectures"
       },
       {
@@ -204,17 +204,17 @@
   },
   "stats": {
     "developers": "Developers",
-    "projects": "Successful Projects",
-    "experience": "Years of Experience",
-    "satisfaction": "Client Satisfaction"
+    "projects": "Successful projects",
+    "experience": "Years of experience",
+    "satisfaction": "Client satisfaction"
   },
   "projects": {
-    "heading": "Featured Projects",
+    "heading": "Featured projects",
     "subheading": "Discover how we've helped companies achieve their technology goals",
-    "cta": "View More Projects",
+    "cta": "View more projects",
     "items": [
       {
-        "title": "Financial Management System",
+        "title": "Financial management system",
         "description": "Comprehensive platform for enterprise financial management",
         "metrics": {
           "performance": "45% faster",
@@ -228,7 +228,7 @@
         }
       },
       {
-        "title": "E-Commerce App",
+        "title": "E-commerce app",
         "description": "Mobile application for B2B e-commerce",
         "metrics": {
           "performance": "99.9% uptime",
@@ -242,7 +242,7 @@
         }
       },
       {
-        "title": "Educational Platform",
+        "title": "Educational platform",
         "description": "Online learning management system",
         "metrics": {
           "performance": "30% better retention",
