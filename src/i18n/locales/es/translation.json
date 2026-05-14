@@ -1,11 +1,11 @@
 {
   "meta": {
-    "title": "Cotrasoft - Cooperativa de Desarrolladores de Software en Colombia",
+    "title": "Cotrasoft - cooperativa de desarrolladores de software en Colombia",
     "description": "Cotrasoft es una cooperativa de desarrolladores colombianos. Ofrecemos rescate de MVP, desarrollo acelerado y consultoría técnica con equipos senior potenciados por IA.",
-    "keywords": "cooperativa desarrolladores Colombia, desarrollo software Colombia, rescate MVP, desarrollo acelerado, consultoría técnica software, economía solidaria tech, comunidad desarrolladores Colombia, crédito para desarrolladores, beneficios cooperativa programadores",
-    "ogTitle": "Cotrasoft - Equipos Senior Colombianos Potenciados por IA",
+    "keywords": "Cooperativa desarrolladores Colombia, desarrollo software Colombia, rescate MVP, desarrollo acelerado, consultoría técnica software, economía solidaria tech, comunidad desarrolladores Colombia, crédito para desarrolladores, beneficios cooperativa programadores",
+    "ogTitle": "Cotrasoft - equipos senior colombianos potenciados por IA",
     "ogDescription": "Rescate de MVP, desarrollo acelerado y consultoría técnica. Únete a la cooperativa de desarrolladores o contrata nuestros servicios.",
-    "ogImageAlt": "Cotrasoft - Cooperativa de Desarrolladores de Software en Colombia",
+    "ogImageAlt": "Cotrasoft - cooperativa de desarrolladores de software en Colombia",
     "faq": [
       {
         "question": "¿Qué es Cotrasoft?",
@@ -13,7 +13,7 @@
       },
       {
         "question": "¿Qué servicios de desarrollo ofrece Cotrasoft?",
-        "answer": "Ofrecemos tres servicios principales: Rescate de MVP (auditoría y corrección de código con deuda técnica en 2 semanas), Desarrollo Acelerado (equipos senior con IA que entregan software funcional en días) y Consultoría Técnica (evaluación de arquitectura y hojas de ruta técnicas)."
+        "answer": "Ofrecemos tres servicios principales: Rescate de MVP (auditoría y corrección de código con deuda técnica en 2 semanas), desarrollo acelerado (equipos senior con IA que entregan software funcional en días) y consultoría técnica (evaluación de arquitectura y hojas de ruta técnicas)."
       },
       {
         "question": "¿Cómo puedo unirme a la cooperativa Cotrasoft?",
@@ -36,22 +36,22 @@
     "darkModeToggle": "Cambiar modo oscuro",
     "toggleMenu": "Alternar menú",
     "mainNavigation": "Navegación principal",
-    "login": "Iniciar Sesión"
+    "login": "Iniciar sesión"
   },
   "hero": {
     "heading": "Tu futuro tech merece más que solo un salario",
     "subheading": "Crecimiento profesional, respaldo financiero y comunidad en un solo lugar",
     "cta": "Descubre los beneficios",
     "stats": {
-      "credits": "Creditos",
+      "credits": "Créditos",
       "education": "Educación",
       "community": "Comunidad"
     }
   },
   "services": {
-    "heading": "Nuestros Servicios",
+    "heading": "Nuestros servicios",
     "subheading": "Equipos senior potenciados con IA que entregan software funcional en días, no meses. Sprints estructurados con alcances claros y resultados predecibles.",
-    "cta": "Agenda una Consulta",
+    "cta": "Agenda una consulta",
     "rescue": {
       "title": "Rescate de MVP",
       "description": "Tu MVP fue construido con IA o por un equipo junior y tiene deuda técnica crítica. En un sprint de 2 semanas auditamos, corregimos e instrumentamos tu código para eliminar riesgos de lanzamiento.",
@@ -63,7 +63,7 @@
       ]
     },
     "accelerated": {
-      "title": "Desarrollo Acelerado",
+      "title": "Desarrollo acelerado",
       "description": "Equipos de desarrolladores senior colombianos, aumentados con modelos de IA de última generación, comprimen ciclos de desarrollo. Software usable entregado en días con seguridad integrada y propiedad total del código.",
       "deliverables": [
         "Alcances claros y cronogramas predecibles",
@@ -73,7 +73,7 @@
       ]
     },
     "consulting": {
-      "title": "Consultoría Técnica",
+      "title": "Consultoría técnica",
       "description": "Evaluamos tu arquitectura actual, identificamos cuellos de botella y diseñamos una hoja de ruta técnica alineada con tus objetivos de negocio. Decisiones informadas respaldadas por experiencia cooperativa.",
       "deliverables": [
         "Evaluación de arquitectura",
@@ -83,7 +83,7 @@
       ]
     },
     "process": {
-      "heading": "Nuestro Proceso",
+      "heading": "Nuestro proceso",
       "subheading": "Sprints de 2 semanas con fases claras y entregables definidos",
       "phases": [
         {
@@ -110,51 +110,51 @@
     }
   },
   "benefits": {
-    "heading": "Beneficios para Miembros",
+    "heading": "Beneficios para miembros",
     "subheading": "Únete a nuestra cooperativa y disfruta de ventajas exclusivas diseñadas para impulsar tu carrera",
-    "cta": "Descubre Más Beneficios",
+    "cta": "Descubre más beneficios",
     "items": [
       {
-        "title": "Comunidad Colaborativa",
+        "title": "Comunidad colaborativa",
         "description": "Forma parte de una red de desarrolladores talentosos y apasionados"
       },
       {
-        "title": "Crecimiento Profesional",
+        "title": "Crecimiento profesional",
         "description": "Oportunidades de desarrollo y aprendizaje continuo"
       },
       {
-        "title": "Recursos de Aprendizaje",
-        "description": "Acceso a cursos, workshops y materiales educativos"
+        "title": "Recursos de aprendizaje",
+        "description": "Acceso a cursos, talleres y materiales educativos"
       },
       {
-        "title": "Soporte Mutuo",
+        "title": "Soporte mutuo",
         "description": "Mentorías y apoyo técnico de la comunidad"
       },
       {
-        "title": "Proyectos Globales",
+        "title": "Proyectos globales",
         "description": "Participa en proyectos internacionales desafiantes"
       },
       {
-        "title": "Beneficios Cooperativos",
+        "title": "Beneficios cooperativos",
         "description": "Participación en ganancias y toma de decisiones"
       }
     ]
   },
   "cta": {
-    "heading": "Únete a Nuestra Comunidad de Desarrolladores",
+    "heading": "Únete a nuestra comunidad de desarrolladores",
     "description": "Sé parte de una cooperativa innovadora donde tu talento y creatividad son valorados. Juntos construimos el futuro del desarrollo de software en Colombia.",
     "contact": {
       "email": "gerencia@cotrasoft.co",
       "location": "Colombia"
     },
     "form": {
-      "fullName": "Nombre Completo",
+      "fullName": "Nombre completo",
       "fullNamePlaceholder": "Tu nombre",
       "email": "Email",
       "emailPlaceholder": "tu@email.com",
       "message": "Mensaje",
       "messagePlaceholder": "Cuéntanos sobre ti y tu experiencia...",
-      "submit": "Enviar Solicitud"
+      "submit": "Enviar solicitud"
     }
   },
   "footer": {
@@ -173,27 +173,27 @@
     "rights": "Todos los derechos reservados."
   },
   "features": {
-    "heading": "Nuestros Servicios",
+    "heading": "Nuestros servicios",
     "subheading": "Ofrecemos una amplia gama de servicios de desarrollo para satisfacer todas tus necesidades tecnológicas",
     "items": [
       {
-        "title": "Desarrollo Web",
+        "title": "Desarrollo web",
         "description": "Creación de aplicaciones web modernas y responsivas con las últimas tecnologías"
       },
       {
-        "title": "Desarrollo Móvil",
+        "title": "Desarrollo móvil",
         "description": "Aplicaciones nativas y multiplataforma para iOS y Android"
       },
       {
-        "title": "Bases de Datos",
+        "title": "Bases de datos",
         "description": "Diseño e implementación de bases de datos escalables y seguras"
       },
       {
-        "title": "Cloud Computing",
+        "title": "Cloud computing",
         "description": "Soluciones en la nube utilizando AWS, Azure y Google Cloud"
       },
       {
-        "title": "APIs y Microservicios",
+        "title": "APIs y microservicios",
         "description": "Desarrollo de APIs RESTful y arquitecturas de microservicios"
       },
       {
@@ -204,17 +204,17 @@
   },
   "stats": {
     "developers": "Desarrolladores",
-    "projects": "Proyectos Exitosos",
-    "experience": "Años de Experiencia",
-    "satisfaction": "Satisfacción del Cliente"
+    "projects": "Proyectos exitosos",
+    "experience": "Años de experiencia",
+    "satisfaction": "Satisfacción del cliente"
   },
   "projects": {
-    "heading": "Proyectos Destacados",
+    "heading": "Proyectos destacados",
     "subheading": "Descubre cómo hemos ayudado a empresas a alcanzar sus objetivos tecnológicos",
-    "cta": "Ver Más Proyectos",
+    "cta": "Ver más proyectos",
     "items": [
       {
-        "title": "Sistema de Gestión Financiera",
+        "title": "Sistema de gestión financiera",
         "description": "Plataforma integral para gestión de finanzas empresariales",
         "metrics": {
           "performance": "45% más rápido",
@@ -228,7 +228,7 @@
         }
       },
       {
-        "title": "App de Comercio Electrónico",
+        "title": "App de comercio electrónico",
         "description": "Aplicación móvil para comercio electrónico B2B",
         "metrics": {
           "performance": "99.9% uptime",
@@ -242,7 +242,7 @@
         }
       },
       {
-        "title": "Plataforma Educativa",
+        "title": "Plataforma educativa",
         "description": "Sistema de gestión de aprendizaje en línea",
         "metrics": {
           "performance": "30% mejor retención",
