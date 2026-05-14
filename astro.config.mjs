@@ -10,34 +10,28 @@ import tailwindcss from '@tailwindcss/vite';
 export default defineConfig({
   site: 'https://cotrasoft.co',
   output: "static",
-  integrations: [mdx(), sitemap()],
+  integrations: [mdx(), sitemap(), react()],
+    i18n: {
+        locales: ["es", "en"],
+        defaultLocale: "es",
+        routing: {
+            prefixDefaultLocale: true,
+            redirectToDefaultLocale: true,
+        },
+    },
+    fonts: [
+        {
+            provider: fontProviders.google(),
+            name: 'Inter',
+            cssVariable: '--font-inter',
+            weights: ['100 900'],
+            styles: ['normal'],
+            subsets: ['latin', 'latin-ext'],
+            fallbacks: ['system-ui', 'sans-serif'],
+        },
+    ],
 
-  fonts: [
-      {
-          provider: fontProviders.local(),
-          name: 'Atkinson',
-          cssVariable: '--font-atkinson',
-          fallbacks: ['sans-serif'],
-          options: {
-              variants: [
-                  {
-                      src: ['./src/assets/fonts/atkinson-regular.woff'],
-                      weight: 400,
-                      style: 'normal',
-                      display: 'swap',
-                  },
-                  {
-                      src: ['./src/assets/fonts/atkinson-bold.woff'],
-                      weight: 700,
-                      style: 'normal',
-                      display: 'swap',
-                  },
-              ],
-          },
-      },
-	],
-
-  vite: {
-    plugins: [tailwindcss()],
-  },
+    vite: {
+        plugins: [tailwindcss()],
+    },
 });

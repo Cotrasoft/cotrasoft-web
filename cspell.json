@@ -1,0 +1,34 @@
+{
+	"version": "0.2",
+	"language": "en,es-ES",
+	"words": [
+		"cotrasoft",
+		"hreflang",
+		"jsonld",
+		"oxlint",
+		"oxfmt",
+		"pnpm",
+		"vite",
+		"astro",
+		"tailwindcss",
+		"webmanifest",
+		"Únete",
+		"Beneficios",
+		"Servicios",
+		"servicios",
+		"beneficios",
+		"sesión",
+		"Iniciar",
+		"Alternar",
+		"menú",
+		"Navegación"
+	],
+	"ignorePaths": [
+		"_OLD",
+		"node_modules",
+		"dist",
+		"pnpm-lock.yaml",
+		".astro",
+		"public/site.webmanifest"
+	]
+}

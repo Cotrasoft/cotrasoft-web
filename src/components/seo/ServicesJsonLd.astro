@@ -1,0 +1,36 @@
+---
+interface Service {
+	name: string;
+	description: string;
+}
+
+interface Props {
+	services: Service[];
+}
+
+const { services } = Astro.props;
+
+const siteURL = Astro.site!;
+const organizationId = new URL('#organization', siteURL).href;
+
+const data = {
+	'@context': 'https://schema.org',
+	'@type': 'ItemList',
+	itemListElement: services.map((svc, i) => ({
+		'@type': 'ListItem',
+		position: i + 1,
+		item: {
+			'@type': 'Service',
+			name: svc.name,
+			description: svc.description,
+			provider: { '@id': organizationId },
+		},
+	})),
+};
+---
+
+<script
+	type="application/ld+json"
+	is:inline
+	set:html={JSON.stringify(data)}
+/>

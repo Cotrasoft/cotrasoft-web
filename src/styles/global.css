@@ -1,11 +1,90 @@
-/*
-  The CSS in this style tag is based off of Bear Blog's default CSS.
-  https://github.com/HermanMartinus/bearblog/blob/297026a877bc2ab2b3bdfbd6b9f7961c350917dd/templates/styles/blog/default.css
-  License MIT: https://github.com/HermanMartinus/bearblog/blob/master/LICENSE.md
- */
-
 @import "tailwindcss";
 
+@theme {
+  --font-sans: var(--font-inter), system-ui, sans-serif;
+
+  --color-primary: #0145d6;
+  --color-primary-50: #ecf8ff;
+  --color-primary-100: #d4eeff;
+  --color-primary-200: #a8ddff;
+  --color-primary-300: #6ec4ff;
+  --color-primary-400: #339fff;
+  --color-primary-500: #0578ff;
+  --color-primary-600: #006aff;
+  --color-primary-700: #0145d6;
+  --color-primary-800: #0338a8;
+  --color-primary-900: #082f85;
+  --color-primary-950: #0b2560;
+
+  --gradient-primary: linear-gradient(135deg, #0145d6 0%, #006aff 100%);
+  --gradient-hero: linear-gradient(
+    135deg,
+    #0b2560 0%,
+    #0145d6 50%,
+    #006aff 100%
+  );
+
+  --animate-float: float 6s ease-in-out infinite;
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+}
+
+@layer base {
+  body {
+    @apply font-sans bg-white dark:bg-gray-900 text-gray-900 dark:text-white;
+    font-feature-settings: "cv11", "ss01", "ss03";
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-white/10 backdrop-blur-lg border border-white/20 rounded-xl;
+  }
+
+  .gradient-text {
+    @apply bg-clip-text text-transparent bg-linear-to-r from-primary-900 to-primary-600;
+  }
+
+  .btn-primary {
+    @apply px-6 py-3 rounded-full bg-primary text-white font-semibold hover:bg-primary-700 transition-all duration-300 shadow-lg hover:shadow-xl;
+  }
+
+  .btn-outlined {
+    @apply px-6 py-3 rounded-full border-2 border-primary text-primary font-semibold hover:bg-primary-50 transition-all duration-300;
+  }
+
+  .btn-link {
+    @apply text-primary font-semibold hover:text-primary-700 transition-colors duration-200 underline-offset-2 hover:underline;
+  }
+
+  .input-field {
+    @apply w-full px-4 py-3 rounded-lg bg-white border border-gray-300 text-gray-900 placeholder-gray-400 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary;
+  }
+
+  .section-padding {
+    @apply py-20 px-4 sm:px-6 lg:px-8;
+  }
+
+  .card-hover {
+    @apply hover:scale-105 transition-transform duration-300 ease-out;
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Custom properties used by the blog template (BlogPost, blog index, Footer).
+   Kept so those scoped styles keep working; remove when the blog gets restyled. */
 :root {
   --accent: #2337ff;
   --accent-dark: #000d8a;
@@ -17,127 +96,4 @@
   --box-shadow:
     0 2px 6px rgba(var(--gray), 25%), 0 8px 24px rgba(var(--gray), 33%),
     0 16px 32px rgba(var(--gray), 33%);
-}
-body {
-  font-family: var(--font-atkinson);
-  margin: 0;
-  padding: 0;
-  text-align: left;
-  background: linear-gradient(var(--gray-gradient)) no-repeat;
-  background-size: 100% 600px;
-  word-wrap: break-word;
-  overflow-wrap: break-word;
-  color: rgb(var(--gray-dark));
-  font-size: 20px;
-  line-height: 1.7;
-}
-main {
-  width: 720px;
-  max-width: calc(100% - 2em);
-  margin: auto;
-  padding: 3em 1em;
-}
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  margin: 0 0 0.5rem 0;
-  color: rgb(var(--black));
-  line-height: 1.2;
-}
-h1 {
-  font-size: 3.052em;
-}
-h2 {
-  font-size: 2.441em;
-}
-h3 {
-  font-size: 1.953em;
-}
-h4 {
-  font-size: 1.563em;
-}
-h5 {
-  font-size: 1.25em;
-}
-strong,
-b {
-  font-weight: 700;
-}
-a {
-  color: var(--accent);
-}
-a:hover {
-  color: var(--accent);
-}
-p {
-  margin-bottom: 1em;
-}
-.prose p {
-  margin-bottom: 2em;
-}
-textarea {
-  width: 100%;
-  font-size: 16px;
-}
-input {
-  font-size: 16px;
-}
-table {
-  width: 100%;
-}
-img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 8px;
-}
-code {
-  padding: 2px 5px;
-  background-color: rgb(var(--gray-light));
-  border-radius: 2px;
-}
-pre {
-  padding: 1.5em;
-  border-radius: 8px;
-}
-pre > code {
-  all: unset;
-}
-blockquote {
-  border-left: 4px solid var(--accent);
-  padding: 0 0 0 20px;
-  margin: 0;
-  font-size: 1.333em;
-}
-hr {
-  border: none;
-  border-top: 1px solid rgb(var(--gray-light));
-}
-@media (max-width: 720px) {
-  body {
-    font-size: 18px;
-  }
-  main {
-    padding: 1em;
-  }
-}
-
-.sr-only {
-  border: 0;
-  padding: 0;
-  margin: 0;
-  position: absolute !important;
-  height: 1px;
-  width: 1px;
-  overflow: hidden;
-  /* IE6, IE7 - a 0 height clip, off to the bottom right of the visible 1px box */
-  clip: rect(1px 1px 1px 1px);
-  /* maybe deprecated but we need to support legacy browsers */
-  clip: rect(1px, 1px, 1px, 1px);
-  /* modern browsers, clip-path works inwards from each corner */
-  clip-path: inset(50%);
-  /* added line to stop words getting smushed together (as they go onto separate lines and some screen readers do not understand line feeds as a space */
-  white-space: nowrap;
 }

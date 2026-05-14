@@ -1,0 +1,36 @@
+---
+import BaseHead from "../../components/BaseHead.astro";
+import Footer from "../../components/Footer.astro";
+import Navbar from "../../components/Navbar.astro";
+import { SITE_DESCRIPTION, SITE_TITLE } from "../../consts";
+import type { SupportedLang } from "../../components/BaseHead.astro";
+
+export function getStaticPaths() {
+	return [
+		{ params: { lang: "es" } },
+		{ params: { lang: "en" } },
+	];
+}
+
+const lang = (Astro.currentLocale ?? "es") as SupportedLang;
+---
+
+<!doctype html>
+<html lang={lang}>
+	<head>
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} lang={lang} />
+	</head>
+	<body>
+		<Navbar />
+		<main class="pt-24">
+			<h1>🧑‍🚀 Hello, Astronaut!</h1>
+			<p>
+				Welcome to the official <a href="https://astro.build/">Astro</a> blog starter
+				template. This template serves as a lightweight, minimally-styled starting
+				point for anyone looking to build a personal website, blog, or portfolio with
+				Astro.
+			</p>
+		</main>
+		<Footer />
+	</body>
+</html>
