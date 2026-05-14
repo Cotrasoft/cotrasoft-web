@@ -6,11 +6,13 @@ import { defineConfig, fontProviders } from 'astro/config';
 
 import tailwindcss from '@tailwindcss/vite';
 
+import react from '@astrojs/react';
+
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://cotrasoft.co',
-  output: "static",
-  integrations: [mdx(), sitemap(), react()],
+    site: 'https://cotrasoft.co',
+    output: "static",
+    integrations: [mdx(), sitemap(), react()],
     i18n: {
         locales: ["es", "en"],
         defaultLocale: "es",
