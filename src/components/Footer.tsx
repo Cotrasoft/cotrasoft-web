@@ -18,7 +18,7 @@ const Footer = () => {
           {/* Brand */}
           <div>
             <a href={`/${lang}/`} className="flex items-center space-x-2 mb-4">
-              <img src="/cotrasoft_logo.svg" alt="Cotrasoft" className="h-8 w-8" />
+              <img src="/assets/cotrasoft_logo.svg" alt="Cotrasoft" className="h-8 w-8" />
               <span className="text-xl font-bold text-white">cotrasoft</span>
             </a>
             <p className="text-sm text-gray-400">

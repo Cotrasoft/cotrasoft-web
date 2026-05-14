@@ -51,7 +51,7 @@ const SEOHead = () => {
     setMeta('property', 'og:url', pageUrl)
     setMeta('property', 'og:title', t('meta.ogTitle'))
     setMeta('property', 'og:description', t('meta.ogDescription'))
-    setMeta('property', 'og:image', `${BASE_URL}/cotrasoft_logo.svg`)
+    setMeta('property', 'og:image', `${BASE_URL}/assets/cotrasoft_logo.svg`)
     setMeta('property', 'og:image:alt', t('meta.ogImageAlt'))
     setMeta('property', 'og:site_name', 'Cotrasoft')
     setMeta('property', 'og:locale', ogLocale)
@@ -61,7 +61,7 @@ const SEOHead = () => {
     setMeta('name', 'twitter:card', 'summary_large_image')
     setMeta('name', 'twitter:title', t('meta.ogTitle'))
     setMeta('name', 'twitter:description', t('meta.ogDescription'))
-    setMeta('name', 'twitter:image', `${BASE_URL}/cotrasoft_logo.svg`)
+    setMeta('name', 'twitter:image', `${BASE_URL}/assets/cotrasoft_logo.svg`)
     setMeta('name', 'twitter:image:alt', t('meta.ogImageAlt'))
 
     // Managed links (canonical + hreflang)
@@ -98,7 +98,7 @@ const SEOHead = () => {
       '@id': `${BASE_URL}/#organization`,
       name: 'Cotrasoft',
       url: BASE_URL,
-      logo: `${BASE_URL}/cotrasoft_logo.svg`,
+      logo: `${BASE_URL}/assets/cotrasoft_logo.svg`,
       email: 'gerencia@cotrasoft.co',
       description: t('meta.description'),
       address: {
