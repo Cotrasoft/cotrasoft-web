@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
 @theme {
   --font-sans: var(--font-inter), system-ui, sans-serif;
@@ -51,6 +52,15 @@
 }
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
   body {
     @apply font-sans bg-white dark:bg-gray-900 text-gray-900 dark:text-white;
     font-feature-settings: "cv11", "ss01", "ss03";
@@ -113,19 +123,4 @@
 
 .animate-float {
   animation: float 6s ease-in-out infinite;
-}
-
-/* Custom properties used by the blog template (BlogPost, blog index, Footer).
-   Kept so those scoped styles keep working; remove when the blog gets restyled. */
-:root {
-  --accent: #2337ff;
-  --accent-dark: #000d8a;
-  --black: 15, 18, 25;
-  --gray: 96, 115, 159;
-  --gray-light: 229, 233, 240;
-  --gray-dark: 34, 41, 57;
-  --gray-gradient: rgba(var(--gray-light), 50%), #fff;
-  --box-shadow:
-    0 2px 6px rgba(var(--gray), 25%), 0 8px 24px rgba(var(--gray), 33%),
-    0 16px 32px rgba(var(--gray), 33%);
 }

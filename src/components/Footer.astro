@@ -76,8 +76,8 @@ const t: FooterLabels = {
 
 const homeHref = getRelativeLocaleUrl(lang, '/');
 const navLinks = [
-	{ label: t.links.services, href: getRelativeLocaleUrl(lang, '/#servicios') },
-	{ label: t.links.benefits, href: getRelativeLocaleUrl(lang, '/#beneficios') },
+	{ label: t.links.services, href: `${homeHref}#servicios` },
+	{ label: t.links.benefits, href: `${homeHref}#beneficios` },
 	{ label: t.links.join, href: 'https://app.cotrasoft.co/registro' },
 ];
 

@@ -14,6 +14,9 @@ const blog = defineCollection({
 			pubDate: z.coerce.date(),
 			updatedDate: z.coerce.date().optional(),
 			heroImage: z.optional(image()),
+			// When false (default), the post is hidden in production builds
+			// but still visible during `astro dev`. Set to true to publish.
+			published: z.boolean().default(false),
 		}),
 });
 

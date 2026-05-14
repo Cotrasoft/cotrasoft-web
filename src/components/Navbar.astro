@@ -45,8 +45,8 @@ const t: NavbarLabels = { ...defaultLabels[lang], ...labels };
 
 const homeHref = getRelativeLocaleUrl(lang, '/');
 const menuItems = [
-	{ title: t.services, href: getRelativeLocaleUrl(lang, '/#servicios') },
-	{ title: t.benefits, href: getRelativeLocaleUrl(lang, '/#beneficios') },
+	{ title: t.services, href: `${homeHref}#servicios` },
+	{ title: t.benefits, href: `${homeHref}#beneficios` },
 	{ title: t.blog, href: '/blog/' },
 	{ title: t.join, href: 'https://app.cotrasoft.co/registro' },
 ];

@@ -11,72 +11,49 @@ type Props = CollectionEntry<'blog'>['data'];
 const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 ---
 
-<html lang="en">
+<html lang="es">
 	<head>
-		<BaseHead title={title} description={description} />
-		<style>
-			main {
-				width: calc(100% - 2em);
-				max-width: 100%;
-				margin: 0;
-			}
-			.hero-image {
-				width: 100%;
-			}
-			.hero-image img {
-				display: block;
-				margin: 0 auto;
-				border-radius: 12px;
-				box-shadow: var(--box-shadow);
-			}
-			.prose {
-				width: 720px;
-				max-width: calc(100% - 2em);
-				margin: auto;
-				padding: 1em;
-				color: rgb(var(--gray-dark));
-			}
-			.title {
-				margin-bottom: 1em;
-				padding: 1em 0;
-				text-align: center;
-				line-height: 1;
-			}
-			.title h1 {
-				margin: 0 0 0.5em 0;
-			}
-			.date {
-				margin-bottom: 0.5em;
-				color: rgb(var(--gray));
-			}
-			.last-updated-on {
-				font-style: italic;
-			}
-		</style>
+		<BaseHead title={title} description={description} image={heroImage} />
 	</head>
 
 	<body>
 		<Navbar />
-		<main>
-			<article>
-				<div class="hero-image">
-					{heroImage && <Image width={1020} height={510} src={heroImage} alt="" />}
-				</div>
-				<div class="prose">
-					<div class="title">
-						<div class="date">
-							<FormattedDate date={pubDate} />
-							{
-								updatedDate && (
-									<div class="last-updated-on">
-										Last updated on <FormattedDate date={updatedDate} />
-									</div>
-								)
-							}
-						</div>
-						<h1>{title}</h1>
-						<hr />
-					</div>
+		<main class="bg-white dark:bg-gray-900">
+			<article class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 pt-32 pb-20">
+				<header class="mb-10">
+					{
+						heroImage && (
+							<Image
+								width={1020}
+								height={510}
+								src={heroImage}
+								alt=""
+								class="mb-8 w-full rounded-2xl shadow-xl"
+							/>
+						)
+					}
+					<p class="mb-3 text-sm text-gray-500 dark:text-gray-400">
+						<FormattedDate date={pubDate} />
+						{
+							updatedDate && (
+								<span class="ml-2 italic text-gray-400">
+									· Actualizado el <FormattedDate date={updatedDate} />
+								</span>
+							)
+						}
+					</p>
+					<h1 class="text-4xl sm:text-5xl font-bold gradient-text leading-tight">
+						{title}
+					</h1>
+					<p class="mt-4 text-lg text-gray-600 dark:text-gray-300">
+						{description}
+					</p>
+					<hr class="mt-8 border-gray-200 dark:border-gray-700" />
+				</header>
+
+				<div
+					class="prose prose-lg dark:prose-invert max-w-none prose-headings:font-bold prose-a:text-primary prose-a:no-underline hover:prose-a:underline prose-img:rounded-xl prose-img:shadow-lg"
+				>
 					<slot />
 				</div>
 			</article>
