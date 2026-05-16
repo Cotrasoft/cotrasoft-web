@@ -1,0 +1,141 @@
+---
+import { getRelativeLocaleUrl } from 'astro:i18n';
+import type { SupportedLang } from './BaseHead.astro';
+
+interface FooterLabels {
+	description: string;
+	navLabel: string;
+	rights: string;
+	links: {
+		services: string;
+		benefits: string;
+		join: string;
+	};
+	contact: {
+		heading: string;
+		email: string;
+		location: string;
+	};
+}
+
+interface Props {
+	labels?: Partial<{
+		description: string;
+		navLabel: string;
+		rights: string;
+		links: Partial<FooterLabels['links']>;
+		contact: Partial<FooterLabels['contact']>;
+	}>;
+}
+
+const { labels = {} } = Astro.props;
+
+const lang = (Astro.currentLocale ?? 'es') as SupportedLang;
+
+const defaults: Record<SupportedLang, FooterLabels> = {
+	es: {
+		description:
+			'Cooperativa de desarrolladores de software colombianos. Combinamos economía solidaria con tecnología de punta.',
+		navLabel: 'Navegación del pie de página',
+		rights: 'Todos los derechos reservados.',
+		links: {
+			services: 'Servicios',
+			benefits: 'Beneficios',
+			join: 'Únete',
+		},
+		contact: {
+			heading: 'Contacto',
+			email: 'gerencia@cotrasoft.co',
+			location: 'Colombia',
+		},
+	},
+	en: {
+		description:
+			'Colombian software developer cooperative. We combine solidarity economy with cutting-edge technology.',
+		navLabel: 'Footer navigation',
+		rights: 'All rights reserved.',
+		links: {
+			services: 'Services',
+			benefits: 'Benefits',
+			join: 'Join us',
+		},
+		contact: {
+			heading: 'Contact',
+			email: 'gerencia@cotrasoft.co',
+			location: 'Colombia',
+		},
+	},
+};
+
+const t: FooterLabels = {
+	...defaults[lang],
+	...labels,
+	links: { ...defaults[lang].links, ...(labels.links ?? {}) },
+	contact: { ...defaults[lang].contact, ...(labels.contact ?? {}) },
+};
+
+const homeHref = getRelativeLocaleUrl(lang, '/');
+const navLinks = [
+	{ label: t.links.services, href: `${homeHref}#servicios` },
+	{ label: t.links.benefits, href: `${homeHref}#beneficios` },
+	{ label: t.links.join, href: 'https://app.cotrasoft.co/registro' },
+];
+
+const year = new Date().getFullYear();
+---
+
+<footer class="bg-gray-900 text-gray-300">
+	<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12">
+		<div class="grid grid-cols-1 gap-8 md:grid-cols-3">
+			<div>
+				<a href={homeHref} class="mb-4 flex items-center space-x-2">
+					<img
+						src="/cotrasoft-icon.svg"
+						alt="Cotrasoft"
+						class="size-8"
+						width="32"
+						height="32"
+					/>
+					<span class="text-xl font-bold text-white">cotrasoft</span>
+				</a>
+				<p class="text-sm text-gray-400">{t.description}</p>
+			</div>
+
+			<nav aria-label={t.navLabel}>
+				<ul class="space-y-2">
+					{
+						navLinks.map((link) => (
+							<li>
+								<a
+									href={link.href}
+									class="text-gray-400 transition-colors duration-200 hover:text-white"
+								>
+									{link.label}
+								</a>
+							</li>
+						))
+					}
+				</ul>
+			</nav>
+
+			<div>
+				<h3 class="mb-3 font-semibold text-white">{t.contact.heading}</h3>
+				<address class="space-y-1 text-sm not-italic text-gray-400">
+					<p>
+						<a
+							href={`mailto:${t.contact.email}`}
+							class="transition-colors duration-200 hover:text-white"
+						>
+							{t.contact.email}
+						</a>
+					</p>
+					<p>{t.contact.location}</p>
+				</address>
+			</div>
+		</div>
+
+		<div class="mt-8 border-t border-gray-800 pt-8 text-center text-sm text-gray-500">
+			&copy; {year} Cotrasoft. {t.rights}
+		</div>
+	</div>
+</footer>

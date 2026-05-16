@@ -1,0 +1,154 @@
+---
+import type { SupportedLang } from './BaseHead.astro';
+
+interface HeroLabels {
+	heading: string;
+	subheading: string;
+	cta: string;
+	stats: {
+		credits: string;
+		education: string;
+		community: string;
+	};
+}
+
+interface Props {
+	labels?: Partial<Omit<HeroLabels, 'stats'>> & {
+		stats?: Partial<HeroLabels['stats']>;
+	};
+}
+
+const { labels = {} } = Astro.props;
+
+const lang = (Astro.currentLocale ?? 'es') as SupportedLang;
+
+const defaults: Record<SupportedLang, HeroLabels> = {
+	es: {
+		heading: 'Tu futuro tech merece más que solo un salario',
+		subheading: 'Crecimiento profesional, respaldo financiero y comunidad en un solo lugar',
+		cta: 'Descubre los beneficios',
+		stats: {
+			credits: 'Créditos',
+			education: 'Educación',
+			community: 'Comunidad',
+		},
+	},
+	en: {
+		heading: 'Your tech future deserves more than just a salary',
+		subheading: 'Professional growth, financial support, and community in one place',
+		cta: 'Discover the benefits',
+		stats: {
+			credits: 'Credits',
+			education: 'Education',
+			community: 'Community',
+		},
+	},
+};
+
+const t: HeroLabels = {
+	...defaults[lang],
+	...labels,
+	stats: { ...defaults[lang].stats, ...(labels.stats ?? {}) },
+};
+
+const ctaHref = 'https://app.cotrasoft.co/registro';
+const stats = [t.stats.credits, t.stats.education, t.stats.community];
+---
+
+<section
+	id="hero"
+	aria-labelledby="hero-heading"
+	class="relative min-h-screen flex items-center justify-center overflow-hidden py-24 bg-linear-to-br from-primary-950 via-primary-800 to-primary-600"
+>
+	<div class="pointer-events-none absolute inset-0" aria-hidden="true">
+		<div class="absolute top-1/4 left-1/4 text-white/30 animate-float">
+			<svg
+				viewBox="0 0 24 24"
+				fill="none"
+				stroke="currentColor"
+				stroke-width="2"
+				stroke-linecap="round"
+				stroke-linejoin="round"
+				class="size-12 sm:size-16"
+				aria-hidden="true"
+			>
+				<polyline points="16 18 22 12 16 6" />
+				<polyline points="8 6 2 12 8 18" />
+			</svg>
+		</div>
+		<div
+			class="absolute top-1/4 right-1/4 text-white/30 animate-float"
+			style="animation-delay: -2s"
+		>
+			<svg
+				viewBox="0 0 24 24"
+				fill="none"
+				stroke="currentColor"
+				stroke-width="2"
+				stroke-linecap="round"
+				stroke-linejoin="round"
+				class="size-12 sm:size-16"
+				aria-hidden="true"
+			>
+				<ellipse cx="12" cy="5" rx="9" ry="3" />
+				<path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3" />
+				<path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5" />
+			</svg>
+		</div>
+		<div
+			class="absolute bottom-1/4 left-1/3 text-white/30 animate-float"
+			style="animation-delay: -4s"
+		>
+			<svg
+				viewBox="0 0 24 24"
+				fill="none"
+				stroke="currentColor"
+				stroke-width="2"
+				stroke-linecap="round"
+				stroke-linejoin="round"
+				class="size-12 sm:size-16"
+				aria-hidden="true"
+			>
+				<rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+				<line x1="3" y1="9" x2="21" y2="9" />
+				<line x1="9" y1="21" x2="9" y2="9" />
+			</svg>
+		</div>
+	</div>
+
+	<div class="relative z-10 mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 text-center">
+		<h1
+			id="hero-heading"
+			class="mb-6 text-4xl sm:text-6xl lg:text-7xl font-bold text-white animate-fade-up"
+		>
+			{t.heading}
+		</h1>
+		<p
+			class="mx-auto mb-8 max-w-3xl text-xl sm:text-2xl text-white/90 animate-fade-up"
+			style="animation-delay: 100ms"
+		>
+			{t.subheading}
+		</p>
+		<div class="animate-fade-up" style="animation-delay: 200ms">
+			<a
+				href={ctaHref}
+				class="inline-block rounded-full bg-white px-8 py-4 text-lg sm:text-xl font-semibold text-primary-800 shadow-lg transition-all duration-300 hover:bg-primary-50 hover:shadow-xl"
+			>
+				{t.cta}
+			</a>
+		</div>
+
+		<div
+			class="mx-auto mt-16 grid max-w-4xl grid-cols-1 gap-6 sm:grid-cols-3 animate-fade-up"
+			style="animation-delay: 400ms"
+		>
+			{
+				stats.map((label) => (
+					<div class="glass-card p-6 text-white">
+						<div class="mb-2 text-3xl font-bold">{label}</div>
+					</div>
+				))
+			}
+		</div>
+	</div>
+</section>

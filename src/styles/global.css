@@ -1,0 +1,126 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@theme {
+  --font-sans: var(--font-inter), system-ui, sans-serif;
+
+  --color-primary: #0145d6;
+  --color-primary-50: #ecf8ff;
+  --color-primary-100: #d4eeff;
+  --color-primary-200: #a8ddff;
+  --color-primary-300: #6ec4ff;
+  --color-primary-400: #339fff;
+  --color-primary-500: #0578ff;
+  --color-primary-600: #006aff;
+  --color-primary-700: #0145d6;
+  --color-primary-800: #0338a8;
+  --color-primary-900: #082f85;
+  --color-primary-950: #0b2560;
+
+  --gradient-primary: linear-gradient(135deg, #0145d6 0%, #006aff 100%);
+  --gradient-hero: linear-gradient(
+    135deg,
+    #0b2560 0%,
+    #0145d6 50%,
+    #006aff 100%
+  );
+
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-fade-up: fade-up 0.6s ease-out both;
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+  body {
+    @apply font-sans bg-white dark:bg-gray-900 text-gray-900 dark:text-white;
+    font-feature-settings: "cv11", "ss01", "ss03";
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-white/10 backdrop-blur-lg border border-white/20 rounded-xl;
+  }
+
+  .gradient-text {
+    @apply bg-clip-text text-transparent bg-linear-to-r from-primary-900 to-primary-600;
+  }
+
+  .btn-primary {
+    @apply px-6 py-3 rounded-full bg-primary text-white font-semibold hover:bg-primary-700 transition-all duration-300 shadow-lg hover:shadow-xl;
+  }
+
+  .btn-outlined {
+    @apply px-6 py-3 rounded-full border-2 border-primary text-primary font-semibold hover:bg-primary-50 transition-all duration-300;
+  }
+
+  .btn-link {
+    @apply text-primary font-semibold hover:text-primary-700 transition-colors duration-200 underline-offset-2 hover:underline;
+  }
+
+  .input-field {
+    @apply w-full px-4 py-3 rounded-lg bg-white border border-gray-300 text-gray-900 placeholder-gray-400 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary;
+  }
+
+  .section-padding {
+    @apply py-20 px-4 sm:px-6 lg:px-8;
+  }
+
+  .card-hover {
+    @apply hover:scale-105 transition-transform duration-300 ease-out;
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition:
+      opacity 0.6s ease-out,
+      transform 0.6s ease-out;
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+  .reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}

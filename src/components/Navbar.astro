@@ -1,0 +1,242 @@
+---
+import { getRelativeLocaleUrl } from 'astro:i18n';
+import type { SupportedLang } from './BaseHead.astro';
+
+interface NavbarLabels {
+	services: string;
+	benefits: string;
+	join: string;
+	login: string;
+	blog: string;
+	toggleMenu: string;
+	mainNavigation: string;
+}
+
+interface Props {
+	labels?: Partial<NavbarLabels>;
+}
+
+const { labels = {} } = Astro.props;
+
+const lang = (Astro.currentLocale ?? 'es') as SupportedLang;
+
+const defaultLabels: Record<SupportedLang, NavbarLabels> = {
+	es: {
+		services: 'Servicios',
+		benefits: 'Beneficios',
+		join: 'Únete',
+		login: 'Iniciar sesión',
+		blog: 'Blog',
+		toggleMenu: 'Alternar menú',
+		mainNavigation: 'Navegación principal',
+	},
+	en: {
+		services: 'Services',
+		benefits: 'Benefits',
+		join: 'Join us',
+		login: 'Sign in',
+		blog: 'Blog',
+		toggleMenu: 'Toggle menu',
+		mainNavigation: 'Main navigation',
+	},
+};
+
+const t: NavbarLabels = { ...defaultLabels[lang], ...labels };
+
+const homeHref = getRelativeLocaleUrl(lang, '/');
+const menuItems = [
+	{ title: t.services, href: `${homeHref}#servicios` },
+	{ title: t.benefits, href: `${homeHref}#beneficios` },
+	{ title: t.blog, href: '/blog/' },
+	{ title: t.join, href: 'https://app.cotrasoft.co/registro' },
+];
+const loginHref = 'https://app.cotrasoft.co/';
+
+const supportedLanguages = ['es', 'en'] as const;
+const localePathRegex = new RegExp(`^/(${supportedLanguages.join('|')})(/|$)`);
+const subPath = Astro.url.pathname.replace(localePathRegex, '/') || '/';
+
+const langLinks = supportedLanguages.map((code) => ({
+	code,
+	href: getRelativeLocaleUrl(code, subPath),
+	active: code === lang,
+}));
+---
+
+<nav
+	aria-label={t.mainNavigation}
+	class="fixed w-full z-50 bg-white/70 dark:bg-gray-900/70 backdrop-blur-lg"
+	data-navbar
+>
+	<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+		<div class="flex items-center justify-between h-16">
+			<a href={homeHref} class="flex items-center space-x-2 shrink-0">
+				<img
+					src="/cotrasoft-icon.svg"
+					alt="Cotrasoft"
+					class="h-8 w-8"
+					width="32"
+					height="32"
+				/>
+				<span class="text-2xl font-bold gradient-text">cotrasoft</span>
+			</a>
+
+			<div class="hidden md:flex md:items-center md:space-x-8 md:ml-10">
+				{
+					menuItems.map((item) => (
+						<a
+							href={item.href}
+							class="text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary-300 transition-colors duration-200"
+						>
+							{item.title}
+						</a>
+					))
+				}
+				<a
+					href={loginHref}
+					class="px-4 py-2 rounded-full bg-primary text-white font-semibold hover:bg-primary-800 transition-all duration-300 text-sm"
+				>
+					{t.login}
+				</a>
+
+				<div class="flex items-center space-x-1 text-sm" aria-label="Language">
+					{
+						langLinks.map((link, index) => (
+							<>
+								{index > 0 && (
+									<span class="text-gray-400 dark:text-gray-500 mx-1">|</span>
+								)}
+								<a
+									href={link.href}
+									aria-current={link.active ? 'true' : undefined}
+									class:list={[
+										'uppercase transition-colors duration-200',
+										link.active
+											? 'text-primary font-semibold'
+											: 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200',
+									]}
+								>
+									{link.code}
+								</a>
+							</>
+						))
+					}
+				</div>
+			</div>
+
+			<div class="md:hidden flex items-center space-x-2">
+				<div class="flex items-center space-x-1 text-sm" aria-label="Language">
+					{
+						langLinks.map((link, index) => (
+							<>
+								{index > 0 && (
+									<span class="text-gray-400 dark:text-gray-500 mx-1">|</span>
+								)}
+								<a
+									href={link.href}
+									aria-current={link.active ? 'true' : undefined}
+									class:list={[
+										'uppercase transition-colors duration-200',
+										link.active
+											? 'text-primary font-semibold'
+											: 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200',
+									]}
+								>
+									{link.code}
+								</a>
+							</>
+						))
+					}
+				</div>
+
+				<button
+					type="button"
+					class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200"
+					aria-label={t.toggleMenu}
+					aria-expanded="false"
+					aria-controls="mobile-menu"
+					data-menu-toggle
+				>
+					<svg
+						class="w-6 h-6 in-aria-expanded:hidden"
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="2"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						aria-hidden="true"
+					>
+						<line x1="3" y1="6" x2="21" y2="6" />
+						<line x1="3" y1="12" x2="21" y2="12" />
+						<line x1="3" y1="18" x2="21" y2="18" />
+					</svg>
+					<svg
+						class="w-6 h-6 hidden in-aria-expanded:block"
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="2"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						aria-hidden="true"
+					>
+						<line x1="18" y1="6" x2="6" y2="18" />
+						<line x1="6" y1="6" x2="18" y2="18" />
+					</svg>
+				</button>
+			</div>
+		</div>
+	</div>
+
+	<div
+		id="mobile-menu"
+		class="md:hidden grid grid-rows-[0fr] data-[open=true]:grid-rows-[1fr] transition-[grid-template-rows] duration-300 ease-out"
+		data-mobile-menu
+		data-open="false"
+	>
+		<div class="overflow-hidden">
+			<div class="px-2 pt-2 pb-3 space-y-1 bg-white dark:bg-gray-900">
+				{
+					menuItems.map((item) => (
+						<a
+							href={item.href}
+							class="block px-3 py-2 rounded-md text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary-300 transition-colors duration-200"
+							data-menu-link
+						>
+							{item.title}
+						</a>
+					))
+				}
+				<a
+					href={loginHref}
+					class="block px-3 py-2 rounded-md text-primary font-semibold hover:bg-primary-50 dark:hover:bg-gray-800 transition-colors duration-200"
+					data-menu-link
+				>
+					{t.login}
+				</a>
+			</div>
+		</div>
+	</div>
+</nav>
+
+<script>
+	const navbar = document.querySelector<HTMLElement>('[data-navbar]');
+	if (navbar) {
+		const toggle = navbar.querySelector<HTMLButtonElement>('[data-menu-toggle]');
+		const menu = navbar.querySelector<HTMLElement>('[data-mobile-menu]');
+		const links = navbar.querySelectorAll<HTMLAnchorElement>('[data-menu-link]');
+
+		const setOpen = (open: boolean) => {
+			toggle?.setAttribute('aria-expanded', String(open));
+			menu?.setAttribute('data-open', String(open));
+		};
+
+		toggle?.addEventListener('click', () => {
+			const isOpen = toggle.getAttribute('aria-expanded') === 'true';
+			setOpen(!isOpen);
+		});
+
+		links.forEach((link) => link.addEventListener('click', () => setOpen(false)));
+	}
+</script>

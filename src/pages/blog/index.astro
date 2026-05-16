@@ -1,0 +1,107 @@
+---
+import { Image } from 'astro:assets';
+import BaseHead from '../../components/BaseHead.astro';
+import Footer from '../../components/Footer.astro';
+import FormattedDate from '../../components/FormattedDate.astro';
+import Navbar from '../../components/Navbar.astro';
+import { getBlogPosts } from '../../lib/blog';
+
+const posts = await getBlogPosts();
+
+const [featured, ...rest] = posts;
+---
+
+<!doctype html>
+<html lang="es">
+	<head>
+		<BaseHead
+			title="Blog | Cotrasoft"
+			description="Artículos y notas técnicas de la cooperativa de desarrolladores Cotrasoft."
+		/>
+	</head>
+	<body>
+		<Navbar />
+		<main class="bg-white dark:bg-gray-900">
+			<section class="section-padding">
+				<div class="mx-auto max-w-7xl">
+					<header class="mb-16 pt-16 text-center">
+						<h1 class="mb-4 text-4xl sm:text-5xl font-bold gradient-text">
+							Blog
+						</h1>
+						<p
+							class="mx-auto max-w-2xl text-xl text-gray-600 dark:text-gray-300"
+						>
+							Notas técnicas, lecciones de campo y reflexiones sobre cooperativismo
+							y software.
+						</p>
+					</header>
+
+					{
+						featured && (
+							<a
+								href={`/blog/${featured.id}/`}
+								class="group mb-12 block overflow-hidden rounded-2xl bg-gray-50 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl dark:bg-gray-800"
+							>
+								<div class="grid grid-cols-1 lg:grid-cols-2">
+									{featured.data.heroImage && (
+										<Image
+											width={960}
+											height={540}
+											src={featured.data.heroImage}
+											alt=""
+											class="aspect-[16/9] w-full object-cover lg:aspect-auto lg:h-full"
+										/>
+									)}
+									<div class="flex flex-col justify-center p-8 lg:p-12">
+										<p class="mb-3 text-sm text-gray-500 dark:text-gray-400">
+											<FormattedDate date={featured.data.pubDate} />
+										</p>
+										<h2 class="mb-4 text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white group-hover:text-primary dark:group-hover:text-primary-300 transition-colors">
+											{featured.data.title}
+										</h2>
+										<p class="text-lg text-gray-600 dark:text-gray-300">
+											{featured.data.description}
+										</p>
+									</div>
+								</div>
+							</a>
+						)
+					}
+
+					<div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+						{
+							rest.map((post) => (
+								<a
+									href={`/blog/${post.id}/`}
+									class="group flex flex-col overflow-hidden rounded-xl bg-gray-50 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl dark:bg-gray-800"
+								>
+									{post.data.heroImage && (
+										<Image
+											width={720}
+											height={405}
+											src={post.data.heroImage}
+											alt=""
+											class="aspect-[16/9] w-full object-cover"
+										/>
+									)}
+									<div class="flex flex-1 flex-col p-6">
+										<p class="mb-2 text-sm text-gray-500 dark:text-gray-400">
+											<FormattedDate date={post.data.pubDate} />
+										</p>
+										<h3 class="mb-2 text-xl font-semibold text-gray-900 dark:text-white group-hover:text-primary dark:group-hover:text-primary-300 transition-colors">
+											{post.data.title}
+										</h3>
+										<p class="text-sm text-gray-600 dark:text-gray-300 line-clamp-3">
+											{post.data.description}
+										</p>
+									</div>
+								</a>
+							))
+						}
+					</div>
+				</div>
+			</section>
+		</main>
+		<Footer />
+	</body>
+</html>

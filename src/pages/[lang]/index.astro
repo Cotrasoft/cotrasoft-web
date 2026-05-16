@@ -1,0 +1,50 @@
+---
+import BaseHead from "../../components/BaseHead.astro";
+import Benefits from "../../components/Benefits.astro";
+import Footer from "../../components/Footer.astro";
+import Hero from "../../components/Hero.astro";
+import Navbar from "../../components/Navbar.astro";
+import Services from "../../components/Services.astro";
+import { SITE_DESCRIPTION, SITE_TITLE } from "../../consts";
+import type { SupportedLang } from "../../components/BaseHead.astro";
+
+export function getStaticPaths() {
+	return [
+		{ params: { lang: "es" } },
+		{ params: { lang: "en" } },
+	];
+}
+
+const lang = (Astro.currentLocale ?? "es") as SupportedLang;
+---
+
+<!doctype html>
+<html lang={lang}>
+	<head>
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} lang={lang} />
+	</head>
+	<body>
+		<Navbar />
+		<main>
+			<Hero />
+			<Services />
+			<Benefits />
+		</main>
+		<Footer />
+
+		<script>
+			const observer = new IntersectionObserver(
+				(entries, obs) => {
+					for (const entry of entries) {
+						if (entry.isIntersecting) {
+							entry.target.classList.add("is-visible");
+							obs.unobserve(entry.target);
+						}
+					}
+				},
+				{ threshold: 0.15, rootMargin: "0px 0px -10% 0px" },
+			);
+			document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
+		</script>
+	</body>
+</html>
