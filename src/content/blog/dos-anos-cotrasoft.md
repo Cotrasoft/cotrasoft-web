@@ -1,7 +1,7 @@
 ---
 title: "Dos años de Cotrasoft: gracias a quienes nos trajeron hasta aquí"
 description: "Cumplimos dos años como cooperativa de desarrolladores. Más de 40 asociados, una puerta abierta a todos los roles del software, y un agradecimiento sincero a quienes nos guiaron desde el inicio."
-pubDate: "May 14 2026"
+pubDate: "May 15 2026"
 heroImage: "../../assets/blog-placeholder-2.jpg"
 published: true
 ---
