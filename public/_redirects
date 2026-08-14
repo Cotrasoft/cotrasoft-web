@@ -1,0 +1,4 @@
+# Redirect legacy prefixed default-locale URLs to the root
+/es/*  /:splat  301
+/es/   /        301
+/es    /        301
