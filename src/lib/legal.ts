@@ -30,6 +30,13 @@ export interface LegalContent {
 	privacy: LegalDoc;
 }
 
+export type LegalSlug = 'terms' | 'privacy';
+
+export const legalSlugs: Record<SupportedLang, Record<LegalSlug, string>> = {
+	es: { terms: 'terminos', privacy: 'privacidad' },
+	en: { terms: 'terms', privacy: 'privacy' },
+};
+
 const ENTITY_VALUES = {
 	name: 'Cooperativa Multiactiva de Aporte y Crédito de Trabajadores de Software Cotrasoft',
 	sigla: 'COTRASOFT',

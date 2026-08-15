@@ -1,5 +1,6 @@
 ---
 import { getRelativeLocaleUrl } from 'astro:i18n';
+import { legalSlugs } from '../lib/legal';
 import type { SupportedLang } from './BaseHead.astro';
 
 interface FooterLabels {
@@ -85,8 +86,8 @@ const navLinks = [
 	{ label: t.links.services, href: `${homeHref}#servicios` },
 	{ label: t.links.benefits, href: `${homeHref}#beneficios` },
 	{ label: t.links.join, href: 'https://app.cotrasoft.co/registro' },
-	{ label: t.links.terms, href: getRelativeLocaleUrl(lang, '/terminos/') },
-	{ label: t.links.privacy, href: getRelativeLocaleUrl(lang, '/privacidad/') },
+	{ label: t.links.terms, href: getRelativeLocaleUrl(lang, `/${legalSlugs[lang].terms}/`) },
+	{ label: t.links.privacy, href: getRelativeLocaleUrl(lang, `/${legalSlugs[lang].privacy}/`) },
 ];
 
 const year = new Date().getFullYear();
