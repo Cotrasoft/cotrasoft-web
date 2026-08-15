@@ -1,0 +1,10 @@
+#!/usr/bin/env sh
+# Format staged files with Biome and re-stage them so commits stay formatted.
+set -eu
+
+staged=$(git diff --cached --name-only --diff-filter=ACMR -- 'src/**')
+
+[ -z "$staged" ] && exit 0
+
+echo "$staged" | xargs pnpm exec biome format --write
+echo "$staged" | xargs git add
