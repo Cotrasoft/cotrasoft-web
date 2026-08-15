@@ -1,8 +1,8 @@
 name: Build
 
+# Build validation runs on PRs. On main the Deploy workflow performs the build
+# and uses its output (deploys it), so there is no throwaway build.
 on:
-  push:
-    branches: [main]
   pull_request:
     branches: [main]
 
