@@ -6,16 +6,23 @@ import Footer from '../components/Footer.astro';
 import Hero from '../components/Hero.astro';
 import Navbar from '../components/Navbar.astro';
 import Services from '../components/Services.astro';
+import OgHome from '../assets/og-image.png';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 import type { SupportedLang } from '../components/BaseHead.astro';
 
 const lang = (Astro.currentLocale ?? 'es') as SupportedLang;
 
-const supportedLanguages = ['es', 'en'] as const;
-const alternates = supportedLanguages.map((code) => ({
-	hreflang: code,
-	href: getAbsoluteLocaleUrl(code, '/'),
-}));
+const locales: { code: SupportedLang; hreflang: string }[] = [
+	{ code: 'es', hreflang: 'es-CO' },
+	{ code: 'en', hreflang: 'en-US' },
+];
+const alternates = [
+	...locales.map(({ code, hreflang }) => ({
+		hreflang,
+		href: getAbsoluteLocaleUrl(code, '/'),
+	})),
+	{ hreflang: 'x-default', href: getAbsoluteLocaleUrl('es', '/') },
+];
 ---
 
 <!doctype html>
@@ -25,6 +32,8 @@ const alternates = supportedLanguages.map((code) => ({
 			title={SITE_TITLE}
 			description={SITE_DESCRIPTION}
 			lang={lang}
+			image={OgHome}
+			imageAlt="Cotrasoft"
 			alternates={alternates}
 		/>
 	</head>
@@ -37,6 +46,7 @@ const alternates = supportedLanguages.map((code) => ({
 		</main>
 		<Footer />
 
+		<!-- Reveal-on-scroll animation: adds `is-visible` when a `.reveal` element enters the viewport, so it can fade in. -->
 		<script>
 			const observer = new IntersectionObserver(
 				(entries, obs) => {
