@@ -26,12 +26,12 @@
     "@tailwindcss/vite": "^4.3.3",
     "@types/react": "^19.2.18",
     "@types/react-dom": "^19.2.4",
-    "astro": "^6.3.2",
+    "astro": "^6.4.8",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
-    "sharp": "^0.34.3",
+    "sharp": "^0.35.3",
     "tailwindcss": "^4.3.3",
-    "wrangler": "^4.90.1"
+    "wrangler": "^4.120.0"
   },
   "devDependencies": {
     "@biomejs/biome": "2.5.8",
