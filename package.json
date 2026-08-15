@@ -5,11 +5,15 @@
   "engines": {
     "node": ">=22.12.0"
   },
+  "packageManager": "pnpm@10.32.0",
   "scripts": {
+    "prepare": "git config core.hooksPath .githooks",
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
+    "format": "biome format --write ./src",
+    "lint": "biome check --write ./src",
     "cf:preview": "wrangler dev",
     "cf:prod": "wrangler deploy",
     "cf:staging": "wrangler deploy --env staging"
@@ -30,6 +34,7 @@
     "wrangler": "^4.90.1"
   },
   "devDependencies": {
+    "@biomejs/biome": "2.5.8",
     "@tailwindcss/typography": "^0.5.19"
   }
 }

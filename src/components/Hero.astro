@@ -1,57 +1,59 @@
 ---
-import type { SupportedLang } from './BaseHead.astro';
+import type { SupportedLang } from "./BaseHead.astro";
 
 interface HeroLabels {
-	heading: string;
-	subheading: string;
-	cta: string;
-	stats: {
-		credits: string;
-		education: string;
-		community: string;
-	};
+  heading: string;
+  subheading: string;
+  cta: string;
+  stats: {
+    credits: string;
+    education: string;
+    community: string;
+  };
 }
 
 interface Props {
-	labels?: Partial<Omit<HeroLabels, 'stats'>> & {
-		stats?: Partial<HeroLabels['stats']>;
-	};
+  labels?: Partial<Omit<HeroLabels, "stats">> & {
+    stats?: Partial<HeroLabels["stats"]>;
+  };
 }
 
 const { labels = {} } = Astro.props;
 
-const lang = (Astro.currentLocale ?? 'es') as SupportedLang;
+const lang = (Astro.currentLocale ?? "es") as SupportedLang;
 
 const defaults: Record<SupportedLang, HeroLabels> = {
-	es: {
-		heading: 'Tu futuro tech merece más que solo un salario',
-		subheading: 'Crecimiento profesional, respaldo financiero y comunidad en un solo lugar',
-		cta: 'Descubre los beneficios',
-		stats: {
-			credits: 'Créditos',
-			education: 'Educación',
-			community: 'Comunidad',
-		},
-	},
-	en: {
-		heading: 'Your tech future deserves more than just a salary',
-		subheading: 'Professional growth, financial support, and community in one place',
-		cta: 'Discover the benefits',
-		stats: {
-			credits: 'Credits',
-			education: 'Education',
-			community: 'Community',
-		},
-	},
+  es: {
+    heading: "Tu futuro tech merece más que solo un salario",
+    subheading:
+      "Crecimiento profesional, respaldo financiero y comunidad en un solo lugar",
+    cta: "Descubre los beneficios",
+    stats: {
+      credits: "Créditos",
+      education: "Educación",
+      community: "Comunidad",
+    },
+  },
+  en: {
+    heading: "Your tech future deserves more than just a salary",
+    subheading:
+      "Professional growth, financial support, and community in one place",
+    cta: "Discover the benefits",
+    stats: {
+      credits: "Credits",
+      education: "Education",
+      community: "Community",
+    },
+  },
 };
 
 const t: HeroLabels = {
-	...defaults[lang],
-	...labels,
-	stats: { ...defaults[lang].stats, ...(labels.stats ?? {}) },
+  ...defaults[lang],
+  ...labels,
+  stats: { ...defaults[lang].stats, ...(labels.stats ?? {}) },
 };
 
-const ctaHref = 'https://app.cotrasoft.co/registro';
+const ctaHref = "https://app.cotrasoft.co/registro";
 const stats = [t.stats.credits, t.stats.education, t.stats.community];
 ---
 

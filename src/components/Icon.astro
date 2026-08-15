@@ -1,16 +1,16 @@
 ---
-import type { IconName } from './icons';
+import type { IconName } from "./icons";
 
 interface Props {
-	name: IconName;
-	class?: string;
-	'aria-label'?: string;
+  name: IconName;
+  class?: string;
+  "aria-label"?: string;
 }
 
-const { name, class: className, 'aria-label': ariaLabel } = Astro.props;
+const { name, class: className, "aria-label": ariaLabel } = Astro.props;
 const ariaProps = ariaLabel
-	? { 'aria-label': ariaLabel, role: 'img' }
-	: { 'aria-hidden': 'true' };
+  ? { "aria-label": ariaLabel, role: "img" }
+  : { "aria-hidden": "true" };
 ---
 
 <svg
