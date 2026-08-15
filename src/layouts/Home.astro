@@ -7,10 +7,9 @@ import Hero from '../components/Hero.astro';
 import Navbar from '../components/Navbar.astro';
 import Services from '../components/Services.astro';
 import OgHome from '../assets/og-image.png';
-import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
-import type { SupportedLang } from '../components/BaseHead.astro';
+import { SITE_DESCRIPTION, SITE_TITLE, DEFAULT_LOCALE, type SupportedLang } from '../consts';
 
-const lang = (Astro.currentLocale ?? 'es') as SupportedLang;
+const lang = (Astro.currentLocale ?? DEFAULT_LOCALE) as SupportedLang;
 
 const locales: { code: SupportedLang; hreflang: string }[] = [
 	{ code: 'es', hreflang: 'es-CO' },
@@ -21,7 +20,7 @@ const alternates = [
 		hreflang,
 		href: getAbsoluteLocaleUrl(code, '/'),
 	})),
-	{ hreflang: 'x-default', href: getAbsoluteLocaleUrl('es', '/') },
+	{ hreflang: 'x-default', href: getAbsoluteLocaleUrl(DEFAULT_LOCALE, '/') },
 ];
 ---
 
