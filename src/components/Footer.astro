@@ -10,6 +10,8 @@ interface FooterLabels {
 		services: string;
 		benefits: string;
 		join: string;
+		terms: string;
+		privacy: string;
 	};
 	contact: {
 		heading: string;
@@ -42,6 +44,8 @@ const defaults: Record<SupportedLang, FooterLabels> = {
 			services: 'Servicios',
 			benefits: 'Beneficios',
 			join: 'Únete',
+			terms: 'Términos',
+			privacy: 'Privacidad',
 		},
 		contact: {
 			heading: 'Contacto',
@@ -58,6 +62,8 @@ const defaults: Record<SupportedLang, FooterLabels> = {
 			services: 'Services',
 			benefits: 'Benefits',
 			join: 'Join us',
+			terms: 'Terms',
+			privacy: 'Privacy',
 		},
 		contact: {
 			heading: 'Contact',
@@ -79,6 +85,8 @@ const navLinks = [
 	{ label: t.links.services, href: `${homeHref}#servicios` },
 	{ label: t.links.benefits, href: `${homeHref}#beneficios` },
 	{ label: t.links.join, href: 'https://app.cotrasoft.co/registro' },
+	{ label: t.links.terms, href: getRelativeLocaleUrl(lang, '/terminos/') },
+	{ label: t.links.privacy, href: getRelativeLocaleUrl(lang, '/privacidad/') },
 ];
 
 const year = new Date().getFullYear();
