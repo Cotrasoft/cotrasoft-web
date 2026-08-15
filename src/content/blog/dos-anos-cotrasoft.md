@@ -28,4 +28,4 @@ Cotrasoft no es solo una idea bonita en un papel: es un equipo trabajando todos 
 
 ¿Suena interesante? La puerta está abierta, ya sea para sumarte como asociado o para trabajar con nosotros en un proyecto.
 
-Más información en [cotrasoft.co](https://cotrasoft.co/es/).
+Más información en [cotrasoft.co](https://cotrasoft.co/).

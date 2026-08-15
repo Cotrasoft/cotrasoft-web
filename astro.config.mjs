@@ -12,13 +12,20 @@ import react from '@astrojs/react';
 export default defineConfig({
     site: 'https://cotrasoft.co',
     output: "static",
-    integrations: [mdx(), sitemap(), react()],
+    integrations: [mdx(), sitemap({
+        i18n: {
+            defaultLocale: 'es',
+            locales: {
+                es: 'es-CO',
+                en: 'en-US',
+            },
+        },
+    }), react()],
     i18n: {
         locales: ["es", "en"],
         defaultLocale: "es",
         routing: {
-            prefixDefaultLocale: true,
-            redirectToDefaultLocale: true,
+            prefixDefaultLocale: false,
         },
     },
     fonts: [

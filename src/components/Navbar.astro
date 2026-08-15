@@ -53,12 +53,10 @@ const menuItems = [
 const loginHref = 'https://app.cotrasoft.co/';
 
 const supportedLanguages = ['es', 'en'] as const;
-const localePathRegex = new RegExp(`^/(${supportedLanguages.join('|')})(/|$)`);
-const subPath = Astro.url.pathname.replace(localePathRegex, '/') || '/';
 
 const langLinks = supportedLanguages.map((code) => ({
 	code,
-	href: getRelativeLocaleUrl(code, subPath),
+	href: getRelativeLocaleUrl(code, '/'),
 	active: code === lang,
 }));
 ---
