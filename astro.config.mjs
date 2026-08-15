@@ -8,6 +8,8 @@ import tailwindcss from '@tailwindcss/vite';
 
 import react from '@astrojs/react';
 
+import { HREFLANG } from './src/i18n';
+
 // https://astro.build/config
 export default defineConfig({
     site: 'https://cotrasoft.co',
@@ -15,10 +17,7 @@ export default defineConfig({
     integrations: [mdx(), sitemap({
         i18n: {
             defaultLocale: 'es',
-            locales: {
-                es: 'es-CO',
-                en: 'en-US',
-            },
+            locales: HREFLANG,
         },
     }), react()],
     i18n: {

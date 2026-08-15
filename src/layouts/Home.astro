@@ -8,19 +8,13 @@ import Navbar from '../components/Navbar.astro';
 import Services from '../components/Services.astro';
 import OgHome from '../assets/og-image.png';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
-import type { SupportedLang } from '../components/BaseHead.astro';
+import { HREFLANG, type SupportedLang } from '../i18n';
 
 const lang = (Astro.currentLocale ?? 'es') as SupportedLang;
 
-const locales: { code: SupportedLang; hreflang: string }[] = [
-	{ code: 'es', hreflang: 'es-CO' },
-	{ code: 'en', hreflang: 'en-US' },
-];
 const alternates = [
-	...locales.map(({ code, hreflang }) => ({
-		hreflang,
-		href: getAbsoluteLocaleUrl(code, '/'),
-	})),
+	{ hreflang: HREFLANG.es, href: getAbsoluteLocaleUrl('es', '/') },
+	{ hreflang: HREFLANG.en, href: getAbsoluteLocaleUrl('en', '/') },
 	{ hreflang: 'x-default', href: getAbsoluteLocaleUrl('es', '/') },
 ];
 ---
