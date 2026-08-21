@@ -1,9 +1,9 @@
 ---
 import { getAbsoluteLocaleUrl } from "astro:i18n";
-import type { SupportedLang } from "../components/BaseHead.astro";
 import BaseHead from "../components/BaseHead.astro";
 import Footer from "../components/Footer.astro";
 import Navbar from "../components/Navbar.astro";
+import { DEFAULT_LOCALE, type SupportedLang } from "../consts";
 import type { LegalDoc, LegalSlug } from "../lib/legal";
 import { legalSlugs } from "../lib/legal";
 
@@ -14,7 +14,7 @@ interface Props {
 
 const { slug, doc } = Astro.props;
 
-const lang = (Astro.currentLocale ?? "es") as SupportedLang;
+const lang = (Astro.currentLocale ?? DEFAULT_LOCALE) as SupportedLang;
 
 const hreflangFor: Record<SupportedLang, string> = { es: "es-CO", en: "en-US" };
 const supportedLanguages = ["es", "en"] as const;
@@ -25,7 +25,10 @@ const alternates = [
   })),
   {
     hreflang: "x-default",
-    href: getAbsoluteLocaleUrl("es", `/${legalSlugs.es[slug]}/`),
+    href: getAbsoluteLocaleUrl(
+      DEFAULT_LOCALE,
+      `/${legalSlugs[DEFAULT_LOCALE][slug]}/`,
+    ),
   },
 ];
 ---

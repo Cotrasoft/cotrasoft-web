@@ -1,5 +1,5 @@
 ---
-import type { SupportedLang } from "./BaseHead.astro";
+import { DEFAULT_LOCALE, type SupportedLang } from "../consts";
 import Icon from "./Icon.astro";
 import type { IconName } from "./icons";
 
@@ -20,7 +20,7 @@ interface Props {
 }
 
 const { content = {} } = Astro.props;
-const lang = (Astro.currentLocale ?? "es") as SupportedLang;
+const lang = (Astro.currentLocale ?? DEFAULT_LOCALE) as SupportedLang;
 
 const defaults: Record<SupportedLang, BenefitsContent> = {
   es: {

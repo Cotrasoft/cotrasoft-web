@@ -1,5 +1,5 @@
 ---
-import type { SupportedLang } from "./BaseHead.astro";
+import { DEFAULT_LOCALE, type SupportedLang } from "../consts";
 
 interface HeroLabels {
   heading: string;
@@ -20,7 +20,7 @@ interface Props {
 
 const { labels = {} } = Astro.props;
 
-const lang = (Astro.currentLocale ?? "es") as SupportedLang;
+const lang = (Astro.currentLocale ?? DEFAULT_LOCALE) as SupportedLang;
 
 const defaults: Record<SupportedLang, HeroLabels> = {
   es: {

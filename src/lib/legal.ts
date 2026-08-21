@@ -1,4 +1,4 @@
-import type { SupportedLang } from "../components/BaseHead.astro";
+import type { SupportedLang } from "../consts";
 
 export interface LegalSection {
   heading: string;

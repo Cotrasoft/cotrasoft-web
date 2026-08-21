@@ -1,16 +1,20 @@
 ---
 import { getAbsoluteLocaleUrl } from "astro:i18n";
 import OgHome from "../assets/og-image.png";
-import type { SupportedLang } from "../components/BaseHead.astro";
 import BaseHead from "../components/BaseHead.astro";
 import Benefits from "../components/Benefits.astro";
 import Footer from "../components/Footer.astro";
 import Hero from "../components/Hero.astro";
 import Navbar from "../components/Navbar.astro";
 import Services from "../components/Services.astro";
-import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
+import {
+  DEFAULT_LOCALE,
+  SITE_DESCRIPTION,
+  SITE_TITLE,
+  type SupportedLang,
+} from "../consts";
 
-const lang = (Astro.currentLocale ?? "es") as SupportedLang;
+const lang = (Astro.currentLocale ?? DEFAULT_LOCALE) as SupportedLang;
 
 const locales: { code: SupportedLang; hreflang: string }[] = [
   { code: "es", hreflang: "es-CO" },
@@ -21,7 +25,7 @@ const alternates = [
     hreflang,
     href: getAbsoluteLocaleUrl(code, "/"),
   })),
-  { hreflang: "x-default", href: getAbsoluteLocaleUrl("es", "/") },
+  { hreflang: "x-default", href: getAbsoluteLocaleUrl(DEFAULT_LOCALE, "/") },
 ];
 ---
 

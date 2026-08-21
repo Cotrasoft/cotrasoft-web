@@ -1,7 +1,7 @@
 ---
 import { getRelativeLocaleUrl } from "astro:i18n";
+import { DEFAULT_LOCALE, type SupportedLang } from "../consts";
 import { legalSlugs } from "../lib/legal";
-import type { SupportedLang } from "./BaseHead.astro";
 
 interface FooterLabels {
   description: string;
@@ -33,7 +33,7 @@ interface Props {
 
 const { labels = {} } = Astro.props;
 
-const lang = (Astro.currentLocale ?? "es") as SupportedLang;
+const lang = (Astro.currentLocale ?? DEFAULT_LOCALE) as SupportedLang;
 
 const defaults: Record<SupportedLang, FooterLabels> = {
   es: {
