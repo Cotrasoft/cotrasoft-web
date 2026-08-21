@@ -15,7 +15,7 @@ import {
   ENTITY_DESCRIPTION,
   HREFLANG,
   resolveLocale,
-  SITE_TITLE,
+  SITE_TITLES,
   SUPPORTED_LOCALES,
   type SupportedLang,
   X_DEFAULT,
@@ -57,7 +57,7 @@ const alternates: HreflangAlternate[] = [
 <html lang={lang}>
 	<head>
 		<BaseHead
-			title={SITE_TITLE}
+			title={SITE_TITLES[lang]}
 			description={ENTITY_DESCRIPTION[lang]}
 			lang={lang}
 			image={OgHome}

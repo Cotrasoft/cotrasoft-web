@@ -25,6 +25,12 @@ export const ENTITY_DESCRIPTION: Record<SupportedLang, string> = {
 
 export const SITE_DESCRIPTION = ENTITY_DESCRIPTION[DEFAULT_LOCALE];
 
+// Localized page titles; descriptions live in ENTITY_DESCRIPTION.
+export const SITE_TITLES: Record<SupportedLang, string> = {
+  es: SITE_TITLE,
+  en: "Cotrasoft - Software Developer Cooperative",
+};
+
 // Open Graph locale tags. The alternate is a table (not a second ternary)
 // so the pair cannot drift out of sync.
 export const OG_LOCALE: Record<SupportedLang, string> = {
