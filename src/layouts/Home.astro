@@ -1,21 +1,21 @@
 ---
-import { getAbsoluteLocaleUrl } from 'astro:i18n';
-import BaseHead from '../components/BaseHead.astro';
-import Benefits from '../components/Benefits.astro';
-import Footer from '../components/Footer.astro';
-import Hero from '../components/Hero.astro';
-import Navbar from '../components/Navbar.astro';
-import Services from '../components/Services.astro';
-import OgHome from '../assets/og-image.png';
-import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
-import { HREFLANG, type SupportedLang } from '../i18n';
+import { getAbsoluteLocaleUrl } from "astro:i18n";
+import OgHome from "../assets/og-image.png";
+import BaseHead from "../components/BaseHead.astro";
+import Benefits from "../components/Benefits.astro";
+import Footer from "../components/Footer.astro";
+import Hero from "../components/Hero.astro";
+import Navbar from "../components/Navbar.astro";
+import Services from "../components/Services.astro";
+import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
+import { HREFLANG, type SupportedLang } from "../i18n";
 
-const lang = (Astro.currentLocale ?? 'es') as SupportedLang;
+const lang = (Astro.currentLocale ?? "es") as SupportedLang;
 
 const alternates = [
-	{ hreflang: HREFLANG.es, href: getAbsoluteLocaleUrl('es', '/') },
-	{ hreflang: HREFLANG.en, href: getAbsoluteLocaleUrl('en', '/') },
-	{ hreflang: 'x-default', href: getAbsoluteLocaleUrl('es', '/') },
+  { hreflang: HREFLANG.es, href: getAbsoluteLocaleUrl("es", "/") },
+  { hreflang: HREFLANG.en, href: getAbsoluteLocaleUrl("en", "/") },
+  { hreflang: "x-default", href: getAbsoluteLocaleUrl("es", "/") },
 ];
 ---
 

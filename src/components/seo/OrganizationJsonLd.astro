@@ -1,35 +1,35 @@
 ---
 interface Props {
-	description: string;
-	logo?: string;
-	email?: string;
+  description: string;
+  logo?: string;
+  email?: string;
 }
 
 const {
-	description,
-	logo = '/cotrasoft.svg',
-	email = 'gerencia@cotrasoft.co',
+  description,
+  logo = "/cotrasoft.svg",
+  email = "gerencia@cotrasoft.co",
 } = Astro.props;
 
 const siteURL = Astro.site!;
 const data = {
-	'@context': 'https://schema.org',
-	'@type': 'Organization',
-	'@id': new URL('#organization', siteURL).href,
-	name: 'Cotrasoft',
-	url: siteURL.href,
-	logo: new URL(logo, siteURL).href,
-	email,
-	description,
-	address: {
-		'@type': 'PostalAddress',
-		addressCountry: 'CO',
-	},
-	knowsLanguage: ['es', 'en'],
-	areaServed: [
-		{ '@type': 'Country', name: 'Colombia' },
-		{ '@type': 'Country', name: 'United States' },
-	],
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": new URL("#organization", siteURL).href,
+  name: "Cotrasoft",
+  url: siteURL.href,
+  logo: new URL(logo, siteURL).href,
+  email,
+  description,
+  address: {
+    "@type": "PostalAddress",
+    addressCountry: "CO",
+  },
+  knowsLanguage: ["es", "en"],
+  areaServed: [
+    { "@type": "Country", name: "Colombia" },
+    { "@type": "Country", name: "United States" },
+  ],
 };
 ---
 

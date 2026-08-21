@@ -1,111 +1,113 @@
 ---
-import Icon from './Icon.astro';
-import type { IconName } from './icons';
-import type { SupportedLang } from './BaseHead.astro';
+import type { SupportedLang } from "./BaseHead.astro";
+import Icon from "./Icon.astro";
+import type { IconName } from "./icons";
 
 interface BenefitItem {
-	title: string;
-	description: string;
+  title: string;
+  description: string;
 }
 
 interface BenefitsContent {
-	heading: string;
-	subheading: string;
-	cta: string;
-	items: BenefitItem[];
+  heading: string;
+  subheading: string;
+  cta: string;
+  items: BenefitItem[];
 }
 
 interface Props {
-	content?: Partial<BenefitsContent>;
+  content?: Partial<BenefitsContent>;
 }
 
 const { content = {} } = Astro.props;
-const lang = (Astro.currentLocale ?? 'es') as SupportedLang;
+const lang = (Astro.currentLocale ?? "es") as SupportedLang;
 
 const defaults: Record<SupportedLang, BenefitsContent> = {
-	es: {
-		heading: 'Beneficios para miembros',
-		subheading:
-			'Únete a nuestra cooperativa y disfruta de ventajas exclusivas diseñadas para impulsar tu carrera',
-		cta: 'Descubre más beneficios',
-		items: [
-			{
-				title: 'Comunidad colaborativa',
-				description: 'Forma parte de una red de desarrolladores talentosos y apasionados',
-			},
-			{
-				title: 'Crecimiento profesional',
-				description: 'Oportunidades de desarrollo y aprendizaje continuo',
-			},
-			{
-				title: 'Recursos de aprendizaje',
-				description: 'Acceso a cursos, talleres y materiales educativos',
-			},
-			{
-				title: 'Soporte mutuo',
-				description: 'Mentorías y apoyo técnico de la comunidad',
-			},
-			{
-				title: 'Proyectos globales',
-				description: 'Participa en proyectos internacionales desafiantes',
-			},
-			{
-				title: 'Beneficios cooperativos',
-				description: 'Participación en ganancias y toma de decisiones',
-			},
-		],
-	},
-	en: {
-		heading: 'Member benefits',
-		subheading:
-			'Join our cooperative and enjoy exclusive advantages designed to boost your career',
-		cta: 'Discover more benefits',
-		items: [
-			{
-				title: 'Collaborative community',
-				description: 'Be part of a network of talented and passionate developers',
-			},
-			{
-				title: 'Professional growth',
-				description: 'Continuous development and learning opportunities',
-			},
-			{
-				title: 'Learning resources',
-				description: 'Access to courses, workshops, and educational materials',
-			},
-			{
-				title: 'Mutual support',
-				description: 'Mentorship and technical support from the community',
-			},
-			{
-				title: 'Global projects',
-				description: 'Participate in challenging international projects',
-			},
-			{
-				title: 'Cooperative benefits',
-				description: 'Profit sharing and decision-making participation',
-			},
-		],
-	},
+  es: {
+    heading: "Beneficios para miembros",
+    subheading:
+      "Únete a nuestra cooperativa y disfruta de ventajas exclusivas diseñadas para impulsar tu carrera",
+    cta: "Descubre más beneficios",
+    items: [
+      {
+        title: "Comunidad colaborativa",
+        description:
+          "Forma parte de una red de desarrolladores talentosos y apasionados",
+      },
+      {
+        title: "Crecimiento profesional",
+        description: "Oportunidades de desarrollo y aprendizaje continuo",
+      },
+      {
+        title: "Recursos de aprendizaje",
+        description: "Acceso a cursos, talleres y materiales educativos",
+      },
+      {
+        title: "Soporte mutuo",
+        description: "Mentorías y apoyo técnico de la comunidad",
+      },
+      {
+        title: "Proyectos globales",
+        description: "Participa en proyectos internacionales desafiantes",
+      },
+      {
+        title: "Beneficios cooperativos",
+        description: "Participación en ganancias y toma de decisiones",
+      },
+    ],
+  },
+  en: {
+    heading: "Member benefits",
+    subheading:
+      "Join our cooperative and enjoy exclusive advantages designed to boost your career",
+    cta: "Discover more benefits",
+    items: [
+      {
+        title: "Collaborative community",
+        description:
+          "Be part of a network of talented and passionate developers",
+      },
+      {
+        title: "Professional growth",
+        description: "Continuous development and learning opportunities",
+      },
+      {
+        title: "Learning resources",
+        description: "Access to courses, workshops, and educational materials",
+      },
+      {
+        title: "Mutual support",
+        description: "Mentorship and technical support from the community",
+      },
+      {
+        title: "Global projects",
+        description: "Participate in challenging international projects",
+      },
+      {
+        title: "Cooperative benefits",
+        description: "Profit sharing and decision-making participation",
+      },
+    ],
+  },
 };
 
 const t: BenefitsContent = { ...defaults[lang], ...content };
 
 const benefitIcons: IconName[] = [
-	'users',
-	'trending-up',
-	'book',
-	'life-buoy',
-	'globe',
-	'heart',
+  "users",
+  "trending-up",
+  "book",
+  "life-buoy",
+  "globe",
+  "heart",
 ];
 
 const benefits = t.items.map((item, i) => ({
-	icon: benefitIcons[i] ?? 'check',
-	...item,
+  icon: benefitIcons[i] ?? "check",
+  ...item,
 }));
 
-const ctaHref = 'https://app.cotrasoft.co/registro';
+const ctaHref = "https://app.cotrasoft.co/registro";
 ---
 
 <section

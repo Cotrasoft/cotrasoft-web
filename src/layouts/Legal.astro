@@ -1,0 +1,91 @@
+---
+import { getAbsoluteLocaleUrl } from "astro:i18n";
+import BaseHead from "../components/BaseHead.astro";
+import Footer from "../components/Footer.astro";
+import Navbar from "../components/Navbar.astro";
+import { HREFLANG, type SupportedLang } from "../i18n";
+import type { LegalDoc, LegalSlug } from "../lib/legal";
+import { legalSlugs } from "../lib/legal";
+
+interface Props {
+  slug: LegalSlug;
+  doc: LegalDoc;
+}
+
+const { slug, doc } = Astro.props;
+
+const lang = (Astro.currentLocale ?? "es") as SupportedLang;
+
+const alternates = [
+  ...(Object.keys(HREFLANG) as SupportedLang[]).map((code) => ({
+    hreflang: HREFLANG[code],
+    href: getAbsoluteLocaleUrl(code, `/${legalSlugs[code][slug]}/`),
+  })),
+  {
+    hreflang: "x-default",
+    href: getAbsoluteLocaleUrl("es", `/${legalSlugs.es[slug]}/`),
+  },
+];
+---
+
+<!doctype html>
+<html lang={lang}>
+	<head>
+		<BaseHead
+			title={doc.title}
+			description={doc.description}
+			lang={lang}
+			alternates={alternates}
+		/>
+	</head>
+	<body>
+		<Navbar />
+		<main class="bg-white dark:bg-gray-900">
+			<article class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 pt-32 pb-20">
+				<header class="mb-10">
+					<h1 class="text-4xl sm:text-5xl font-bold gradient-text leading-tight">
+						{doc.title}
+					</h1>
+					<p class="mt-4 text-lg text-gray-600 dark:text-gray-300">{doc.description}</p>
+					<p class="mt-4 text-sm text-gray-500 dark:text-gray-400">
+						{doc.lastUpdatedLabel}: {doc.lastUpdated}
+					</p>
+					<hr class="mt-8 border-gray-200 dark:border-gray-700" />
+				</header>
+
+				<div
+					class="prose prose-lg dark:prose-invert max-w-none prose-headings:font-bold prose-a:text-primary prose-a:no-underline hover:prose-a:underline"
+				>
+					{
+						doc.sections.map((section) => (
+							<section>
+								<h2>{section.heading}</h2>
+								{section.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+							</section>
+						))
+					}
+				</div>
+
+				<section class="mt-12 rounded-2xl border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/50 p-6 sm:p-8">
+					<h2 class="mb-4 text-xl font-bold">{doc.entity.heading}</h2>
+					<p class="mb-6 text-sm text-gray-600 dark:text-gray-300">{doc.entity.description}</p>
+					<dl class="space-y-3 text-sm">
+						{
+							doc.entity.fields.map((field) => (
+								<div class="grid grid-cols-1 gap-1 sm:grid-cols-3">
+									<dt class="font-semibold text-gray-700 dark:text-gray-300">
+										{field.label}
+									</dt>
+									<dd class="sm:col-span-2 text-gray-600 dark:text-gray-400">
+										{field.value}
+									</dd>
+								</div>
+							))
+						}
+					</dl>
+				</section>
+			</article>
+		</main>
+		<Footer />
+	</body>
+</html>

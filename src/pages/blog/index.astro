@@ -1,10 +1,10 @@
 ---
-import { Image } from 'astro:assets';
-import BaseHead from '../../components/BaseHead.astro';
-import Footer from '../../components/Footer.astro';
-import FormattedDate from '../../components/FormattedDate.astro';
-import Navbar from '../../components/Navbar.astro';
-import { getBlogPosts } from '../../lib/blog';
+import { Image } from "astro:assets";
+import BaseHead from "../../components/BaseHead.astro";
+import Footer from "../../components/Footer.astro";
+import FormattedDate from "../../components/FormattedDate.astro";
+import Navbar from "../../components/Navbar.astro";
+import { getBlogPosts } from "../../lib/blog";
 
 const posts = await getBlogPosts();
 

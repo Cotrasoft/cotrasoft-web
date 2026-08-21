@@ -1,0 +1,6 @@
+#!/usr/bin/env sh
+# Gate pushes with the same Biome check CI runs, so a green hook means green CI.
+# Run `pnpm lint` (or `pnpm format`) to fix any reported issues before pushing.
+set -eu
+
+pnpm exec biome ci ./src
