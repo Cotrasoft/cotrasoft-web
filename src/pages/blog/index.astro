@@ -53,6 +53,8 @@ const lang = resolveLocale(Astro.currentLocale);
 											height={540}
 											src={featured.data.heroImage}
 											alt=""
+											loading="eager"
+											fetchpriority="high"
 											class="aspect-[16/9] w-full object-cover lg:aspect-auto lg:h-full"
 										/>
 									)}

@@ -3,9 +3,9 @@
   "type": "module",
   "version": "0.0.1",
   "engines": {
-    "node": ">=22.12.0"
+    "node": ">=26.0.0"
   },
-  "packageManager": "pnpm@10.32.0",
+  "packageManager": "pnpm@11.22.0",
   "scripts": {
     "prepare": "git config core.hooksPath .githooks",
     "dev": "astro dev",
@@ -13,29 +13,24 @@
     "preview": "astro preview",
     "astro": "astro",
     "test": "vitest run",
-    "format": "biome format --write ./src",
-    "lint": "biome check --write ./src",
+    "format": "biome format --write ./src astro.config.mjs",
+    "lint": "biome check --write ./src astro.config.mjs",
     "cf:preview": "wrangler dev",
     "cf:prod": "wrangler deploy",
     "cf:staging": "wrangler deploy --env staging"
   },
   "dependencies": {
-    "@astrojs/mdx": "^5.0.6",
-    "@astrojs/react": "^5.0.7",
+    "@astrojs/mdx": "^7.0.7",
     "@astrojs/rss": "^4.0.19",
     "@astrojs/sitemap": "^3.7.3",
     "@tailwindcss/vite": "^4.3.3",
-    "@types/react": "^19.2.18",
-    "@types/react-dom": "^19.2.4",
-    "astro": "^6.3.2",
-    "react": "^19.2.8",
-    "react-dom": "^19.2.8",
-    "sharp": "^0.34.3",
+    "astro": "^7.2.4",
+    "sharp": "^0.35.3",
     "tailwindcss": "^4.3.3",
-    "wrangler": "^4.90.1"
+    "wrangler": "^4.124.0"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.5.8",
+    "@biomejs/biome": "2.5.9",
     "@tailwindcss/typography": "^0.5.20",
     "vitest": "^5.0.0"
   }

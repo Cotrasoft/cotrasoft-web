@@ -1,0 +1,4 @@
+# Astro emits content-hashed, immutable assets under /_astro/.
+# https://developers.cloudflare.com/workers/static-assets/headers/
+/_astro/*
+  Cache-Control: public, max-age=31556952, immutable
