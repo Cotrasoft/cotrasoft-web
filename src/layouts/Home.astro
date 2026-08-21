@@ -1,26 +1,31 @@
 ---
-import { getAbsoluteLocaleUrl } from 'astro:i18n';
-import BaseHead from '../components/BaseHead.astro';
-import Benefits from '../components/Benefits.astro';
-import Footer from '../components/Footer.astro';
-import Hero from '../components/Hero.astro';
-import Navbar from '../components/Navbar.astro';
-import Services from '../components/Services.astro';
-import OgHome from '../assets/og-image.png';
-import { SITE_DESCRIPTION, SITE_TITLE, DEFAULT_LOCALE, type SupportedLang } from '../consts';
+import { getAbsoluteLocaleUrl } from "astro:i18n";
+import OgHome from "../assets/og-image.png";
+import BaseHead from "../components/BaseHead.astro";
+import Benefits from "../components/Benefits.astro";
+import Footer from "../components/Footer.astro";
+import Hero from "../components/Hero.astro";
+import Navbar from "../components/Navbar.astro";
+import Services from "../components/Services.astro";
+import {
+  DEFAULT_LOCALE,
+  SITE_DESCRIPTION,
+  SITE_TITLE,
+  type SupportedLang,
+} from "../consts";
 
 const lang = (Astro.currentLocale ?? DEFAULT_LOCALE) as SupportedLang;
 
 const locales: { code: SupportedLang; hreflang: string }[] = [
-	{ code: 'es', hreflang: 'es-CO' },
-	{ code: 'en', hreflang: 'en-US' },
+  { code: "es", hreflang: "es-CO" },
+  { code: "en", hreflang: "en-US" },
 ];
 const alternates = [
-	...locales.map(({ code, hreflang }) => ({
-		hreflang,
-		href: getAbsoluteLocaleUrl(code, '/'),
-	})),
-	{ hreflang: 'x-default', href: getAbsoluteLocaleUrl(DEFAULT_LOCALE, '/') },
+  ...locales.map(({ code, hreflang }) => ({
+    hreflang,
+    href: getAbsoluteLocaleUrl(code, "/"),
+  })),
+  { hreflang: "x-default", href: getAbsoluteLocaleUrl(DEFAULT_LOCALE, "/") },
 ];
 ---
 

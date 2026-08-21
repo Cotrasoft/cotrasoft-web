@@ -1,19 +1,19 @@
 ---
-import { getRelativeLocaleUrl } from 'astro:i18n';
-import { DEFAULT_LOCALE, type SupportedLang } from '../consts';
+import { getRelativeLocaleUrl } from "astro:i18n";
+import { DEFAULT_LOCALE, type SupportedLang } from "../consts";
 
 interface NavbarLabels {
-	services: string;
-	benefits: string;
-	join: string;
-	login: string;
-	blog: string;
-	toggleMenu: string;
-	mainNavigation: string;
+  services: string;
+  benefits: string;
+  join: string;
+  login: string;
+  blog: string;
+  toggleMenu: string;
+  mainNavigation: string;
 }
 
 interface Props {
-	labels?: Partial<NavbarLabels>;
+  labels?: Partial<NavbarLabels>;
 }
 
 const { labels = {} } = Astro.props;
@@ -21,43 +21,43 @@ const { labels = {} } = Astro.props;
 const lang = (Astro.currentLocale ?? DEFAULT_LOCALE) as SupportedLang;
 
 const defaultLabels: Record<SupportedLang, NavbarLabels> = {
-	es: {
-		services: 'Servicios',
-		benefits: 'Beneficios',
-		join: 'Únete',
-		login: 'Iniciar sesión',
-		blog: 'Blog',
-		toggleMenu: 'Alternar menú',
-		mainNavigation: 'Navegación principal',
-	},
-	en: {
-		services: 'Services',
-		benefits: 'Benefits',
-		join: 'Join us',
-		login: 'Sign in',
-		blog: 'Blog',
-		toggleMenu: 'Toggle menu',
-		mainNavigation: 'Main navigation',
-	},
+  es: {
+    services: "Servicios",
+    benefits: "Beneficios",
+    join: "Únete",
+    login: "Iniciar sesión",
+    blog: "Blog",
+    toggleMenu: "Alternar menú",
+    mainNavigation: "Navegación principal",
+  },
+  en: {
+    services: "Services",
+    benefits: "Benefits",
+    join: "Join us",
+    login: "Sign in",
+    blog: "Blog",
+    toggleMenu: "Toggle menu",
+    mainNavigation: "Main navigation",
+  },
 };
 
 const t: NavbarLabels = { ...defaultLabels[lang], ...labels };
 
-const homeHref = getRelativeLocaleUrl(lang, '/');
+const homeHref = getRelativeLocaleUrl(lang, "/");
 const menuItems = [
-	{ title: t.services, href: `${homeHref}#servicios` },
-	{ title: t.benefits, href: `${homeHref}#beneficios` },
-	{ title: t.blog, href: '/blog/' },
-	{ title: t.join, href: 'https://app.cotrasoft.co/registro' },
+  { title: t.services, href: `${homeHref}#servicios` },
+  { title: t.benefits, href: `${homeHref}#beneficios` },
+  { title: t.blog, href: "/blog/" },
+  { title: t.join, href: "https://app.cotrasoft.co/registro" },
 ];
-const loginHref = 'https://app.cotrasoft.co/';
+const loginHref = "https://app.cotrasoft.co/";
 
-const supportedLanguages = ['es', 'en'] as const;
+const supportedLanguages = ["es", "en"] as const;
 
 const langLinks = supportedLanguages.map((code) => ({
-	code,
-	href: getRelativeLocaleUrl(code, '/'),
-	active: code === lang,
+  code,
+  href: getRelativeLocaleUrl(code, "/"),
+  active: code === lang,
 }));
 ---
 

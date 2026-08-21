@@ -1,20 +1,20 @@
 ---
-import { DEFAULT_LOCALE, type SupportedLang } from '../../consts';
+import { DEFAULT_LOCALE, type SupportedLang } from "../../consts";
 
 interface Props {
-	lang?: SupportedLang;
+  lang?: SupportedLang;
 }
 
 const { lang = DEFAULT_LOCALE } = Astro.props;
 
 const siteURL = Astro.site!;
 const data = {
-	'@context': 'https://schema.org',
-	'@type': 'WebSite',
-	name: 'Cotrasoft',
-	url: siteURL.href,
-	inLanguage: lang,
-	publisher: { '@id': new URL('#organization', siteURL).href },
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "Cotrasoft",
+  url: siteURL.href,
+  inLanguage: lang,
+  publisher: { "@id": new URL("#organization", siteURL).href },
 };
 ---
 

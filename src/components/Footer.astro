@@ -1,34 +1,34 @@
 ---
-import { getRelativeLocaleUrl } from 'astro:i18n';
-import { DEFAULT_LOCALE, type SupportedLang } from '../consts';
-import { legalSlugs } from '../lib/legal';
+import { getRelativeLocaleUrl } from "astro:i18n";
+import { DEFAULT_LOCALE, type SupportedLang } from "../consts";
+import { legalSlugs } from "../lib/legal";
 
 interface FooterLabels {
-	description: string;
-	navLabel: string;
-	rights: string;
-	links: {
-		services: string;
-		benefits: string;
-		join: string;
-		terms: string;
-		privacy: string;
-	};
-	contact: {
-		heading: string;
-		email: string;
-		location: string;
-	};
+  description: string;
+  navLabel: string;
+  rights: string;
+  links: {
+    services: string;
+    benefits: string;
+    join: string;
+    terms: string;
+    privacy: string;
+  };
+  contact: {
+    heading: string;
+    email: string;
+    location: string;
+  };
 }
 
 interface Props {
-	labels?: Partial<{
-		description: string;
-		navLabel: string;
-		rights: string;
-		links: Partial<FooterLabels['links']>;
-		contact: Partial<FooterLabels['contact']>;
-	}>;
+  labels?: Partial<{
+    description: string;
+    navLabel: string;
+    rights: string;
+    links: Partial<FooterLabels["links"]>;
+    contact: Partial<FooterLabels["contact"]>;
+  }>;
 }
 
 const { labels = {} } = Astro.props;
@@ -36,58 +36,64 @@ const { labels = {} } = Astro.props;
 const lang = (Astro.currentLocale ?? DEFAULT_LOCALE) as SupportedLang;
 
 const defaults: Record<SupportedLang, FooterLabels> = {
-	es: {
-		description:
-			'Cooperativa de desarrolladores de software colombianos. Combinamos economía solidaria con tecnología de punta.',
-		navLabel: 'Navegación del pie de página',
-		rights: 'Todos los derechos reservados.',
-		links: {
-			services: 'Servicios',
-			benefits: 'Beneficios',
-			join: 'Únete',
-			terms: 'Términos',
-			privacy: 'Privacidad',
-		},
-		contact: {
-			heading: 'Contacto',
-			email: 'gerencia@cotrasoft.co',
-			location: 'Colombia',
-		},
-	},
-	en: {
-		description:
-			'Colombian software developer cooperative. We combine solidarity economy with cutting-edge technology.',
-		navLabel: 'Footer navigation',
-		rights: 'All rights reserved.',
-		links: {
-			services: 'Services',
-			benefits: 'Benefits',
-			join: 'Join us',
-			terms: 'Terms',
-			privacy: 'Privacy',
-		},
-		contact: {
-			heading: 'Contact',
-			email: 'gerencia@cotrasoft.co',
-			location: 'Colombia',
-		},
-	},
+  es: {
+    description:
+      "Cooperativa de desarrolladores de software colombianos. Combinamos economía solidaria con tecnología de punta.",
+    navLabel: "Navegación del pie de página",
+    rights: "Todos los derechos reservados.",
+    links: {
+      services: "Servicios",
+      benefits: "Beneficios",
+      join: "Únete",
+      terms: "Términos",
+      privacy: "Privacidad",
+    },
+    contact: {
+      heading: "Contacto",
+      email: "gerencia@cotrasoft.co",
+      location: "Colombia",
+    },
+  },
+  en: {
+    description:
+      "Colombian software developer cooperative. We combine solidarity economy with cutting-edge technology.",
+    navLabel: "Footer navigation",
+    rights: "All rights reserved.",
+    links: {
+      services: "Services",
+      benefits: "Benefits",
+      join: "Join us",
+      terms: "Terms",
+      privacy: "Privacy",
+    },
+    contact: {
+      heading: "Contact",
+      email: "gerencia@cotrasoft.co",
+      location: "Colombia",
+    },
+  },
 };
 
 const t: FooterLabels = {
-	...defaults[lang],
-	...labels,
-	links: { ...defaults[lang].links, ...(labels.links ?? {}) },
-	contact: { ...defaults[lang].contact, ...(labels.contact ?? {}) },
+  ...defaults[lang],
+  ...labels,
+  links: { ...defaults[lang].links, ...(labels.links ?? {}) },
+  contact: { ...defaults[lang].contact, ...(labels.contact ?? {}) },
 };
 
-const homeHref = getRelativeLocaleUrl(lang, '/');
+const homeHref = getRelativeLocaleUrl(lang, "/");
 const navLinks = [
-	{ label: t.links.services, href: `${homeHref}#servicios` },
-	{ label: t.links.benefits, href: `${homeHref}#beneficios` },
-	{ label: t.links.join, href: 'https://app.cotrasoft.co/registro' },
-	{ label: t.links.terms, href: getRelativeLocaleUrl(lang, `/${legalSlugs[lang].terms}/`) },
-	{ label: t.links.privacy, href: getRelativeLocaleUrl(lang, `/${legalSlugs[lang].privacy}/`) },
+  { label: t.links.services, href: `${homeHref}#servicios` },
+  { label: t.links.benefits, href: `${homeHref}#beneficios` },
+  { label: t.links.join, href: "https://app.cotrasoft.co/registro" },
+  {
+    label: t.links.terms,
+    href: getRelativeLocaleUrl(lang, `/${legalSlugs[lang].terms}/`),
+  },
+  {
+    label: t.links.privacy,
+    href: getRelativeLocaleUrl(lang, `/${legalSlugs[lang].privacy}/`),
+  },
 ];
 
 const year = new Date().getFullYear();
