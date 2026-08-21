@@ -8,7 +8,7 @@ import tailwindcss from '@tailwindcss/vite';
 
 import react from '@astrojs/react';
 
-import { HREFLANG } from './src/i18n';
+import { DEFAULT_LOCALE, HREFLANG } from './src/consts';
 
 // https://astro.build/config
 export default defineConfig({
@@ -16,13 +16,13 @@ export default defineConfig({
     output: "static",
     integrations: [mdx(), sitemap({
         i18n: {
-            defaultLocale: 'es',
+            defaultLocale: DEFAULT_LOCALE,
             locales: HREFLANG,
         },
     }), react()],
     i18n: {
         locales: ["es", "en"],
-        defaultLocale: "es",
+        defaultLocale: DEFAULT_LOCALE,
         routing: {
             prefixDefaultLocale: false,
         },

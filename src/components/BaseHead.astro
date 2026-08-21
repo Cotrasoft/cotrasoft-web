@@ -6,10 +6,12 @@ import { Font } from "astro:assets";
 import { getAbsoluteLocaleUrl } from "astro:i18n";
 import type { ImageMetadata } from "astro";
 import FallbackImage from "../assets/blog-placeholder-2.jpg";
-import { SITE_TITLE } from "../consts";
-import { HREFLANG, type SupportedLang } from "../i18n";
-
-export type { SupportedLang };
+import {
+  DEFAULT_LOCALE,
+  HREFLANG,
+  SITE_TITLE,
+  type SupportedLang,
+} from "../consts";
 
 interface Alternate {
   hreflang: string;
@@ -32,7 +34,7 @@ const {
   image = FallbackImage,
   imageAlt = title,
   keywords,
-  lang = "es",
+  lang = DEFAULT_LOCALE,
   alternates,
 } = Astro.props;
 
@@ -43,7 +45,7 @@ const defaultAlternates: Alternate[] = [
   },
   {
     hreflang: "x-default",
-    href: getAbsoluteLocaleUrl("es", Astro.url.pathname),
+    href: getAbsoluteLocaleUrl(DEFAULT_LOCALE, Astro.url.pathname),
   },
 ];
 

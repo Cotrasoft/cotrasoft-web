@@ -1,11 +1,11 @@
 ---
-import type { SupportedLang } from "../BaseHead.astro";
+import { DEFAULT_LOCALE, type SupportedLang } from "../../consts";
 
 interface Props {
   lang?: SupportedLang;
 }
 
-const { lang = "es" } = Astro.props;
+const { lang = DEFAULT_LOCALE } = Astro.props;
 
 const siteURL = Astro.site!;
 const data = {

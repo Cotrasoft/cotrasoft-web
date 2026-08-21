@@ -3,7 +3,7 @@ import { getAbsoluteLocaleUrl } from "astro:i18n";
 import BaseHead from "../components/BaseHead.astro";
 import Footer from "../components/Footer.astro";
 import Navbar from "../components/Navbar.astro";
-import { HREFLANG, type SupportedLang } from "../i18n";
+import { DEFAULT_LOCALE, HREFLANG, type SupportedLang } from "../consts";
 import type { LegalDoc, LegalSlug } from "../lib/legal";
 import { legalSlugs } from "../lib/legal";
 
@@ -14,7 +14,7 @@ interface Props {
 
 const { slug, doc } = Astro.props;
 
-const lang = (Astro.currentLocale ?? "es") as SupportedLang;
+const lang = (Astro.currentLocale ?? DEFAULT_LOCALE) as SupportedLang;
 
 const alternates = [
   ...(Object.keys(HREFLANG) as SupportedLang[]).map((code) => ({
@@ -23,7 +23,10 @@ const alternates = [
   })),
   {
     hreflang: "x-default",
-    href: getAbsoluteLocaleUrl("es", `/${legalSlugs.es[slug]}/`),
+    href: getAbsoluteLocaleUrl(
+      DEFAULT_LOCALE,
+      `/${legalSlugs[DEFAULT_LOCALE][slug]}/`,
+    ),
   },
 ];
 ---
