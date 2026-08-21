@@ -1,0 +1,114 @@
+---
+import { getAbsoluteLocaleUrl, getRelativeLocaleUrl } from "astro:i18n";
+import BaseHead from "../components/BaseHead.astro";
+import Footer from "../components/Footer.astro";
+import Navbar from "../components/Navbar.astro";
+import { DEFAULT_LOCALE, type SupportedLang } from "../consts";
+import { aboutDocs } from "../lib/about";
+
+const lang = (Astro.currentLocale ?? DEFAULT_LOCALE) as SupportedLang;
+const doc = aboutDocs[lang];
+
+const hreflangFor: Record<SupportedLang, string> = { es: "es-CO", en: "en-US" };
+const supportedLanguages = ["es", "en"] as const;
+const alternates = [
+  ...supportedLanguages.map((code) => ({
+    hreflang: hreflangFor[code],
+    href: getAbsoluteLocaleUrl(code, "/about/"),
+  })),
+  {
+    hreflang: "x-default",
+    href: getAbsoluteLocaleUrl(DEFAULT_LOCALE, "/about/"),
+  },
+];
+
+const joinHref = "https://app.cotrasoft.co/registro";
+const servicesMoreHref = `${getRelativeLocaleUrl(lang, "/")}#servicios`;
+---
+
+<!doctype html>
+<html lang={lang}>
+	<head>
+		<BaseHead
+			title={doc.title}
+			description={doc.description}
+			lang={lang}
+			alternates={alternates}
+		/>
+	</head>
+	<body>
+		<Navbar />
+		<main class="bg-white dark:bg-gray-900">
+			<article class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 pt-32 pb-20">
+				<header class="mb-10">
+					<h1 class="text-4xl sm:text-5xl font-bold gradient-text leading-tight">
+						{doc.title}
+					</h1>
+					<p class="mt-4 text-lg text-gray-600 dark:text-gray-300">
+						{doc.lead}
+					</p>
+					<hr class="mt-8 border-gray-200 dark:border-gray-700" />
+				</header>
+
+				<div
+					class="prose prose-lg dark:prose-invert max-w-none prose-headings:font-bold prose-a:text-primary prose-a:no-underline hover:prose-a:underline"
+				>
+					<section>
+						<h2>{doc.storyHeading}</h2>
+						{doc.storyParagraphs.map((paragraph) => <p>{paragraph}</p>)}
+					</section>
+
+					<section>
+						<h2>{doc.servicesHeading}</h2>
+						{doc.servicesParagraphs.map((paragraph) => <p>{paragraph}</p>)}
+						<ul>
+							{
+								doc.serviceItems.map((item) => (
+									<li>
+										<strong>{item.name}:</strong> {item.blurb}
+									</li>
+								))
+							}
+						</ul>
+						<p>
+							<a href={servicesMoreHref}>{doc.servicesMoreLabel}</a>
+						</p>
+					</section>
+				</div>
+
+				<section class="mt-12 rounded-2xl border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/50 p-6 sm:p-8">
+					<h2 class="mb-4 text-xl font-bold">{doc.entityHeading}</h2>
+					<p class="mb-6 text-sm text-gray-600 dark:text-gray-300">{doc.entityDescription}</p>
+					<dl class="space-y-3 text-sm">
+						{
+							doc.entityFields.map((field) => (
+								<div class="grid grid-cols-1 gap-1 sm:grid-cols-3">
+									<dt class="font-semibold text-gray-700 dark:text-gray-300">
+										{field.label}
+									</dt>
+									<dd class="sm:col-span-2 text-gray-600 dark:text-gray-400">
+										{field.value}
+									</dd>
+								</div>
+							))
+						}
+					</dl>
+				</section>
+
+				<section class="mt-8 rounded-2xl bg-primary-50 dark:bg-primary-950/40 p-6 sm:p-8 text-center">
+					<h2 class="mb-2 text-xl font-bold">{doc.ctaHeading}</h2>
+					<p class="mb-6 text-sm text-gray-600 dark:text-gray-300">{doc.ctaText}</p>
+					<div class="flex flex-col items-center justify-center gap-3 sm:flex-row">
+						<a href={joinHref} class="btn-primary inline-flex items-center justify-center">
+							{doc.ctaJoinLabel}
+						</a>
+						<a href={doc.ctaContactHref} class="btn-outlined inline-flex items-center justify-center">
+							{doc.ctaContactLabel}
+						</a>
+					</div>
+				</section>
+			</article>
+		</main>
+		<Footer />
+	</body>
+</html>

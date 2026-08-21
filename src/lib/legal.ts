@@ -37,7 +37,7 @@ export const legalSlugs: Record<SupportedLang, Record<LegalSlug, string>> = {
   en: { terms: "terms", privacy: "privacy" },
 };
 
-const ENTITY_VALUES = {
+export const ENTITY_VALUES = {
   name: "Cooperativa Multiactiva de Aporte y Crédito de Trabajadores de Software Cotrasoft",
   sigla: "COTRASOFT",
   nit: "901897192",
