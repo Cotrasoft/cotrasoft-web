@@ -56,8 +56,9 @@ quarterly as positioning evolves.
 
 ### 4. Save evidence
 
-Append screenshots to this folder (`YYYY-MM-` prefix) and post a summary
-comment on the SEO & GEO epic.
+Upload screenshots to a file host (e.g. `curl -F "file=@img.png" https://x0.at/`)
+and link them here with a `YYYY-MM-` prefix; post a summary comment on the
+SEO & GEO epic. Keep the repo free of binary artifacts.
 
 ## Baseline — 2026-08-24
 
@@ -71,8 +72,15 @@ comment on the SEO & GEO epic.
 | Bing AI citations | 0 (chart live since 2026-05-24) |
 | Bing sitemap | Submitted 2026-08-24, processing |
 
-Screenshots: `gsc-overview.png`, `gsc-genai-report.png`, `gsc-sitemaps.png`,
-`gsc-settings.png`, `bing-dashboard.png`, `bing-ai-performance.png`.
+Baseline screenshots (2026-08-24, hosted externally):
+
+- [GSC Overview](https://x0.at/gsc-overview_qQ6f.png)
+- [GSC Generative AI report — 27 impressions](https://x0.at/gsc-genai-report_dQUB.png)
+- [GSC Sitemaps — Success](https://x0.at/gsc-sitemaps_pHAk.png)
+- [GSC Settings — Generative AI: Include](https://x0.at/gsc-settings_mLom.png)
+- [Bing dashboard](https://x0.at/bing-dashboard_AKbE.png)
+- [Bing AI Performance — baseline 0 citations](https://x0.at/bing-ai-performance_03ON.png)
+- [Verification meta-tag live proof](https://x0.at/verification-meta-proof_FevF.png)
 
 ## Adding future verification properties
 
@@ -90,5 +98,6 @@ export const SITE_VERIFICATION: Readonly<Record<string, string>> = {
 Pages needing an override can pass a `verification` prop to `BaseHead`.
 
 The GSC domain property is DNS-verified (`google-site-verification` TXT at
-Cloudflare), so no meta token is wired today. `verification-meta-proof.png`
-shows the mechanism verified live with a demo token.
+Cloudflare), so no meta token is wired today. The [live proof
+capture](https://x0.at/verification-meta-proof_FevF.png) shows the mechanism
+verified with a demo token.
