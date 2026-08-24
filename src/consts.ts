@@ -83,3 +83,7 @@ export const HREFLANG: Record<SupportedLang, string> = {
 // `x-default` hreflang value, always pointing at the default-locale page.
 // Single source so `<head>` alternates and the sitemap cannot drift apart.
 export const X_DEFAULT = "x-default" as const;
+
+// Site-scoped ownership-verification meta tags (webmaster tools, AI engines):
+// keys are meta names, values are tokens. Rendered by BaseHead on every page.
+export const SITE_VERIFICATION: Readonly<Record<string, string>> = {};

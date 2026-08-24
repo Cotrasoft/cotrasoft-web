@@ -11,6 +11,7 @@ import {
   OG_LOCALE_ALTERNATE,
   SITE_TITLES,
   SITE_URL,
+  SITE_VERIFICATION,
   type SupportedLang,
 } from "../consts";
 import { type HreflangAlternate, selfAlternates } from "../lib/hreflang";
@@ -29,6 +30,7 @@ interface Props {
   keywords?: string;
   lang?: SupportedLang;
   alternates?: readonly Alternate[];
+  verification?: Readonly<Record<string, string>>;
 }
 
 const {
@@ -39,6 +41,7 @@ const {
   keywords,
   lang = DEFAULT_LOCALE,
   alternates,
+  verification = SITE_VERIFICATION,
 } = Astro.props;
 
 // `getAbsoluteLocaleUrl` joins locale + path verbatim, so a prefixed
@@ -97,6 +100,9 @@ const altLocale: string = OG_LOCALE_ALTERNATE[lang];
 {keywords && <meta name="keywords" content={keywords} />}
 <meta name="author" content="Cotrasoft" />
 <meta name="robots" content="index, follow" />
+
+<!-- Site verification -->
+{Object.entries(verification).map(([name, content]) => <meta name={name} content={content} />)}
 
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content="website" />
