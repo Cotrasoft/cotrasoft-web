@@ -1,5 +1,5 @@
 ---
-import { DEFAULT_LOCALE, type SupportedLang } from "../consts";
+import { resolveLocale, type SupportedLang } from "../consts";
 import Icon from "./Icon.astro";
 import type { IconName } from "./icons";
 
@@ -20,14 +20,14 @@ interface Props {
 }
 
 const { content = {} } = Astro.props;
-const lang = (Astro.currentLocale ?? DEFAULT_LOCALE) as SupportedLang;
+const lang = resolveLocale(Astro.currentLocale);
 
 const defaults: Record<SupportedLang, BenefitsContent> = {
   es: {
-    heading: "Beneficios para miembros",
+    heading: "¿Cómo funciona la cooperativa?",
     subheading:
-      "Únete a nuestra cooperativa y disfruta de ventajas exclusivas diseñadas para impulsar tu carrera",
-    cta: "Descubre más beneficios",
+      "Somos una cooperativa multiactiva de aporte y crédito: los profesionales de software asociados son dueños del negocio, aportan su talento a proyectos reales y participan de los excedentes, con acceso a créditos justos y formación continua.",
+    cta: "Únete a la cooperativa",
     items: [
       {
         title: "Comunidad colaborativa",
@@ -57,10 +57,10 @@ const defaults: Record<SupportedLang, BenefitsContent> = {
     ],
   },
   en: {
-    heading: "Member benefits",
+    heading: "How does the cooperative work?",
     subheading:
-      "Join our cooperative and enjoy exclusive advantages designed to boost your career",
-    cta: "Discover more benefits",
+      "We are a multi-active savings and credit cooperative: the software professionals who join are owners, contribute their talent to real projects, and share in the surpluses, with access to fair credit and continuous learning.",
+    cta: "Join the cooperative",
     items: [
       {
         title: "Collaborative community",

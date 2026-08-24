@@ -12,13 +12,14 @@ import ServicesJsonLd from "../components/seo/ServicesJsonLd.astro";
 import WebsiteJsonLd from "../components/seo/WebsiteJsonLd.astro";
 import {
   DEFAULT_LOCALE,
-  SITE_DESCRIPTION,
+  ENTITY_DESCRIPTION,
+  resolveLocale,
   SITE_TITLE,
   type SupportedLang,
 } from "../consts";
 import { type ServicesContent, servicesContent } from "../lib/services";
 
-const lang = (Astro.currentLocale ?? DEFAULT_LOCALE) as SupportedLang;
+const lang = resolveLocale(Astro.currentLocale);
 
 // Single resolution point for the visible cards and the JSON-LD below:
 // both derive from `servicesData`, so a `content` override applied here
@@ -48,13 +49,13 @@ const alternates = [
 	<head>
 		<BaseHead
 			title={SITE_TITLE}
-			description={SITE_DESCRIPTION}
+			description={ENTITY_DESCRIPTION[lang]}
 			lang={lang}
 			image={OgHome}
 			imageAlt="Cotrasoft"
 			alternates={alternates}
 		/>
-		<OrganizationJsonLd description={SITE_DESCRIPTION} />
+		<OrganizationJsonLd description={ENTITY_DESCRIPTION[lang]} />
 		<WebsiteJsonLd lang={lang} />
 		<ServicesJsonLd services={homeServices} />
 	</head>
