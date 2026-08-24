@@ -1,5 +1,6 @@
 ---
 import { DEFAULT_LOCALE, type SupportedLang } from "../../consts";
+import { organizationId } from "../../lib/jsonld";
 
 interface Props {
   lang?: SupportedLang;
@@ -14,12 +15,12 @@ const data = {
   name: "Cotrasoft",
   url: siteURL.href,
   inLanguage: lang,
-  publisher: { "@id": new URL("#organization", siteURL).href },
+  publisher: { "@id": organizationId(siteURL) },
 };
 ---
 
 <script
 	type="application/ld+json"
 	is:inline
-	set:html={JSON.stringify(data)}
+	set:html={JSON.stringify(data).replaceAll("<", "\\u003c")}
 />

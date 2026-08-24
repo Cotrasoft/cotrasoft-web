@@ -37,16 +37,27 @@ export const legalSlugs: Record<SupportedLang, Record<LegalSlug, string>> = {
   en: { terms: "terms", privacy: "privacy" },
 };
 
-const ENTITY_VALUES = {
+export const ENTITY_VALUES = {
   name: "Cooperativa Multiactiva de Aporte y Crédito de Trabajadores de Software Cotrasoft",
   sigla: "COTRASOFT",
   nit: "901897192",
   registration: "S0065848",
-  registrationDate: "11 de diciembre de 2024",
+  // ISO date; rendered as a localized string below and reused as
+  // `foundingDate` by OrganizationJsonLd.
+  registrationDate: "2024-12-11",
   address: "Cl 22 B No. 54 21 To 3 Ap 601",
   municipality: "Bogotá D.C.",
   email: "cotrasoft@gmail.com",
 } as const;
+
+const registrationDateDisplay = new Date(
+  ENTITY_VALUES.registrationDate,
+).toLocaleDateString("es-CO", {
+  day: "numeric",
+  month: "long",
+  year: "numeric",
+  timeZone: "UTC",
+});
 
 export const legal: Record<SupportedLang, LegalContent> = {
   es: {
@@ -67,7 +78,7 @@ export const legal: Record<SupportedLang, LegalContent> = {
           { label: "Inscripción", value: ENTITY_VALUES.registration },
           {
             label: "Fecha de inscripción",
-            value: ENTITY_VALUES.registrationDate,
+            value: registrationDateDisplay,
           },
           { label: "Dirección", value: ENTITY_VALUES.address },
           { label: "Municipio", value: ENTITY_VALUES.municipality },
@@ -146,7 +157,7 @@ export const legal: Record<SupportedLang, LegalContent> = {
           { label: "Inscripción", value: ENTITY_VALUES.registration },
           {
             label: "Fecha de inscripción",
-            value: ENTITY_VALUES.registrationDate,
+            value: registrationDateDisplay,
           },
           { label: "Dirección", value: ENTITY_VALUES.address },
           { label: "Municipio", value: ENTITY_VALUES.municipality },
@@ -223,7 +234,7 @@ export const legal: Record<SupportedLang, LegalContent> = {
           { label: "Acronym", value: ENTITY_VALUES.sigla },
           { label: "Tax ID (NIT)", value: ENTITY_VALUES.nit },
           { label: "Registration", value: ENTITY_VALUES.registration },
-          { label: "Registration date", value: ENTITY_VALUES.registrationDate },
+          { label: "Registration date", value: registrationDateDisplay },
           { label: "Address", value: ENTITY_VALUES.address },
           { label: "City", value: ENTITY_VALUES.municipality },
           { label: "Email", value: ENTITY_VALUES.email },
@@ -299,7 +310,7 @@ export const legal: Record<SupportedLang, LegalContent> = {
           { label: "Acronym", value: ENTITY_VALUES.sigla },
           { label: "Tax ID (NIT)", value: ENTITY_VALUES.nit },
           { label: "Registration", value: ENTITY_VALUES.registration },
-          { label: "Registration date", value: ENTITY_VALUES.registrationDate },
+          { label: "Registration date", value: registrationDateDisplay },
           { label: "Address", value: ENTITY_VALUES.address },
           { label: "City", value: ENTITY_VALUES.municipality },
           { label: "Email", value: ENTITY_VALUES.email },

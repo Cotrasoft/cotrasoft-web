@@ -7,14 +7,23 @@ import Footer from "../components/Footer.astro";
 import Hero from "../components/Hero.astro";
 import Navbar from "../components/Navbar.astro";
 import Services from "../components/Services.astro";
+import OrganizationJsonLd from "../components/seo/OrganizationJsonLd.astro";
+import ServicesJsonLd from "../components/seo/ServicesJsonLd.astro";
+import WebsiteJsonLd from "../components/seo/WebsiteJsonLd.astro";
 import {
   DEFAULT_LOCALE,
   SITE_DESCRIPTION,
   SITE_TITLE,
   type SupportedLang,
 } from "../consts";
+import { servicesContent } from "../lib/services";
 
 const lang = (Astro.currentLocale ?? DEFAULT_LOCALE) as SupportedLang;
+
+const { rescue, accelerated, consulting } = servicesContent[lang];
+const homeServices = [rescue, accelerated, consulting].map(
+  ({ title, description }) => ({ name: title, description }),
+);
 
 const locales: { code: SupportedLang; hreflang: string }[] = [
   { code: "es", hreflang: "es-CO" },
@@ -40,6 +49,9 @@ const alternates = [
 			imageAlt="Cotrasoft"
 			alternates={alternates}
 		/>
+		<OrganizationJsonLd description={SITE_DESCRIPTION} />
+		<WebsiteJsonLd lang={lang} />
+		<ServicesJsonLd services={homeServices} />
 	</head>
 	<body>
 		<Navbar />

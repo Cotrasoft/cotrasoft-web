@@ -1,4 +1,7 @@
 ---
+import { organizationId } from "../../lib/jsonld";
+import { ENTITY_VALUES } from "../../lib/legal";
+
 interface Props {
   description: string;
   logo?: string;
@@ -15,26 +18,38 @@ const siteURL = Astro.site!;
 const data = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  "@id": new URL("#organization", siteURL).href,
+  "@id": organizationId(siteURL),
   name: "Cotrasoft",
+  legalName: ENTITY_VALUES.name,
+  taxID: ENTITY_VALUES.nit,
   url: siteURL.href,
   logo: new URL(logo, siteURL).href,
   email,
   description,
+  foundingDate: ENTITY_VALUES.registrationDate,
   address: {
     "@type": "PostalAddress",
+    streetAddress: ENTITY_VALUES.address,
+    addressLocality: ENTITY_VALUES.municipality,
     addressCountry: "CO",
+  },
+  contactPoint: {
+    "@type": "ContactPoint",
+    contactType: "customer service",
+    email,
+    availableLanguage: ["es", "en"],
   },
   knowsLanguage: ["es", "en"],
   areaServed: [
     { "@type": "Country", name: "Colombia" },
     { "@type": "Country", name: "United States" },
   ],
+  sameAs: ["https://www.linkedin.com/company/cotrasoft/"],
 };
 ---
 
 <script
 	type="application/ld+json"
 	is:inline
-	set:html={JSON.stringify(data)}
+	set:html={JSON.stringify(data).replaceAll("<", "\\u003c")}
 />

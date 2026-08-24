@@ -1,4 +1,6 @@
 ---
+import { organizationId } from "../../lib/jsonld";
+
 interface Service {
   name: string;
   description: string;
@@ -11,7 +13,6 @@ interface Props {
 const { services } = Astro.props;
 
 const siteURL = Astro.site!;
-const organizationId = new URL("#organization", siteURL).href;
 
 const data = {
   "@context": "https://schema.org",
@@ -23,7 +24,7 @@ const data = {
       "@type": "Service",
       name: svc.name,
       description: svc.description,
-      provider: { "@id": organizationId },
+      provider: { "@id": organizationId(siteURL) },
     },
   })),
 };
@@ -32,5 +33,5 @@ const data = {
 <script
 	type="application/ld+json"
 	is:inline
-	set:html={JSON.stringify(data)}
+	set:html={JSON.stringify(data).replaceAll("<", "\\u003c")}
 />
