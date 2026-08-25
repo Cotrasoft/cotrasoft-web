@@ -34,7 +34,7 @@
     "wrangler": "^4.90.1"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.5.8",
+    "@biomejs/biome": "2.5.9",
     "@tailwindcss/typography": "^0.5.20"
   }
 }
