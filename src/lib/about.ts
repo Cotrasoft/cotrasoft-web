@@ -31,6 +31,37 @@ export interface AboutDoc {
   ctaContactHref: string;
 }
 
+type EntityValueKey = keyof typeof ENTITY_VALUES;
+
+interface EntityFieldSpec {
+  readonly key: EntityValueKey;
+  readonly labels: Record<SupportedLang, string>;
+}
+
+// Single table driving both locales: every field is rendered in ES and EN by
+// construction, so the two lists can never drift apart in size or order.
+const ENTITY_FIELD_SPECS: ReadonlyArray<EntityFieldSpec> = [
+  { key: "name", labels: { es: "Razón social", en: "Legal name" } },
+  { key: "sigla", labels: { es: "Sigla", en: "Acronym" } },
+  { key: "nit", labels: { es: "NIT", en: "Tax ID (NIT)" } },
+  { key: "registration", labels: { es: "Inscripción", en: "Registration" } },
+  {
+    key: "registrationDate",
+    labels: { es: "Fecha de inscripción", en: "Registration date" },
+  },
+  { key: "address", labels: { es: "Dirección", en: "Address" } },
+  { key: "municipality", labels: { es: "Municipio", en: "City" } },
+  { key: "email", labels: { es: "Correo electrónico", en: "Email" } },
+];
+
+const CONTACT_HREF = `mailto:${ENTITY_VALUES.email}`;
+
+const entityFieldsFor = (lang: SupportedLang): AboutEntityField[] =>
+  ENTITY_FIELD_SPECS.map((spec) => ({
+    label: spec.labels[lang],
+    value: ENTITY_VALUES[spec.key],
+  }));
+
 export const aboutDocs: Record<SupportedLang, AboutDoc> = {
   es: {
     title: "Quiénes somos - Cotrasoft",
@@ -67,22 +98,13 @@ export const aboutDocs: Record<SupportedLang, AboutDoc> = {
     entityHeading: "Datos de la entidad",
     entityDescription:
       "Estos son los datos registrales con los que identificamos a Cotrasoft ante clientes, aliados y entidades públicas.",
-    entityFields: [
-      { label: "Razón social", value: ENTITY_VALUES.name },
-      { label: "Sigla", value: ENTITY_VALUES.sigla },
-      { label: "NIT", value: ENTITY_VALUES.nit },
-      { label: "Inscripción", value: ENTITY_VALUES.registration },
-      { label: "Fecha de inscripción", value: ENTITY_VALUES.registrationDate },
-      { label: "Dirección", value: ENTITY_VALUES.address },
-      { label: "Municipio", value: ENTITY_VALUES.municipality },
-      { label: "Correo electrónico", value: ENTITY_VALUES.email },
-    ],
+    entityFields: entityFieldsFor("es"),
     ctaHeading: "Trabaja con nosotros o únete",
     ctaText:
       "La puerta está abierta, ya sea para confiarnos un proyecto o para sumarte como asociado.",
     ctaJoinLabel: "Quiero asociarme",
     ctaContactLabel: "Escríbenos",
-    ctaContactHref: `mailto:${ENTITY_VALUES.email}`,
+    ctaContactHref: CONTACT_HREF,
   },
   en: {
     title: "About Us - Cotrasoft",
@@ -119,21 +141,12 @@ export const aboutDocs: Record<SupportedLang, AboutDoc> = {
     entityHeading: "Entity information",
     entityDescription:
       "This is the registry information we use to identify Cotrasoft to clients, partners and public entities.",
-    entityFields: [
-      { label: "Legal name", value: ENTITY_VALUES.name },
-      { label: "Acronym", value: ENTITY_VALUES.sigla },
-      { label: "Tax ID (NIT)", value: ENTITY_VALUES.nit },
-      { label: "Registration", value: ENTITY_VALUES.registration },
-      { label: "Registration date", value: ENTITY_VALUES.registrationDate },
-      { label: "Address", value: ENTITY_VALUES.address },
-      { label: "City", value: ENTITY_VALUES.municipality },
-      { label: "Email", value: ENTITY_VALUES.email },
-    ],
+    entityFields: entityFieldsFor("en"),
     ctaHeading: "Work with us or become a member",
     ctaText:
       "The door is open, whether you want to trust us with a project or join as a member.",
     ctaJoinLabel: "I want to join",
     ctaContactLabel: "Write to us",
-    ctaContactHref: `mailto:${ENTITY_VALUES.email}`,
+    ctaContactHref: CONTACT_HREF,
   },
 };

@@ -6,14 +6,24 @@ import Navbar from "../components/Navbar.astro";
 import { DEFAULT_LOCALE, type SupportedLang } from "../consts";
 import { aboutDocs } from "../lib/about";
 
-const lang = (Astro.currentLocale ?? DEFAULT_LOCALE) as SupportedLang;
+const lang: SupportedLang =
+  Astro.currentLocale === "en" ? "en" : DEFAULT_LOCALE;
 const doc = aboutDocs[lang];
 
-const hreflangFor: Record<SupportedLang, string> = { es: "es-CO", en: "en-US" };
-const supportedLanguages = ["es", "en"] as const;
+// Kept file-local on purpose: no shared hreflang/locale table exists on this
+// base yet, and `getAbsoluteLocaleUrl` throws for unknown locales (see
+// astro:i18n docs), so every entry here must be an exact `SupportedLang`.
+const HREFLANG = { es: "es-CO", en: "en-US" } as const satisfies Record<
+  SupportedLang,
+  string
+>;
+const SUPPORTED_LANGUAGES = [
+  "es",
+  "en",
+] as const satisfies ReadonlyArray<SupportedLang>;
 const alternates = [
-  ...supportedLanguages.map((code) => ({
-    hreflang: hreflangFor[code],
+  ...SUPPORTED_LANGUAGES.map((code) => ({
+    hreflang: HREFLANG[code],
     href: getAbsoluteLocaleUrl(code, "/about/"),
   })),
   {
