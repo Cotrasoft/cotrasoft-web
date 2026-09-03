@@ -1,4 +1,7 @@
-# Astro emits content-hashed, immutable assets under /_astro/.
+# /_astro/* are fingerprinted (content-hashed) assets: each build emits new
+# filenames, so immutable caching needs no manual invalidation. HTML pages
+# keep the default `public, max-age=0, must-revalidate` + ETag and go live
+# on every deploy.
 # https://developers.cloudflare.com/workers/static-assets/headers/
 /_astro/*
   Cache-Control: public, max-age=31556952, immutable
