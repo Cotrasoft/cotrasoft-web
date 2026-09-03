@@ -42,3 +42,6 @@ __pycache__/
 
 # browser skill artifacts
 .playwright-mcp/
+# Playwright
+test-results/
+playwright-report/
