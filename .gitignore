@@ -39,3 +39,6 @@ pnpm-debug.log*
 # Python bytecode from the skill scripts
 __pycache__/
 *.pyc
+
+# browser skill artifacts
+.playwright-mcp/

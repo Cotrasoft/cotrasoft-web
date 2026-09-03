@@ -37,6 +37,13 @@ export const legalSlugs: Record<SupportedLang, Record<LegalSlug, string>> = {
   en: { terms: "terms", privacy: "privacy" },
 };
 
+// Typed slug list so every consumer (sitemap table, tests) iterates the same
+// slugs with zero casts; a new legal page flows everywhere automatically.
+export const LEGAL_SLUGS = [
+  "terms",
+  "privacy",
+] as const satisfies readonly LegalSlug[];
+
 export const ENTITY_VALUES = {
   name: "Cooperativa Multiactiva de Aporte y Crédito de Trabajadores de Software Cotrasoft",
   sigla: "COTRASOFT",

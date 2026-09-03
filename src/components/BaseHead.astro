@@ -15,6 +15,7 @@ import {
   SITE_URL,
   type SupportedLang,
 } from "../consts";
+import { stripLocalePrefix } from "../lib/locale-path";
 
 interface Alternate {
   hreflang: string;
@@ -41,14 +42,18 @@ const {
   alternates,
 } = Astro.props;
 
+// `getAbsoluteLocaleUrl` joins locale + path verbatim, so a prefixed
+// pathname would come back doubled (`/en/en/terms/`): strip it first.
+const unprefixedPathname: string = stripLocalePrefix(Astro.url.pathname);
+
 const defaultAlternates: Alternate[] = [
   {
     hreflang: HREFLANG[lang],
-    href: getAbsoluteLocaleUrl(lang, Astro.url.pathname),
+    href: getAbsoluteLocaleUrl(lang, unprefixedPathname),
   },
   {
     hreflang: "x-default",
-    href: getAbsoluteLocaleUrl(DEFAULT_LOCALE, Astro.url.pathname),
+    href: getAbsoluteLocaleUrl(DEFAULT_LOCALE, unprefixedPathname),
   },
 ];
 
