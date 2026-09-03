@@ -12,6 +12,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
+    "test": "vitest run",
     "format": "biome format --write ./src",
     "lint": "biome check --write ./src",
     "cf:preview": "wrangler dev",
@@ -35,6 +36,7 @@
   },
   "devDependencies": {
     "@biomejs/biome": "2.5.8",
-    "@tailwindcss/typography": "^0.5.20"
+    "@tailwindcss/typography": "^0.5.20",
+    "vitest": "^5.0.0"
   }
 }
