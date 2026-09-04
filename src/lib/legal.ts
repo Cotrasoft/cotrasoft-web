@@ -37,16 +37,45 @@ export const legalSlugs: Record<SupportedLang, Record<LegalSlug, string>> = {
   en: { terms: "terms", privacy: "privacy" },
 };
 
-const ENTITY_VALUES = {
+export const ENTITY_VALUES = {
   name: "Cooperativa Multiactiva de Aporte y Crédito de Trabajadores de Software Cotrasoft",
   sigla: "COTRASOFT",
   nit: "901897192",
   registration: "S0065848",
-  registrationDate: "11 de diciembre de 2024",
+  // ISO date; rendered as a localized string below and reused as
+  // `foundingDate` by OrganizationJsonLd.
+  registrationDate: "2024-12-11",
   address: "Cl 22 B No. 54 21 To 3 Ap 601",
   municipality: "Bogotá D.C.",
   email: "cotrasoft@gmail.com",
 } as const;
+
+// Parsed once: date-only ISO (`YYYY-MM-DD`) is UTC by spec, and every
+// formatter below pins `timeZone: "UTC"`, so rendering is build-stable.
+const registrationDate: Date = new Date(ENTITY_VALUES.registrationDate);
+
+const registrationDateFormat: Intl.DateTimeFormatOptions = {
+  day: "numeric",
+  month: "long",
+  year: "numeric",
+  timeZone: "UTC",
+};
+
+// One cached formatter per locale. `Date#toLocaleDateString` rebuilds the
+// underlying `Intl.DateTimeFormat` on every call, so shared instances are
+// the faster structure (MDN: `Intl.DateTimeFormat` constructor + `format`).
+const registrationDateFormatter: Record<SupportedLang, Intl.DateTimeFormat> = {
+  es: new Intl.DateTimeFormat("es-CO", registrationDateFormat),
+  en: new Intl.DateTimeFormat("en-US", registrationDateFormat),
+};
+
+// Exported so future consumers (e.g. the About page) reuse the localized
+// strings instead of formatting `ENTITY_VALUES.registrationDate` again or,
+// worse, rendering the raw ISO date.
+export const registrationDateDisplay: Record<SupportedLang, string> = {
+  es: registrationDateFormatter.es.format(registrationDate),
+  en: registrationDateFormatter.en.format(registrationDate),
+};
 
 export const legal: Record<SupportedLang, LegalContent> = {
   es: {
@@ -67,7 +96,7 @@ export const legal: Record<SupportedLang, LegalContent> = {
           { label: "Inscripción", value: ENTITY_VALUES.registration },
           {
             label: "Fecha de inscripción",
-            value: ENTITY_VALUES.registrationDate,
+            value: registrationDateDisplay.es,
           },
           { label: "Dirección", value: ENTITY_VALUES.address },
           { label: "Municipio", value: ENTITY_VALUES.municipality },
@@ -146,7 +175,7 @@ export const legal: Record<SupportedLang, LegalContent> = {
           { label: "Inscripción", value: ENTITY_VALUES.registration },
           {
             label: "Fecha de inscripción",
-            value: ENTITY_VALUES.registrationDate,
+            value: registrationDateDisplay.es,
           },
           { label: "Dirección", value: ENTITY_VALUES.address },
           { label: "Municipio", value: ENTITY_VALUES.municipality },
@@ -223,7 +252,7 @@ export const legal: Record<SupportedLang, LegalContent> = {
           { label: "Acronym", value: ENTITY_VALUES.sigla },
           { label: "Tax ID (NIT)", value: ENTITY_VALUES.nit },
           { label: "Registration", value: ENTITY_VALUES.registration },
-          { label: "Registration date", value: ENTITY_VALUES.registrationDate },
+          { label: "Registration date", value: registrationDateDisplay.en },
           { label: "Address", value: ENTITY_VALUES.address },
           { label: "City", value: ENTITY_VALUES.municipality },
           { label: "Email", value: ENTITY_VALUES.email },
@@ -299,7 +328,7 @@ export const legal: Record<SupportedLang, LegalContent> = {
           { label: "Acronym", value: ENTITY_VALUES.sigla },
           { label: "Tax ID (NIT)", value: ENTITY_VALUES.nit },
           { label: "Registration", value: ENTITY_VALUES.registration },
-          { label: "Registration date", value: ENTITY_VALUES.registrationDate },
+          { label: "Registration date", value: registrationDateDisplay.en },
           { label: "Address", value: ENTITY_VALUES.address },
           { label: "City", value: ENTITY_VALUES.municipality },
           { label: "Email", value: ENTITY_VALUES.email },

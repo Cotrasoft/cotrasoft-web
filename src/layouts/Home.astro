@@ -7,14 +7,28 @@ import Footer from "../components/Footer.astro";
 import Hero from "../components/Hero.astro";
 import Navbar from "../components/Navbar.astro";
 import Services from "../components/Services.astro";
+import OrganizationJsonLd from "../components/seo/OrganizationJsonLd.astro";
+import ServicesJsonLd from "../components/seo/ServicesJsonLd.astro";
+import WebsiteJsonLd from "../components/seo/WebsiteJsonLd.astro";
 import {
   DEFAULT_LOCALE,
   SITE_DESCRIPTION,
   SITE_TITLE,
   type SupportedLang,
 } from "../consts";
+import { type ServicesContent, servicesContent } from "../lib/services";
 
 const lang = (Astro.currentLocale ?? DEFAULT_LOCALE) as SupportedLang;
+
+// Single resolution point for the visible cards and the JSON-LD below:
+// both derive from `servicesData`, so a `content` override applied here
+// cannot drift between markup and structured data.
+const servicesData: ServicesContent = servicesContent[lang];
+const homeServices: Array<{ name: string; description: string }> = [
+  servicesData.rescue,
+  servicesData.accelerated,
+  servicesData.consulting,
+].map(({ title, description }) => ({ name: title, description }));
 
 const locales: { code: SupportedLang; hreflang: string }[] = [
   { code: "es", hreflang: "es-CO" },
@@ -40,12 +54,15 @@ const alternates = [
 			imageAlt="Cotrasoft"
 			alternates={alternates}
 		/>
+		<OrganizationJsonLd description={SITE_DESCRIPTION} />
+		<WebsiteJsonLd lang={lang} />
+		<ServicesJsonLd services={homeServices} />
 	</head>
 	<body>
 		<Navbar />
 		<main>
 			<Hero />
-			<Services />
+			<Services content={servicesData} />
 			<Benefits />
 		</main>
 		<Footer />
