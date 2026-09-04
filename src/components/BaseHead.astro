@@ -58,7 +58,7 @@ const altLocale: string = OG_LOCALE_ALTERNATE[lang];
   rel="alternate"
   type="application/rss+xml"
   title={SITE_TITLES[DEFAULT_LOCALE]}
-  href={new URL("rss.xml", Astro.site)}
+  href={new URL("rss.xml", Astro.site ?? SITE_URL)}
 />
 <meta name="generator" content={Astro.generator} />
 

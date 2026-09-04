@@ -1,8 +1,6 @@
 // Place any global data in this file.
 // You can import this data from anywhere in your site by using the `import` keyword.
 
-export const SITE_TITLE = "Cotrasoft - Cooperativa de Desarrolladores";
-
 export type SupportedLang = "es" | "en";
 
 // Mirrors `defaultLocale` in astro.config.mjs (the canonical build-time value).
@@ -27,7 +25,7 @@ export const SITE_DESCRIPTION = ENTITY_DESCRIPTION[DEFAULT_LOCALE];
 
 // Localized page titles; descriptions live in ENTITY_DESCRIPTION.
 export const SITE_TITLES: Record<SupportedLang, string> = {
-  es: SITE_TITLE,
+  es: "Cotrasoft - Cooperativa de Desarrolladores",
   en: "Cotrasoft - Software Developer Cooperative",
 };
 

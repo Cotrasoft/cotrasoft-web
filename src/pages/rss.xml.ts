@@ -1,17 +1,24 @@
 import rss from "@astrojs/rss";
-import type { APIContext } from "astro";
-import { DEFAULT_LOCALE, SITE_DESCRIPTION, SITE_TITLES } from "../consts";
+import type { APIRoute } from "astro";
+import {
+  DEFAULT_LOCALE,
+  SITE_DESCRIPTION,
+  SITE_TITLES,
+  SITE_URL,
+} from "../consts";
 import { getBlogPosts } from "../lib/blog";
 
-export async function GET(context: APIContext) {
+export const GET = (async ({ site }) => {
   const posts = await getBlogPosts();
   return rss({
     title: SITE_TITLES[DEFAULT_LOCALE],
     description: SITE_DESCRIPTION,
-    site: context.site,
+    site: site ?? SITE_URL,
     items: posts.map((post) => ({
-      ...post.data,
+      title: post.data.title,
+      description: post.data.description,
+      pubDate: post.data.pubDate,
       link: `/blog/${post.id}/`,
     })),
   });
-}
+}) satisfies APIRoute;
