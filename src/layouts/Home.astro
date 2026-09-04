@@ -16,14 +16,19 @@ import {
   SITE_TITLE,
   type SupportedLang,
 } from "../consts";
-import { servicesContent } from "../lib/services";
+import { type ServicesContent, servicesContent } from "../lib/services";
 
 const lang = (Astro.currentLocale ?? DEFAULT_LOCALE) as SupportedLang;
 
-const { rescue, accelerated, consulting } = servicesContent[lang];
-const homeServices = [rescue, accelerated, consulting].map(
-  ({ title, description }) => ({ name: title, description }),
-);
+// Single resolution point for the visible cards and the JSON-LD below:
+// both derive from `servicesData`, so a `content` override applied here
+// cannot drift between markup and structured data.
+const servicesData: ServicesContent = servicesContent[lang];
+const homeServices: Array<{ name: string; description: string }> = [
+  servicesData.rescue,
+  servicesData.accelerated,
+  servicesData.consulting,
+].map(({ title, description }) => ({ name: title, description }));
 
 const locales: { code: SupportedLang; hreflang: string }[] = [
   { code: "es", hreflang: "es-CO" },
@@ -57,7 +62,7 @@ const alternates = [
 		<Navbar />
 		<main>
 			<Hero />
-			<Services />
+			<Services content={servicesData} />
 			<Benefits />
 		</main>
 		<Footer />
