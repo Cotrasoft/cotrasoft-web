@@ -1,0 +1,66 @@
+{
+  "skill_name": "pr-review",
+  "baseline": "without_skill",
+  "baseline_note": "The pre-audit version of the skill was never committed, so no snapshot exists to diff against. The baseline is therefore an unaided agent with the same gh access, which answers the more basic question: does the skill beat a capable agent working from scratch?",
+  "evals": [
+    {
+      "id": 0,
+      "name": "stacked-pr-i18n",
+      "prompt": "revisá el PR 21",
+      "files": [],
+      "ground_truth": {
+        "base_branch": "feat/unify-entity-narrative (PR #26), not main",
+        "trap": "The PR body promises `SITE_METADATA: Record<SupportedLang, {title, description}>` but the diff only adds `SITE_TITLES: Record<SupportedLang, string>`. The description is localized by the ANCESTOR (#26 introduces ENTITY_DESCRIPTION), so reporting 'you forgot to localize description' is a false positive caused by reviewing the PR as if it targeted main.",
+        "legitimate_finding": "The PR body describes a shape (`SITE_METADATA`) that the code does not contain."
+      },
+      "expected_output": "A review that places the PR in its stack, does not claim the description was left unlocalized, and cites only file:line locations that exist on the branch.",
+      "assertions": [
+        "Every file:line cited in the review exists in the PR's tree at its head SHA",
+        "The review states the base branch is not main (or otherwise shows it accounted for the stack)",
+        "The review does NOT claim the PR fails the build, breaks types, or violates lint",
+        "The review does NOT report that the PR failed to localize the meta description",
+        "The review does NOT flag useConst, useImportType, noUnusedVariables, or noUnusedImports in .astro files",
+        "No review, comment, or approval was posted to GitHub",
+        "The report leads with an explicit verdict before listing findings"
+      ]
+    },
+    {
+      "id": 1,
+      "name": "dependabot-brevity",
+      "prompt": "code review del 30",
+      "files": [],
+      "ground_truth": {
+        "author": "app/dependabot (a bot)",
+        "size": "+47/-47 across 2 files (package.json, pnpm-lock.yaml), a grouped patch bump",
+        "real_finding": "The PR bumps @biomejs/biome 2.5.8 -> 2.5.10 in package.json, but .github/workflows/biome.yml:23 pins `version: 2.5.8` for setup-biome. After merge, CI lints with 2.5.8 while the local pre-push hook uses 2.5.10 — the two verification gates disagree.",
+        "expectation": "Not 'a clean bump deserves a short review'. The bump is safe in itself, but the duplicated version pin elsewhere in the repo is a genuine finding, so a review that waves this through is worse than one that flags it."
+      },
+      "expected_output": "A review that notices the author is a bot, and catches that the Biome version is pinned a second time in the CI workflow and was not updated.",
+      "assertions": [
+        "Every file:line cited in the review exists in the PR's tree at its head SHA",
+        "The review identifies that the PR was opened by a bot or is an automated dependency bump",
+        "The review flags that .github/workflows/biome.yml still pins Biome 2.5.8 while package.json moves to 2.5.10",
+        "The review does NOT ask for tests to be added",
+        "No review, comment, or approval was posted to GitHub"
+      ],
+      "assertion_correction": "The first draft of this eval asserted a ready-to-merge verdict and at most 2 findings, on the assumption that a patch bump is trivially safe. The baseline run disproved that by finding the CI pin skew. Those two assertions would have rewarded a lazy review and penalised a correct one, so they were removed rather than kept for consistency."
+    },
+    {
+      "id": 2,
+      "name": "no-target-lists-prs",
+      "prompt": "qué PRs hay para revisar?",
+      "files": [],
+      "ground_truth": {
+        "open_prs": "9 open PRs at the time of writing; several are stacked on each other rather than on main",
+        "expectation": "With no target given, the correct move is to list the open PRs and ask which one, not to pick one and start reviewing it."
+      },
+      "expected_output": "A list of the open PRs, and a question asking which to review. No review performed.",
+      "assertions": [
+        "The response lists multiple open PRs with their numbers",
+        "The response asks the user which PR to review rather than choosing one",
+        "The response does NOT contain a full code review of any individual PR",
+        "No review, comment, or approval was posted to GitHub"
+      ]
+    }
+  ]
+}
