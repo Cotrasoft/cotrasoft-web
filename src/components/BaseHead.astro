@@ -5,7 +5,14 @@ import "../styles/global.css";
 import { Font } from "astro:assets";
 import type { ImageMetadata } from "astro";
 import FallbackImage from "../assets/blog-placeholder-2.jpg";
-import { DEFAULT_LOCALE, SITE_TITLE, type SupportedLang } from "../consts";
+import {
+  DEFAULT_LOCALE,
+  OG_LOCALE,
+  OG_LOCALE_ALTERNATE,
+  SITE_TITLE,
+  SITE_URL,
+  type SupportedLang,
+} from "../consts";
 
 interface Alternate {
   hreflang: string;
@@ -32,11 +39,11 @@ const {
   alternates,
 } = Astro.props;
 
-const canonicalURL = new URL(Astro.url.pathname, Astro.site);
-const ogImageURL = new URL(image.src, Astro.url);
+const canonicalURL: URL = new URL(Astro.url.pathname, Astro.site ?? SITE_URL);
+const ogImageURL: URL = new URL(image.src, Astro.url);
 
-const ogLocale = lang === "en" ? "en_US" : "es_CO";
-const altLocale = lang === "en" ? "es_CO" : "en_US";
+const ogLocale: string = OG_LOCALE[lang];
+const altLocale: string = OG_LOCALE_ALTERNATE[lang];
 ---
 
 <!-- Global Metadata -->

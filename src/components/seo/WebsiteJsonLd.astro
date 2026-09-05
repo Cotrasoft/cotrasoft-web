@@ -1,5 +1,5 @@
 ---
-import { DEFAULT_LOCALE, type SupportedLang } from "../../consts";
+import { DEFAULT_LOCALE, SITE_URL, type SupportedLang } from "../../consts";
 import { organizationId } from "../../lib/jsonld";
 
 interface Props {
@@ -8,7 +8,7 @@ interface Props {
 
 const { lang = DEFAULT_LOCALE } = Astro.props;
 
-const siteURL = Astro.site!;
+const siteURL: URL = Astro.site ?? SITE_URL;
 const data = {
   "@context": "https://schema.org",
   "@type": "WebSite",
