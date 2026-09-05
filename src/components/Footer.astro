@@ -1,6 +1,10 @@
 ---
 import { getRelativeLocaleUrl } from "astro:i18n";
-import { DEFAULT_LOCALE, type SupportedLang } from "../consts";
+import {
+  ENTITY_DESCRIPTION,
+  resolveLocale,
+  type SupportedLang,
+} from "../consts";
 import { legalSlugs } from "../lib/legal";
 
 interface FooterLabels {
@@ -33,17 +37,16 @@ interface Props {
 
 const { labels = {} } = Astro.props;
 
-const lang = (Astro.currentLocale ?? DEFAULT_LOCALE) as SupportedLang;
+const lang = resolveLocale(Astro.currentLocale);
 
 const defaults: Record<SupportedLang, FooterLabels> = {
   es: {
-    description:
-      "Cooperativa de desarrolladores de software colombianos. Combinamos economía solidaria con tecnología de punta.",
+    description: ENTITY_DESCRIPTION.es,
     navLabel: "Navegación del pie de página",
     rights: "Todos los derechos reservados.",
     links: {
       services: "Servicios",
-      benefits: "Beneficios",
+      benefits: "Cómo funciona",
       join: "Únete",
       terms: "Términos",
       privacy: "Privacidad",
@@ -55,13 +58,12 @@ const defaults: Record<SupportedLang, FooterLabels> = {
     },
   },
   en: {
-    description:
-      "Colombian software developer cooperative. We combine solidarity economy with cutting-edge technology.",
+    description: ENTITY_DESCRIPTION.en,
     navLabel: "Footer navigation",
     rights: "All rights reserved.",
     links: {
       services: "Services",
-      benefits: "Benefits",
+      benefits: "How it works",
       join: "Join us",
       terms: "Terms",
       privacy: "Privacy",

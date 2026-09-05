@@ -12,13 +12,17 @@ import ServicesJsonLd from "../components/seo/ServicesJsonLd.astro";
 import WebsiteJsonLd from "../components/seo/WebsiteJsonLd.astro";
 import {
   DEFAULT_LOCALE,
-  SITE_DESCRIPTION,
+  ENTITY_DESCRIPTION,
+  HREFLANG,
+  resolveLocale,
   SITE_TITLE,
+  SUPPORTED_LOCALES,
   type SupportedLang,
+  X_DEFAULT,
 } from "../consts";
 import { type ServicesContent, servicesContent } from "../lib/services";
 
-const lang = (Astro.currentLocale ?? DEFAULT_LOCALE) as SupportedLang;
+const lang = resolveLocale(Astro.currentLocale);
 
 // Single resolution point for the visible cards and the JSON-LD below:
 // both derive from `servicesData`, so a `content` override applied here
@@ -30,16 +34,22 @@ const homeServices: Array<{ name: string; description: string }> = [
   servicesData.consulting,
 ].map(({ title, description }) => ({ name: title, description }));
 
-const locales: { code: SupportedLang; hreflang: string }[] = [
-  { code: "es", hreflang: "es-CO" },
-  { code: "en", hreflang: "en-US" },
-];
-const alternates = [
-  ...locales.map(({ code, hreflang }) => ({
-    hreflang,
-    href: getAbsoluteLocaleUrl(code, "/"),
-  })),
-  { hreflang: "x-default", href: getAbsoluteLocaleUrl(DEFAULT_LOCALE, "/") },
+interface HreflangAlternate {
+  hreflang: string;
+  href: string | URL;
+}
+
+const alternates: HreflangAlternate[] = [
+  ...SUPPORTED_LOCALES.map(
+    (code: SupportedLang): HreflangAlternate => ({
+      hreflang: HREFLANG[code],
+      href: getAbsoluteLocaleUrl(code, "/"),
+    }),
+  ),
+  {
+    hreflang: X_DEFAULT,
+    href: getAbsoluteLocaleUrl(DEFAULT_LOCALE, "/"),
+  },
 ];
 ---
 
@@ -48,13 +58,13 @@ const alternates = [
 	<head>
 		<BaseHead
 			title={SITE_TITLE}
-			description={SITE_DESCRIPTION}
+			description={ENTITY_DESCRIPTION[lang]}
 			lang={lang}
 			image={OgHome}
 			imageAlt="Cotrasoft"
 			alternates={alternates}
 		/>
-		<OrganizationJsonLd description={SITE_DESCRIPTION} />
+		<OrganizationJsonLd description={ENTITY_DESCRIPTION[lang]} />
 		<WebsiteJsonLd lang={lang} />
 		<ServicesJsonLd services={homeServices} />
 	</head>
@@ -71,12 +81,12 @@ const alternates = [
 		<script>
 			const observer = new IntersectionObserver(
 				(entries, obs) => {
-					for (const entry of entries) {
-						if (entry.isIntersecting) {
+					entries
+						.filter((entry) => entry.isIntersecting)
+						.forEach((entry) => {
 							entry.target.classList.add("is-visible");
 							obs.unobserve(entry.target);
-						}
-					}
+						});
 				},
 				{ threshold: 0.15, rootMargin: "0px 0px -10% 0px" },
 			);
