@@ -38,7 +38,7 @@ const defaults: Record<SupportedLang, HeroLabels> = {
 const t: HeroLabels = { ...defaults[lang], ...labels };
 
 const servicesHref = "#servicios";
-const joinHref = "https://app.cotrasoft.co/registro";
+const cooperativeHref = "#beneficios";
 ---
 
 <section
@@ -126,7 +126,7 @@ const joinHref = "https://app.cotrasoft.co/registro";
 				{t.ctaPrimary}
 			</a>
 			<a
-				href={joinHref}
+				href={cooperativeHref}
 				class="inline-block rounded-full border-2 border-white px-8 py-4 text-lg sm:text-xl font-semibold text-white transition-all duration-300 hover:bg-white/10"
 			>
 				{t.ctaSecondary}
