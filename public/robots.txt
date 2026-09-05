@@ -1,0 +1,45 @@
+# cotrasoft.co robots.txt — owned in this repository.
+# Shipping our own file replaces the host's free-plan Content Signals Policy
+# (served only when the origin has no robots.txt), so crawl rules, AI-crawler
+# posture and the sitemap declaration are owned here rather than by host
+# defaults. If the zone ever enables Cloudflare's managed-robots.txt feature,
+# it prepends additive content before this file — directives below still apply.
+
+# All crawlers: full access. This is a deliberate posture: cotrasoft.co is an
+# informational site whose services depend on being crawled, indexed and cited.
+User-agent: *
+Allow: /
+
+# AI retrieval crawlers explicitly re-allowed so answers cite cotrasoft.co.
+# Redundant with the wildcard group on purpose: each grant documents policy and
+# survives any future tightening of the wildcard block.
+#
+# OpenAI retrieval (ChatGPT Search) and training crawlers:
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+# Anthropic retrieval and legacy web crawler:
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+# Perplexity retrieval:
+User-agent: PerplexityBot
+Allow: /
+
+# Google search indexing and Gemini grounding (AI Overviews use Googlebot):
+User-agent: Googlebot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+Sitemap: https://cotrasoft.co/sitemap-index.xml
