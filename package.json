@@ -35,6 +35,7 @@
   },
   "devDependencies": {
     "@biomejs/biome": "2.5.8",
-    "@tailwindcss/typography": "^0.5.20"
+    "@tailwindcss/typography": "^0.5.20",
+    "typescript": "^5.9.3"
   }
 }

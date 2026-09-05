@@ -26,3 +26,16 @@ pnpm-debug.log*
 
 # CF workers
 .wrangler/
+
+# Claude Code: per-user overrides, not shared with the team.
+# The rest of .claude/ (CLAUDE.md, rules/, skills/) is shared on purpose.
+.claude/settings.local.json
+
+# Skill evaluation output — regenerable, and hundreds of KB of generated reports.
+# The harness stays tracked (evals/, grade.py, run_grading.py) so a run can be
+# reproduced; only its results are ignored.
+.claude/*-evals/iteration-*/
+
+# Python bytecode from the skill scripts
+__pycache__/
+*.pyc
