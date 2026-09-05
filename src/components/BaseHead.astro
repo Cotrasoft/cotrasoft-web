@@ -12,6 +12,7 @@ import {
   SITE_TITLES,
   SITE_URL,
   SITE_VERIFICATION,
+  type SiteVerification,
   type SupportedLang,
 } from "../consts";
 import { type HreflangAlternate, selfAlternates } from "../lib/hreflang";
@@ -30,7 +31,7 @@ interface Props {
   keywords?: string;
   lang?: SupportedLang;
   alternates?: readonly Alternate[];
-  verification?: Readonly<Record<string, string>>;
+  verification?: SiteVerification;
 }
 
 const {

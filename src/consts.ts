@@ -86,4 +86,5 @@ export const X_DEFAULT = "x-default" as const;
 
 // Site-scoped ownership-verification meta tags (webmaster tools, AI engines):
 // keys are meta names, values are tokens. Rendered by BaseHead on every page.
-export const SITE_VERIFICATION: Readonly<Record<string, string>> = {};
+export type SiteVerification = Readonly<Record<string, string>>;
+export const SITE_VERIFICATION: SiteVerification = {};
