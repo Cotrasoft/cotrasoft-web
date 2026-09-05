@@ -29,10 +29,11 @@ pnpm cf:prod          # wrangler deploy
 
 ## Verification
 
-There is no test suite and no type-check script — `@astrojs/check` and `typescript` are not dependencies, so `astro check` is unavailable. The two gates are:
+Unit tests live under `src/` and run with `pnpm test` (vitest, scoped by `vitest.config.ts` — e2e specs under `e2e/` run separately with `pnpm test:e2e`). There is no type-check script — `@astrojs/check` and `typescript` are not dependencies, so `astro check` is unavailable. The gates are:
 
 1. `pnpm exec biome ci ./src`
-2. `pnpm build`
+2. `pnpm test`
+3. `pnpm build`
 
 Run both before claiming work is done. `.githooks/pre-push` runs the first, so a green push means green lint CI.
 

@@ -22,13 +22,13 @@ Every locale-aware component follows the same shape. Match it rather than invent
 
 ```astro
 ---
-import { DEFAULT_LOCALE, type SupportedLang } from "../consts";
+import { resolveLocale } from "../consts";
 
 interface HeroLabels { heading: string; /* ... */ }
 interface Props { labels?: Partial<HeroLabels> }
 
 const { labels = {} } = Astro.props;
-const lang = (Astro.currentLocale ?? DEFAULT_LOCALE) as SupportedLang;
+const lang = resolveLocale(Astro.currentLocale);
 
 const defaults: Record<SupportedLang, HeroLabels> = {
   es: { heading: "…" },
