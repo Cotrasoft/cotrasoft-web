@@ -13,6 +13,8 @@ import {
   SITE_URL,
   type SupportedLang,
 } from "../consts";
+import { type HreflangAlternate, selfAlternates } from "../lib/hreflang";
+import { stripLocalePrefix } from "../lib/locale-path";
 
 interface Alternate {
   hreflang: string;
@@ -26,7 +28,7 @@ interface Props {
   imageAlt?: string;
   keywords?: string;
   lang?: SupportedLang;
-  alternates?: Alternate[];
+  alternates?: readonly Alternate[];
 }
 
 const {
@@ -38,6 +40,20 @@ const {
   lang = DEFAULT_LOCALE,
   alternates,
 } = Astro.props;
+
+// `getAbsoluteLocaleUrl` joins locale + path verbatim, so a prefixed
+// pathname would come back doubled (`/en/en/terms/`): strip it first.
+const unprefixedPathname: string = stripLocalePrefix(Astro.url.pathname);
+
+// Fallback for pages without explicit `alternates` (e.g. the Spanish-only
+// blog): self-referential hreflang + x-default pointing at themselves.
+const defaultAlternates: readonly HreflangAlternate[] = selfAlternates(
+  lang,
+  unprefixedPathname,
+);
+
+const resolvedAlternates: readonly Alternate[] =
+  alternates ?? defaultAlternates;
 
 const canonicalURL: URL = new URL(Astro.url.pathname, Astro.site ?? SITE_URL);
 const ogImageURL: URL = new URL(image.src, Astro.url);
@@ -69,7 +85,7 @@ const altLocale: string = OG_LOCALE_ALTERNATE[lang];
 
 <!-- Hreflang alternates -->
 {
-  alternates?.map((a) => (
+  resolvedAlternates.map((a) => (
     <link rel="alternate" hreflang={a.hreflang} href={a.href.toString()} />
   ))
 }

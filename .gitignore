@@ -26,3 +26,6 @@ pnpm-debug.log*
 
 # CF workers
 .wrangler/
+
+# browser skill artifacts
+.playwright-mcp/

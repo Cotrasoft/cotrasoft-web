@@ -1,16 +1,9 @@
 ---
-import { getAbsoluteLocaleUrl } from "astro:i18n";
 import BaseHead from "../components/BaseHead.astro";
 import Footer from "../components/Footer.astro";
 import Navbar from "../components/Navbar.astro";
-import {
-  DEFAULT_LOCALE,
-  HREFLANG,
-  resolveLocale,
-  SUPPORTED_LOCALES,
-  type SupportedLang,
-  X_DEFAULT,
-} from "../consts";
+import { resolveLocale } from "../consts";
+import { type HreflangAlternate, localizedAlternates } from "../lib/hreflang";
 import type { LegalDoc, LegalSlug } from "../lib/legal";
 import { legalSlugs } from "../lib/legal";
 
@@ -23,26 +16,9 @@ const { slug, doc } = Astro.props;
 
 const lang = resolveLocale(Astro.currentLocale);
 
-interface HreflangAlternate {
-  hreflang: string;
-  href: string | URL;
-}
-
-const alternates: HreflangAlternate[] = [
-  ...SUPPORTED_LOCALES.map(
-    (code: SupportedLang): HreflangAlternate => ({
-      hreflang: HREFLANG[code],
-      href: getAbsoluteLocaleUrl(code, `/${legalSlugs[code][slug]}/`),
-    }),
-  ),
-  {
-    hreflang: X_DEFAULT,
-    href: getAbsoluteLocaleUrl(
-      DEFAULT_LOCALE,
-      `/${legalSlugs[DEFAULT_LOCALE][slug]}/`,
-    ),
-  },
-];
+const alternates: readonly HreflangAlternate[] = localizedAlternates(
+  (code): string => `/${legalSlugs[code][slug]}/`,
+);
 ---
 
 <!doctype html>
