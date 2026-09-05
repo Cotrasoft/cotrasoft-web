@@ -3,18 +3,17 @@
 // all pages through the use of the <BaseHead /> component.
 import "../styles/global.css";
 import { Font } from "astro:assets";
-import { getAbsoluteLocaleUrl } from "astro:i18n";
 import type { ImageMetadata } from "astro";
 import FallbackImage from "../assets/blog-placeholder-2.jpg";
 import {
   DEFAULT_LOCALE,
-  HREFLANG,
   OG_LOCALE,
   OG_LOCALE_ALTERNATE,
   SITE_TITLES,
   SITE_URL,
   type SupportedLang,
 } from "../consts";
+import { type HreflangAlternate, selfAlternates } from "../lib/hreflang";
 import { stripLocalePrefix } from "../lib/locale-path";
 
 interface Alternate {
@@ -29,7 +28,7 @@ interface Props {
   imageAlt?: string;
   keywords?: string;
   lang?: SupportedLang;
-  alternates?: Alternate[];
+  alternates?: readonly Alternate[];
 }
 
 const {
@@ -46,18 +45,15 @@ const {
 // pathname would come back doubled (`/en/en/terms/`): strip it first.
 const unprefixedPathname: string = stripLocalePrefix(Astro.url.pathname);
 
-const defaultAlternates: Alternate[] = [
-  {
-    hreflang: HREFLANG[lang],
-    href: getAbsoluteLocaleUrl(lang, unprefixedPathname),
-  },
-  {
-    hreflang: "x-default",
-    href: getAbsoluteLocaleUrl(DEFAULT_LOCALE, unprefixedPathname),
-  },
-];
+// Fallback for pages without explicit `alternates` (e.g. the Spanish-only
+// blog): self-referential hreflang + x-default pointing at themselves.
+const defaultAlternates: readonly HreflangAlternate[] = selfAlternates(
+  lang,
+  unprefixedPathname,
+);
 
-const resolvedAlternates = alternates ?? defaultAlternates;
+const resolvedAlternates: readonly Alternate[] =
+  alternates ?? defaultAlternates;
 
 const canonicalURL: URL = new URL(Astro.url.pathname, Astro.site ?? SITE_URL);
 const ogImageURL: URL = new URL(image.src, Astro.url);

@@ -3,18 +3,15 @@ import {
   DEFAULT_LOCALE,
   HREFLANG,
   SUPPORTED_LOCALES,
-  type SupportedLang,
+  X_DEFAULT,
 } from "../consts";
 import { LEGAL_SLUGS, type LegalSlug, legalSlugs } from "./legal";
+import { localePath } from "./locale-path";
 
 interface AlternatePath {
   lang: string;
   path: string;
 }
-
-// Mirrors `prefixDefaultLocale: false` in astro.config.mjs.
-const localePath = (locale: SupportedLang, path: string): string =>
-  locale === DEFAULT_LOCALE ? path : `/${locale}${path}`;
 
 // Sitemap URLs may or may not end in `/` depending on `trailingSlash`
 // config, so table keys and lookups share one slash-insensitive form
@@ -33,7 +30,7 @@ const alternateSet = (slug: LegalSlug): readonly AlternatePath[] => [
     }),
   ),
   {
-    lang: "x-default",
+    lang: X_DEFAULT,
     path: localePath(DEFAULT_LOCALE, `/${legalSlugs[DEFAULT_LOCALE][slug]}/`),
   },
 ];
@@ -69,7 +66,7 @@ const toLink =
   });
 
 export const serializeSitemapItem = (item: SitemapItem): SitemapItem => {
-  const alternates: readonly AlternatePath[] | null = item.links
+  const alternates: readonly AlternatePath[] | null = item.links?.length
     ? null
     : lookup(item.url);
   return alternates === null
