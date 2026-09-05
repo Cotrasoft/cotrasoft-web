@@ -1,8 +1,6 @@
 // Place any global data in this file.
 // You can import this data from anywhere in your site by using the `import` keyword.
 
-export const SITE_TITLE = "Cotrasoft - Cooperativa de Desarrolladores";
-
 export type SupportedLang = "es" | "en";
 
 // Mirrors `defaultLocale` in astro.config.mjs (the canonical build-time value).
@@ -25,16 +23,24 @@ export const ENTITY_DESCRIPTION: Record<SupportedLang, string> = {
 
 export const SITE_DESCRIPTION = ENTITY_DESCRIPTION[DEFAULT_LOCALE];
 
-// Open Graph locale tags. The alternate is a table (not a second ternary)
-// so the pair cannot drift out of sync.
+// Localized page titles; descriptions live in ENTITY_DESCRIPTION.
+export const SITE_TITLES: Record<SupportedLang, string> = {
+  es: "Cotrasoft - Cooperativa de Desarrolladores",
+  en: "Cotrasoft - Software Developer Cooperative",
+};
+
+// Open Graph locale tags as tables (not ternaries) so both locales are
+// forced to be present and visible side by side. The alternate is derived
+// from OG_LOCALE (not a second set of literals) so the pair shares values
+// instead of drifting apart.
 export const OG_LOCALE: Record<SupportedLang, string> = {
   es: "es_CO",
   en: "en_US",
 };
 
 export const OG_LOCALE_ALTERNATE: Record<SupportedLang, string> = {
-  es: "en_US",
-  en: "es_CO",
+  es: OG_LOCALE.en,
+  en: OG_LOCALE.es,
 };
 
 // Mirrors the `locales` array in astro.config.mjs plus the sitemap `i18n`
@@ -53,8 +59,10 @@ export const SUPPORTED_LOCALES: readonly SupportedLang[] = Object.freeze(
   Object.values(LOCALE_IDENTITY),
 );
 
+// `Object.hasOwn` (not the `in` operator, which also matches
+// Object.prototype keys like "toString").
 const isSupportedLang = (value: string): value is SupportedLang =>
-  value in LOCALE_IDENTITY;
+  Object.hasOwn(LOCALE_IDENTITY, value);
 
 // `Astro.currentLocale` is absent on the prefix-less default locale, so this
 // is the single typed entry point every component uses instead of casting.
