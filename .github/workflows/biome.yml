@@ -20,6 +20,6 @@ jobs:
       - name: Setup Biome
         uses: biomejs/setup-biome@4c91541eaada48f67d7dbd7833600ce162b68f51 # v2.7.1
         with:
-          version: 2.5.8
+          version: 2.5.9
       - name: Run Biome
-        run: biome ci ./src --reporter=github
+        run: biome ci ./src astro.config.mjs --reporter=github

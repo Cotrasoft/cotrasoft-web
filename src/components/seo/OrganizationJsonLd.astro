@@ -1,7 +1,8 @@
 ---
-import { SITE_URL, SUPPORTED_LOCALES } from "../../consts";
+import { SUPPORTED_LOCALES } from "../../consts";
 import { organizationId } from "../../lib/jsonld";
 import { ENTITY_VALUES } from "../../lib/legal";
+import { siteUrl } from "../../lib/site";
 
 interface Props {
   description: string;
@@ -15,7 +16,7 @@ const {
   email = "gerencia@cotrasoft.co",
 } = Astro.props;
 
-const siteURL: URL = Astro.site ?? SITE_URL;
+const siteURL = siteUrl(Astro.site);
 const data = {
   "@context": "https://schema.org",
   "@type": "Organization",
