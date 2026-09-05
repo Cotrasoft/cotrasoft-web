@@ -1,5 +1,5 @@
 import { describe, expect, test } from "vitest";
-import { stripLocalePrefix } from "./locale-path";
+import { localePath, stripLocalePrefix } from "./locale-path";
 
 describe("stripLocalePrefix", () => {
   test("strips a non-default locale prefix", () => {
@@ -20,5 +20,15 @@ describe("stripLocalePrefix", () => {
 
   test("ignores lookalike first segments", () => {
     expect(stripLocalePrefix("/energy/")).toBe("/energy/");
+  });
+});
+
+describe("localePath", () => {
+  test("leaves the default locale prefix-less", () => {
+    expect(localePath("es", "/terminos/")).toBe("/terminos/");
+  });
+
+  test("prefixes non-default locales", () => {
+    expect(localePath("en", "/terms/")).toBe("/en/terms/");
   });
 });

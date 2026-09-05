@@ -10,6 +10,9 @@ const item = (url: string): SitemapItem => ({ url });
 
 const linksOf = (result: SitemapItem): LinkItem[] => result.links ?? [];
 
+// Expected sets hard-code every URL and hreflang literal on purpose: they are
+// an independent oracle, so a typo in a shared constant must fail here rather
+// than pass by construction.
 const termsLinks: LinkItem[] = [
   { url: `${SITE}/terminos/`, lang: "es-CO" },
   { url: `${SITE}/en/terms/`, lang: "en-US" },
@@ -51,6 +54,12 @@ describe("serializeSitemapItem", () => {
     const withLinks: SitemapItem = { url: `${SITE}/`, links: termsLinks };
 
     expect(serializeSitemapItem(withLinks)).toBe(withLinks);
+  });
+
+  test("treats an empty links array as no counterpart yet", () => {
+    const emptyLinks: SitemapItem = { url: `${SITE}/terminos/`, links: [] };
+
+    expect(linksOf(serializeSitemapItem(emptyLinks))).toEqual(termsLinks);
   });
 
   test("leaves pages without a localized counterpart untouched", () => {
