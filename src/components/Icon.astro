@@ -8,9 +8,6 @@ interface Props {
 }
 
 const { name, class: className, "aria-label": ariaLabel } = Astro.props;
-const ariaProps = ariaLabel
-  ? { "aria-label": ariaLabel, role: "img" }
-  : { "aria-hidden": "true" };
 ---
 
 <svg
@@ -21,7 +18,9 @@ const ariaProps = ariaLabel
 	stroke-linecap="round"
 	stroke-linejoin="round"
 	class={className}
-	{...ariaProps}
+	role={ariaLabel ? "img" : null}
+	aria-label={ariaLabel ? ariaLabel : null}
+	aria-hidden={ariaLabel ? null : "true"}
 >
 	{
 		name === 'arrow-right' && (
