@@ -49,7 +49,16 @@ const t: HeroLabels = { ...defaults[lang], ...labels };
 
 Use the existing tokens and `@layer components` classes from `src/styles/global.css` (`.btn-primary`, `.gradient-text`, `.section-padding`, …) instead of re-deriving the same utility chains inline. Add a new class there when a pattern repeats. Reference colors through the `primary` ramp (`text-primary`, `bg-primary-800`), never raw hex.
 
-Dark mode is class-driven via Tailwind's `dark:` variants on every surface — a new section needs both light and dark treatments.
+Every surface needs both a light and a dark treatment. `dark:` is redefined by a
+`@custom-variant` in `global.css`: it matches `[data-theme="dark"]`, or the
+system preference when no `data-theme` opted out — so the toggle can override
+either way and dark still works with JS disabled. `ThemeToggle.astro` writes
+`data-theme` and persists the choice; `BaseHead` sets it from a blocking inline
+script before any stylesheet, since doing it after first paint flashes the wrong
+theme.
+
+Check contrast on both themes, not just light: `gradient-text` needed a separate
+dark ramp because `primary-900` lands at 1.48:1 on the dark surface.
 
 ## Icons
 
