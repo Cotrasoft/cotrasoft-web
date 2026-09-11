@@ -7,25 +7,49 @@ import Footer from "../components/Footer.astro";
 import Hero from "../components/Hero.astro";
 import Navbar from "../components/Navbar.astro";
 import Services from "../components/Services.astro";
+import OrganizationJsonLd from "../components/seo/OrganizationJsonLd.astro";
+import ServicesJsonLd from "../components/seo/ServicesJsonLd.astro";
+import WebsiteJsonLd from "../components/seo/WebsiteJsonLd.astro";
 import {
   DEFAULT_LOCALE,
-  SITE_DESCRIPTION,
-  SITE_TITLE,
+  ENTITY_DESCRIPTION,
+  HREFLANG,
+  resolveLocale,
+  SITE_TITLES,
+  SUPPORTED_LOCALES,
   type SupportedLang,
+  X_DEFAULT,
 } from "../consts";
+import { type ServicesContent, servicesContent } from "../lib/services";
 
-const lang = (Astro.currentLocale ?? DEFAULT_LOCALE) as SupportedLang;
+const lang = resolveLocale(Astro.currentLocale);
 
-const locales: { code: SupportedLang; hreflang: string }[] = [
-  { code: "es", hreflang: "es-CO" },
-  { code: "en", hreflang: "en-US" },
-];
-const alternates = [
-  ...locales.map(({ code, hreflang }) => ({
-    hreflang,
-    href: getAbsoluteLocaleUrl(code, "/"),
-  })),
-  { hreflang: "x-default", href: getAbsoluteLocaleUrl(DEFAULT_LOCALE, "/") },
+// Single resolution point for the visible cards and the JSON-LD below:
+// both derive from `servicesData`, so a `content` override applied here
+// cannot drift between markup and structured data.
+const servicesData: ServicesContent = servicesContent[lang];
+const homeServices: Array<{ name: string; description: string }> = [
+  servicesData.rescue,
+  servicesData.accelerated,
+  servicesData.consulting,
+].map(({ title, description }) => ({ name: title, description }));
+
+interface HreflangAlternate {
+  hreflang: string;
+  href: string | URL;
+}
+
+const alternates: HreflangAlternate[] = [
+  ...SUPPORTED_LOCALES.map(
+    (code: SupportedLang): HreflangAlternate => ({
+      hreflang: HREFLANG[code],
+      href: getAbsoluteLocaleUrl(code, "/"),
+    }),
+  ),
+  {
+    hreflang: X_DEFAULT,
+    href: getAbsoluteLocaleUrl(DEFAULT_LOCALE, "/"),
+  },
 ];
 ---
 
@@ -33,19 +57,22 @@ const alternates = [
 <html lang={lang}>
 	<head>
 		<BaseHead
-			title={SITE_TITLE}
-			description={SITE_DESCRIPTION}
+			title={SITE_TITLES[lang]}
+			description={ENTITY_DESCRIPTION[lang]}
 			lang={lang}
 			image={OgHome}
 			imageAlt="Cotrasoft"
 			alternates={alternates}
 		/>
+		<OrganizationJsonLd description={ENTITY_DESCRIPTION[lang]} />
+		<WebsiteJsonLd lang={lang} />
+		<ServicesJsonLd services={homeServices} />
 	</head>
 	<body>
 		<Navbar />
 		<main>
 			<Hero />
-			<Services />
+			<Services content={servicesData} />
 			<Benefits />
 		</main>
 		<Footer />
@@ -54,12 +81,12 @@ const alternates = [
 		<script>
 			const observer = new IntersectionObserver(
 				(entries, obs) => {
-					for (const entry of entries) {
-						if (entry.isIntersecting) {
+					entries
+						.filter((entry) => entry.isIntersecting)
+						.forEach((entry) => {
 							entry.target.classList.add("is-visible");
 							obs.unobserve(entry.target);
-						}
-					}
+						});
 				},
 				{ threshold: 0.15, rootMargin: "0px 0px -10% 0px" },
 			);

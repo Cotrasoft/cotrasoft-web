@@ -1,5 +1,6 @@
 ---
-import { DEFAULT_LOCALE, type SupportedLang } from "../../consts";
+import { DEFAULT_LOCALE, SITE_URL, type SupportedLang } from "../../consts";
+import { organizationId } from "../../lib/jsonld";
 
 interface Props {
   lang?: SupportedLang;
@@ -7,19 +8,19 @@ interface Props {
 
 const { lang = DEFAULT_LOCALE } = Astro.props;
 
-const siteURL = Astro.site!;
+const siteURL: URL = Astro.site ?? SITE_URL;
 const data = {
   "@context": "https://schema.org",
   "@type": "WebSite",
   name: "Cotrasoft",
   url: siteURL.href,
   inLanguage: lang,
-  publisher: { "@id": new URL("#organization", siteURL).href },
+  publisher: { "@id": organizationId(siteURL) },
 };
 ---
 
 <script
 	type="application/ld+json"
 	is:inline
-	set:html={JSON.stringify(data)}
+	set:html={JSON.stringify(data).replaceAll("<", "\\u003c")}
 />

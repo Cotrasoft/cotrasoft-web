@@ -6,7 +6,7 @@ export async function getBlogPosts(): Promise<CollectionEntry<"blog">[]> {
     "blog",
     ({ data }) => import.meta.env.DEV || data.published === true,
   );
-  return posts.sort(
+  return posts.toSorted(
     (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
   );
 }

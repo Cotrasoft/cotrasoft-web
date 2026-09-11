@@ -68,10 +68,6 @@
 }
 
 @layer components {
-  .glass-card {
-    @apply bg-white/10 backdrop-blur-lg border border-white/20 rounded-xl;
-  }
-
   .gradient-text {
     @apply bg-clip-text text-transparent bg-linear-to-r from-primary-900 to-primary-600;
   }
