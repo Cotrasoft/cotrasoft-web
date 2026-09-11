@@ -1,5 +1,4 @@
 ---
-import { getAbsoluteLocaleUrl } from "astro:i18n";
 import OgHome from "../assets/og-image.png";
 import BaseHead from "../components/BaseHead.astro";
 import Benefits from "../components/Benefits.astro";
@@ -10,16 +9,8 @@ import Services from "../components/Services.astro";
 import OrganizationJsonLd from "../components/seo/OrganizationJsonLd.astro";
 import ServicesJsonLd from "../components/seo/ServicesJsonLd.astro";
 import WebsiteJsonLd from "../components/seo/WebsiteJsonLd.astro";
-import {
-  DEFAULT_LOCALE,
-  ENTITY_DESCRIPTION,
-  HREFLANG,
-  resolveLocale,
-  SITE_TITLES,
-  SUPPORTED_LOCALES,
-  type SupportedLang,
-  X_DEFAULT,
-} from "../consts";
+import { ENTITY_DESCRIPTION, resolveLocale, SITE_TITLES } from "../consts";
+import { type HreflangAlternate, pageAlternates } from "../lib/hreflang";
 import { type ServicesContent, servicesContent } from "../lib/services";
 
 const lang = resolveLocale(Astro.currentLocale);
@@ -34,23 +25,7 @@ const homeServices: Array<{ name: string; description: string }> = [
   servicesData.consulting,
 ].map(({ title, description }) => ({ name: title, description }));
 
-interface HreflangAlternate {
-  hreflang: string;
-  href: string | URL;
-}
-
-const alternates: HreflangAlternate[] = [
-  ...SUPPORTED_LOCALES.map(
-    (code: SupportedLang): HreflangAlternate => ({
-      hreflang: HREFLANG[code],
-      href: getAbsoluteLocaleUrl(code, "/"),
-    }),
-  ),
-  {
-    hreflang: X_DEFAULT,
-    href: getAbsoluteLocaleUrl(DEFAULT_LOCALE, "/"),
-  },
-];
+const alternates: readonly HreflangAlternate[] = pageAlternates("/");
 ---
 
 <!doctype html>

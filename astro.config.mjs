@@ -8,22 +8,23 @@ import tailwindcss from '@tailwindcss/vite';
 
 import react from '@astrojs/react';
 
+import { DEFAULT_LOCALE, HREFLANG } from './src/consts';
+import { serializeSitemapItem } from './src/lib/sitemap';
+
 // https://astro.build/config
 export default defineConfig({
     site: 'https://cotrasoft.co',
     output: "static",
     integrations: [mdx(), sitemap({
         i18n: {
-            defaultLocale: 'es',
-            locales: {
-                es: 'es-CO',
-                en: 'en-US',
-            },
+            defaultLocale: DEFAULT_LOCALE,
+            locales: HREFLANG,
         },
+        serialize: serializeSitemapItem,
     }), react()],
     i18n: {
         locales: ["es", "en"],
-        defaultLocale: "es",
+        defaultLocale: DEFAULT_LOCALE,
         routing: {
             prefixDefaultLocale: false,
         },
