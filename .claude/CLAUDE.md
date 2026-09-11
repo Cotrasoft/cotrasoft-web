@@ -22,6 +22,7 @@ pnpm build            # production build to ./dist
 pnpm preview          # preview the built site
 pnpm test             # vitest run (unit specs under src/)
 pnpm test:e2e         # playwright test (builds and previews automatically)
+pnpm check            # astro check (types in .astro and .ts)
 pnpm lint             # biome check --write ./src astro.config.mjs  (fixes)
 pnpm format           # biome format --write ./src astro.config.mjs
 pnpm exec biome ci ./src astro.config.mjs   # non-mutating check — exactly what CI and the pre-push hook run
@@ -31,13 +32,14 @@ pnpm cf:prod          # wrangler deploy
 
 ## Verification
 
-Unit tests live under `src/` and run with `pnpm test` (vitest, scoped by `vitest.config.ts` — e2e specs under `e2e/` run separately with `pnpm test:e2e`). There is no type-check script — `@astrojs/check` is not a dependency (`typescript` is installed but no script runs it), so `astro check` is unavailable. The gates are:
+Unit tests live under `src/` and run with `pnpm test` (vitest, scoped by `vitest.config.ts` — e2e specs under `e2e/` run separately with `pnpm test:e2e`). Types are checked with `pnpm check` (`astro check` over `.astro` and `.ts`). The gates are:
 
 1. `pnpm exec biome ci ./src astro.config.mjs`
-2. `pnpm test`
-3. `pnpm build`
+2. `pnpm check`
+3. `pnpm test`
+4. `pnpm build`
 
-Run all three before claiming work is done. `.githooks/pre-push` runs the first, so a green push means green lint CI.
+Run all four before claiming work is done. `.githooks/pre-push` runs the first, so a green push means green lint CI.
 
 ## CI/CD
 
