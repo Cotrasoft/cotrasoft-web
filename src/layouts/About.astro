@@ -1,38 +1,16 @@
 ---
-import { getAbsoluteLocaleUrl, getRelativeLocaleUrl } from "astro:i18n";
+import { getRelativeLocaleUrl } from "astro:i18n";
 import BaseHead from "../components/BaseHead.astro";
 import Footer from "../components/Footer.astro";
 import Navbar from "../components/Navbar.astro";
-import {
-  DEFAULT_LOCALE,
-  HREFLANG,
-  resolveLocale,
-  SUPPORTED_LOCALES,
-  type SupportedLang,
-  X_DEFAULT,
-} from "../consts";
+import { resolveLocale } from "../consts";
 import { aboutDocs } from "../lib/about";
+import { type HreflangAlternate, pageAlternates } from "../lib/hreflang";
 
 const lang = resolveLocale(Astro.currentLocale);
 const doc = aboutDocs[lang];
 
-interface HreflangAlternate {
-  hreflang: string;
-  href: string | URL;
-}
-
-const alternates: HreflangAlternate[] = [
-  ...SUPPORTED_LOCALES.map(
-    (code: SupportedLang): HreflangAlternate => ({
-      hreflang: HREFLANG[code],
-      href: getAbsoluteLocaleUrl(code, "/about/"),
-    }),
-  ),
-  {
-    hreflang: X_DEFAULT,
-    href: getAbsoluteLocaleUrl(DEFAULT_LOCALE, "/about/"),
-  },
-];
+const alternates: readonly HreflangAlternate[] = pageAlternates("/about/");
 
 const joinHref = "https://app.cotrasoft.co/registro";
 const servicesMoreHref = `${getRelativeLocaleUrl(lang, "/")}#servicios`;

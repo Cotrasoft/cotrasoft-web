@@ -8,8 +8,9 @@ export type SupportedLang = "es" | "en";
 // `Astro.currentLocale` is absent (the prefix-less default locale).
 export const DEFAULT_LOCALE: SupportedLang = "es";
 
-// Mirrors `site` in astro.config.mjs (the canonical build-time value).
-// Typed fallback for `Astro.site` / `context.site`, which are `URL | undefined`
+// Canonical origin for the deployed site: `site` in astro.config.mjs is set
+// from this value, and it is the typed fallback for `Astro.site` /
+// `context.site`, which are `URL | undefined`
 // (https://docs.astro.build/en/reference/api-reference/#site).
 export const SITE_URL: URL = new URL("https://cotrasoft.co");
 
@@ -81,5 +82,5 @@ export const HREFLANG: Record<SupportedLang, string> = {
 };
 
 // `x-default` hreflang value, always pointing at the default-locale page.
-// Single source so `<head>` alternates and the sitemap cannot drift apart.
-export const X_DEFAULT = "x-default" as const;
+// Single source for the value, shared by `<head>` alternates and the sitemap.
+export const X_DEFAULT = "x-default";
