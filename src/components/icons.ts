@@ -9,6 +9,8 @@ export type IconName =
   | "heart"
   | "layout"
   | "life-buoy"
+  | "moon"
+  | "sun"
   | "trending-up"
   | "users"
   | "zap";

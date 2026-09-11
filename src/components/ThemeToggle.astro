@@ -1,0 +1,72 @@
+---
+import { DEFAULT_LOCALE, resolveLocale, type SupportedLang } from "../consts";
+import Icon from "./Icon.astro";
+
+interface ThemeToggleLabels {
+  toDark: string;
+  toLight: string;
+}
+
+interface Props {
+  labels?: Partial<ThemeToggleLabels>;
+}
+
+const { labels = {} } = Astro.props;
+const lang = resolveLocale(Astro.currentLocale);
+
+const defaults: Record<SupportedLang, ThemeToggleLabels> = {
+  es: { toDark: "Activar modo oscuro", toLight: "Activar modo claro" },
+  en: { toDark: "Switch to dark mode", toLight: "Switch to light mode" },
+};
+
+const t: ThemeToggleLabels = { ...defaults[lang], ...labels };
+---
+
+<button
+	type="button"
+	class="rounded-full p-2 text-gray-700 transition-colors duration-200 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800"
+	data-theme-toggle
+	data-label-to-dark={t.toDark}
+	data-label-to-light={t.toLight}
+	aria-label={t.toDark}
+>
+	<Icon name="sun" class="size-5 dark:hidden" />
+	<Icon name="moon" class="size-5 hidden dark:block" />
+</button>
+
+<script>
+	const syncLabels = () => {
+		const dark = document.documentElement.dataset.theme === 'dark';
+		for (const button of document.querySelectorAll('[data-theme-toggle]')) {
+			button.setAttribute(
+				'aria-label',
+				dark ? button.dataset.labelToLight : button.dataset.labelToDark,
+			);
+		}
+	};
+
+	const apply = (theme: string | null) => {
+		const dark =
+			theme === 'dark' ||
+			(theme === null && matchMedia('(prefers-color-scheme: dark)').matches);
+		document.documentElement.dataset.theme = dark ? 'dark' : 'light';
+		syncLabels();
+	};
+
+	for (const button of document.querySelectorAll('[data-theme-toggle]')) {
+		button.addEventListener('click', () => {
+			const next =
+				document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+			localStorage.setItem('theme', next);
+			apply(next);
+		});
+	}
+
+	// Without a stored choice the visitor keeps following the system, including
+	// a mid-session change.
+	matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+		if (localStorage.getItem('theme') === null) apply(null);
+	});
+
+	syncLabels();
+</script>

@@ -50,6 +50,19 @@ const altLocale: string = OG_LOCALE_ALTERNATE[lang];
 <!-- Global Metadata -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+<!-- Blocking, and before any stylesheet: setting `data-theme` after first paint
+     would flash the wrong theme. Duplicated in ThemeToggle's script, which
+     cannot run this early. -->
+<script is:inline>
+	(() => {
+		const stored = localStorage.getItem('theme');
+		const dark =
+			stored === 'dark' ||
+			(stored === null && matchMedia('(prefers-color-scheme: dark)').matches);
+		document.documentElement.dataset.theme = dark ? 'dark' : 'light';
+	})();
+</script>
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 <link rel="icon" href="/favicon.ico" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />

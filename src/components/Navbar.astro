@@ -5,6 +5,7 @@ import {
   SUPPORTED_LOCALES,
   type SupportedLang,
 } from "../consts";
+import ThemeToggle from "./ThemeToggle.astro";
 
 interface NavbarLabels {
   services: string;
@@ -130,6 +131,7 @@ const langLinks: LangLink[] = SUPPORTED_LOCALES.map(
 						))
 					}
 				</div>
+				<ThemeToggle />
 			</div>
 
 			<div class="md:hidden flex items-center space-x-2">
@@ -156,6 +158,7 @@ const langLinks: LangLink[] = SUPPORTED_LOCALES.map(
 						))
 					}
 				</div>
+				<ThemeToggle />
 
 				<button
 					type="button"

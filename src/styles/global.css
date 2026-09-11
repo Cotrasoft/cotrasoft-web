@@ -1,6 +1,20 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
+/* Tailwind 4's default `dark:` is the media query alone, which a toggle cannot
+   override. Two branches instead: an explicit `data-theme`, or the system
+   preference when nothing was chosen — so dark still works without JS. */
+@custom-variant dark {
+  &:where([data-theme="dark"], [data-theme="dark"] *) {
+    @slot;
+  }
+  @media (prefers-color-scheme: dark) {
+    &:where(:not([data-theme="light"], [data-theme="light"] *)) {
+      @slot;
+    }
+  }
+}
+
 @theme {
   --font-sans: var(--font-inter), system-ui, sans-serif;
 
@@ -70,6 +84,9 @@
 @layer components {
   .gradient-text {
     @apply bg-clip-text text-transparent bg-linear-to-r from-primary-900 to-primary-600;
+    /* primary-900 sits at 1.48:1 on the dark surface, under the 3:1 large-text
+       floor, so the ramp shifts up rather than reusing the light one. */
+    @apply dark:from-primary-300 dark:to-primary-500;
   }
 
   .btn-primary {
