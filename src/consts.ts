@@ -1,27 +1,16 @@
-// Place any global data in this file.
-// You can import this data from anywhere in your site by using the `import` keyword.
-
 export type SupportedLang = "es" | "en";
 
-// Mirrors `defaultLocale` in astro.config.mjs (the canonical build-time value).
-// Astro exposes no runtime default locale, so this is the fallback used where
-// `Astro.currentLocale` is absent (the prefix-less default locale).
+// Mirrors `defaultLocale` in astro.config.mjs; Astro exposes none at runtime.
 export const DEFAULT_LOCALE: SupportedLang = "es";
 
-// Canonical origin for the deployed site: `site` in astro.config.mjs is set
-// from this value, and it is the typed fallback for `Astro.site` /
-// `context.site`, which are `URL | undefined`
-// (https://docs.astro.build/en/reference/api-reference/#site).
+// `site` in astro.config.mjs is set from this, and it is the typed fallback for
+// `Astro.site` / `context.site`, which are `URL | undefined`.
 export const SITE_URL: URL = new URL("https://cotrasoft.co");
 
-// Short brand name, as opposed to `ENTITY_VALUES.name` (the full legal name).
-// Used for `og:site_name`, the JSON-LD `name` fields and the `<title>` brand
-// suffix, so every surface spells the brand the same way.
+// The short brand, as opposed to `ENTITY_VALUES.name` (the full legal name).
 export const BRAND_NAME = "Cotrasoft";
 
-// Canonical entity definition, reused verbatim across meta description,
-// hero subheading, footer and Organization JSON-LD so every surface
-// describes Cotrasoft with the same words.
+// Reused verbatim across meta description, hero, footer and JSON-LD.
 export const ENTITY_DESCRIPTION: Record<SupportedLang, string> = {
   es: "Cotrasoft es la cooperativa colombiana de profesionales de software que entrega equipos senior potenciados por IA: rescate de MVP, desarrollo acelerado y consultoría técnica.",
   en: "Cotrasoft is the Colombian cooperative of software professionals that delivers MVP rescue, accelerated development, and technical consulting with senior AI-powered teams.",
@@ -29,16 +18,12 @@ export const ENTITY_DESCRIPTION: Record<SupportedLang, string> = {
 
 export const SITE_DESCRIPTION = ENTITY_DESCRIPTION[DEFAULT_LOCALE];
 
-// Localized page titles; descriptions live in ENTITY_DESCRIPTION.
 export const SITE_TITLES: Record<SupportedLang, string> = {
   es: "Cotrasoft - Cooperativa de Desarrolladores",
   en: "Cotrasoft - Software Developer Cooperative",
 };
 
-// Open Graph locale tags as tables (not ternaries) so both locales are
-// forced to be present and visible side by side. The alternate is derived
-// from OG_LOCALE (not a second set of literals) so the pair shares values
-// instead of drifting apart.
+// The alternate derives from OG_LOCALE rather than repeating the literals.
 export const OG_LOCALE: Record<SupportedLang, string> = {
   es: "es_CO",
   en: "en_US",
@@ -49,32 +34,24 @@ export const OG_LOCALE_ALTERNATE: Record<SupportedLang, string> = {
   en: OG_LOCALE.es,
 };
 
-// Mirrors the `locales` array in astro.config.mjs plus the sitemap `i18n`
-// locales map. Single source so `<head>` alternates, sitemap hreflang and
-// locale iteration cannot drift apart. Derived from a Record so adding a
-// locale to `SupportedLang` breaks the build here instead of silently
-// falling back to `DEFAULT_LOCALE`.
+// Mirrors the `locales` array in astro.config.mjs and the sitemap `i18n` map.
+// Derived from a Record so a new `SupportedLang` breaks the build here rather
+// than silently falling back to `DEFAULT_LOCALE`.
 const LOCALE_IDENTITY: Record<SupportedLang, SupportedLang> = {
   es: "es",
   en: "en",
 };
 
-// Frozen values of the identity table: exhaustive by construction, no
-// duplicated literal list to keep in sync.
 export const SUPPORTED_LOCALES: readonly SupportedLang[] = Object.freeze(
   Object.values(LOCALE_IDENTITY),
 );
 
-// `Object.hasOwn` (not the `in` operator, which also matches
-// Object.prototype keys like "toString").
+// `Object.hasOwn`, not `in`: `in` also matches Object.prototype keys.
 const isSupportedLang = (value: string): value is SupportedLang =>
   Object.hasOwn(LOCALE_IDENTITY, value);
 
-// `Astro.currentLocale` is absent on the prefix-less default locale, so this
-// is the single typed entry point every component uses instead of casting.
-// The optional parameter models absence without naming it; unknown strings
-// fall back to `DEFAULT_LOCALE`, matching Astro's own defaulting
-// (https://docs.astro.build/en/reference/api-reference/#currentlocale).
+// `Astro.currentLocale` is absent on the prefix-less default locale. Single
+// typed entry point; use this instead of casting.
 export const resolveLocale = (currentLocale?: string): SupportedLang => {
   const candidate: string = currentLocale ?? "";
   return isSupportedLang(candidate) ? candidate : DEFAULT_LOCALE;
@@ -86,6 +63,4 @@ export const HREFLANG: Record<SupportedLang, string> = {
   en: "en-US",
 };
 
-// `x-default` hreflang value, always pointing at the default-locale page.
-// Single source for the value, shared by `<head>` alternates and the sitemap.
 export const X_DEFAULT = "x-default";

@@ -16,15 +16,10 @@ const { slug, doc } = Astro.props;
 
 const lang = resolveLocale(Astro.currentLocale);
 
-// One builder for both the hreflang alternates and the language switcher, so
-// they can never point at different pages.
 const pathFor = (code: SupportedLang): string => `/${legalSlugs[code][slug]}/`;
 
 const alternates: readonly HreflangAlternate[] = localizedAlternates(pathFor);
 
-// `doc.title` is the document name and stays the visible `<h1>`; the `<title>`
-// gets the brand suffix so the four legal pages are attributable to Cotrasoft
-// in a SERP, matching how `/about/` and the blog index already read.
 const documentTitle = `${doc.title} | ${BRAND_NAME}`;
 ---
 

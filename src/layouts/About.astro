@@ -29,9 +29,6 @@ const servicesMoreHref = `${getRelativeLocaleUrl(lang, "/")}#servicios`;
 			lang={lang}
 			alternates={alternates}
 		/>
-		{/* The entity-definition page: reinforce the Organization node (same
-		    `@id` as the homepage, so it is one entity) and label the page
-		    itself as its AboutPage. */}
 		<OrganizationJsonLd description={doc.description} />
 		<AboutPageJsonLd
 			lang={lang}

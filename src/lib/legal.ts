@@ -37,8 +37,7 @@ export const legalSlugs: Record<SupportedLang, Record<LegalSlug, string>> = {
   en: { terms: "terms", privacy: "privacy" },
 };
 
-// Typed slug list so every consumer (sitemap table, tests) iterates the same
-// slugs with zero casts; a new legal page flows everywhere automatically.
+// Iterable form of `legalSlugs` keys, for the sitemap table and tests.
 export const LEGAL_SLUGS = [
   "terms",
   "privacy",
@@ -49,19 +48,15 @@ export const ENTITY_VALUES = {
   sigla: "COTRASOFT",
   nit: "901897192",
   registration: "S0065848",
-  // ISO date; rendered as a localized string below and reused as
-  // `foundingDate` by OrganizationJsonLd.
+  // ISO: localized below, and reused raw as JSON-LD `foundingDate`.
   registrationDate: "2024-12-11",
   address: "Cl 22 B No. 54 21 To 3 Ap 601",
   municipality: "Bogotá D.C.",
-  // Single contact address for the whole site: legal docs, About and the
-  // Footer/Organization JSON-LD all read from here, so the entity cannot
-  // publish two different emails.
   email: "gerencia@cotrasoft.co",
 } as const;
 
-// Parsed once: date-only ISO (`YYYY-MM-DD`) is UTC by spec, and every
-// formatter below pins `timeZone: "UTC"`, so rendering is build-stable.
+// Date-only ISO is UTC by spec, and the formatters pin UTC, so the rendered
+// date does not shift with the build machine's timezone.
 const registrationDate: Date = new Date(ENTITY_VALUES.registrationDate);
 
 const registrationDateFormat: Intl.DateTimeFormatOptions = {
@@ -71,17 +66,12 @@ const registrationDateFormat: Intl.DateTimeFormatOptions = {
   timeZone: "UTC",
 };
 
-// One cached formatter per locale. `Date#toLocaleDateString` rebuilds the
-// underlying `Intl.DateTimeFormat` on every call, so shared instances are
-// the faster structure (MDN: `Intl.DateTimeFormat` constructor + `format`).
 const registrationDateFormatter: Record<SupportedLang, Intl.DateTimeFormat> = {
   es: new Intl.DateTimeFormat("es-CO", registrationDateFormat),
   en: new Intl.DateTimeFormat("en-US", registrationDateFormat),
 };
 
-// Exported so future consumers (e.g. the About page) reuse the localized
-// strings instead of formatting `ENTITY_VALUES.registrationDate` again or,
-// worse, rendering the raw ISO date.
+// Consumers reuse these instead of re-formatting, or rendering the raw ISO.
 export const registrationDateDisplay: Record<SupportedLang, string> = {
   es: registrationDateFormatter.es.format(registrationDate),
   en: registrationDateFormatter.en.format(registrationDate),

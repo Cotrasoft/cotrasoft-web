@@ -53,9 +53,7 @@ const lang = resolveLocale(Astro.currentLocale);
 											height={540}
 											src={featured.data.heroImage}
 											alt=""
-											{/* The featured image is this page's LCP element, so it must
-											    not be lazy-loaded: Astro defaults every <Image> to
-											    loading="lazy", which delays the largest paint. */}
+											{/* LCP element; Astro defaults <Image> to loading="lazy". */}
 											loading="eager"
 											fetchpriority="high"
 											class="aspect-[16/9] w-full object-cover lg:aspect-auto lg:h-full"

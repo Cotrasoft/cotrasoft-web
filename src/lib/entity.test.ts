@@ -4,10 +4,7 @@ import { aboutDocs } from "./about";
 import { ENTITY_VALUES, legal, legalSlugs } from "./legal";
 import { localePath } from "./locale-path";
 
-// The entity's contact address and brand name are published on several
-// surfaces (footer, Organization JSON-LD, legal docs, About). These pin the
-// single-source rule so a literal cannot creep back into one of them: the site
-// shipped two different emails before this was enforced.
+// The site shipped two different contact emails before this was enforced.
 describe("entity contact details", () => {
   test("the site publishes exactly one email address", () => {
     expect(ENTITY_VALUES.email).toBe("gerencia@cotrasoft.co");
@@ -33,9 +30,6 @@ describe("entity contact details", () => {
   });
 });
 
-// A page's `<title>` carries the brand for SERP context; the visible `<h1>` is
-// the subject alone. Keeping them distinct is what stops the brand suffix from
-// being rendered as a heading, which is what `/about/` used to do.
 describe("About titles", () => {
   test("the document title carries the brand and the heading does not", () => {
     for (const doc of Object.values(aboutDocs)) {
@@ -45,9 +39,6 @@ describe("About titles", () => {
   });
 });
 
-// The language switcher builds its hrefs from the same per-locale path the
-// layout passes to `localizedAlternates`, so a reader on `/en/terms/` lands on
-// `/terminos/` rather than the homepage.
 describe("language switcher paths", () => {
   test("legal slugs resolve to their localized counterpart", () => {
     expect(localePath("es", `/${legalSlugs.es.terms}/`)).toBe("/terminos/");

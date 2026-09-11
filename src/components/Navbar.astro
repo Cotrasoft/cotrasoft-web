@@ -20,10 +20,8 @@ interface NavbarLabels {
 
 interface Props {
   labels?: Partial<NavbarLabels>;
-  /** Per-locale path of the current page, so the language switcher keeps the
-   * reader on the same page instead of sending them to the homepage. Same
-   * builder the layout passes to `localizedAlternates`. Defaults to the
-   * homepage for pages with no localized counterpart (the Spanish-only blog). */
+  /** Language-switcher target per locale. Defaults to the homepage, for pages
+   * with no localized counterpart. */
   pathFor?: LocalizedPath;
 }
 

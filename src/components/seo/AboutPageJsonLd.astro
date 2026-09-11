@@ -2,9 +2,8 @@
 import { DEFAULT_LOCALE, SITE_URL, type SupportedLang } from "../../consts";
 import { organizationId } from "../../lib/jsonld";
 
-// `/about/` is the entity-definition surface, so it declares an AboutPage that
-// points `mainEntity` at the same `@id` the Organization node uses. That links
-// the page to the entity rather than describing a second, unrelated one.
+// `mainEntity` reuses the Organization `@id` so this describes the same entity
+// as the homepage rather than a second one.
 interface Props {
   lang?: SupportedLang;
   path: string;

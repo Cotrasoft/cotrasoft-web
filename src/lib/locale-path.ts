@@ -1,11 +1,8 @@
 import { DEFAULT_LOCALE, SITE_URL, type SupportedLang } from "../consts";
 
-// Directory page paths only: no `//`, backslash or control characters, no
-// query/hash, no `.`/`..` segments and no file extension. The WHATWG URL
-// parser treats `\` as `/` for special schemes, strips embedded tab/newline
-// and collapses dot segments, and Google requires alternate URLs to be fully
-// qualified, so invalid input fails loudly instead of changing the origin or
-// silently rewriting the path.
+// The WHATWG URL parser treats `\` as `/`, strips embedded tab/newline and
+// collapses dot segments, so an unvalidated path can silently change the
+// origin. Reject instead: hreflang URLs must be exactly what we intend.
 const PAGE_PATH_PATTERN = /^(?!.*\/\/)[^?#\\]*$/u;
 const CONTROL_CHARACTER_PATTERN = /\p{Cc}/u;
 const DOT_SEGMENT_PATTERN = /(?:^|\/)\.{1,2}(?:\/|$)/u;
@@ -25,10 +22,7 @@ const assertPagePath = (path: string): string =>
     ? path
     : raiseInvalidPagePath(path);
 
-// Astro 6.3.2 joins with a single leading slash and, with `trailingSlash:
-// "ignore"` + `build.format: "directory"` (pinned in astro.config.mjs),
-// appends a trailing one (`astro:i18n` `getLocaleRelativeUrl`). Normalize the
-// same way so both helpers produce identical URLs for the same input.
+// Matches `astro:i18n` under `trailingSlash: "ignore"` + directory format.
 const normalizePath = (path: string): string => {
   const withLeadingSlash: string = path.startsWith("/") ? path : `/${path}`;
   return withLeadingSlash.endsWith("/")
@@ -36,18 +30,14 @@ const normalizePath = (path: string): string => {
     : `${withLeadingSlash}/`;
 };
 
-// Joins a locale onto an unprefixed path, mirroring
-// `prefixDefaultLocale: false` in astro.config.mjs: the default locale stays
-// prefix-less, every other locale is prefixed.
+// Mirrors `prefixDefaultLocale: false` in astro.config.mjs.
 export const localePath = (locale: SupportedLang, path: string): string => {
   const normalized: string = normalizePath(assertPagePath(path));
   return locale === DEFAULT_LOCALE ? normalized : `/${locale}${normalized}`;
 };
 
-// Absolute counterpart of `localePath` for `<head>` URLs. Built on the same
-// prefixing rule instead of `astro:i18n` so this module (and every consumer)
-// stays pure and unit-testable outside an Astro build. Assumes `base` is not
-// configured in `astro.config.mjs`, which is the case today.
+// Avoids `astro:i18n` so this module stays unit-testable outside a build.
+// Assumes `base` is unset in astro.config.mjs, which holds today.
 export const absoluteLocaleUrl = (
   locale: SupportedLang,
   path: string,

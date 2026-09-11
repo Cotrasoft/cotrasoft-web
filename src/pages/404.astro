@@ -4,12 +4,8 @@ import Footer from "../components/Footer.astro";
 import Navbar from "../components/Navbar.astro";
 import { BRAND_NAME, DEFAULT_LOCALE, type SupportedLang } from "../consts";
 
-// A single `404.html` serves every missing route, so the locale cannot come
-// from `Astro.currentLocale` (there is no matched route) nor from the build
-// (the same file answers `/nope/` and `/en/nope/`). Both locales are rendered
-// and the inline script below reveals the one matching the failed URL,
-// defaulting to Spanish. `<html lang>` is corrected client-side for the same
-// reason.
+// One static file answers every missing route, so the locale is unknown at
+// build time: both are rendered and the script below reveals the match.
 interface NotFoundCopy {
   heading: string;
   body: string;
@@ -32,7 +28,7 @@ const copy: Record<SupportedLang, NotFoundCopy> = {
   },
 };
 
-// The blog is Spanish-only, so both locales link to the same unprefixed path.
+// The blog is Spanish-only: one unprefixed path for both locales.
 const BLOG_HREF = "/blog/";
 ---
 
@@ -84,8 +80,6 @@ const BLOG_HREF = "/blog/";
 		<Footer />
 
 		<script>
-			// The served path is the only signal for which locale the visitor
-			// expected, since one static file answers every missing route.
 			const locale = location.pathname.startsWith('/en/') ? 'en' : 'es';
 			document.documentElement.lang = locale;
 			document
