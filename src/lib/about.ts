@@ -12,7 +12,10 @@ export interface AboutServiceItem {
 }
 
 export interface AboutDoc {
+  /** Document `<title>`; carries the brand suffix. */
   title: string;
+  /** Visible `<h1>`; no brand suffix. */
+  heading: string;
   description: string;
   lead: string;
   storyHeading: string;
@@ -38,8 +41,7 @@ interface EntityFieldSpec {
   readonly labels: Record<SupportedLang, string>;
 }
 
-// Single table driving both locales: every field is rendered in ES and EN by
-// construction, so the two lists can never drift apart in size or order.
+// One table for both locales, so ES and EN cannot drift in size or order.
 const ENTITY_FIELD_SPECS: ReadonlyArray<EntityFieldSpec> = [
   { key: "name", labels: { es: "Razón social", en: "Legal name" } },
   { key: "sigla", labels: { es: "Sigla", en: "Acronym" } },
@@ -56,10 +58,8 @@ const ENTITY_FIELD_SPECS: ReadonlyArray<EntityFieldSpec> = [
 
 const CONTACT_HREF = `mailto:${ENTITY_VALUES.email}`;
 
-// `ENTITY_VALUES.registrationDate` is an ISO date (reused as JSON-LD
-// `foundingDate`), so it is the one field that must be read through
-// `registrationDateDisplay` — otherwise the table renders `2024-12-11` while
-// the `lead` prose above it says "11 de diciembre de 2024".
+// `registrationDate` is stored as ISO (JSON-LD `foundingDate` reuses it), so
+// it is the one field that needs the localized form.
 const entityFieldsFor = (lang: SupportedLang): AboutEntityField[] =>
   ENTITY_FIELD_SPECS.map((spec) => ({
     label: spec.labels[lang],
@@ -72,6 +72,7 @@ const entityFieldsFor = (lang: SupportedLang): AboutEntityField[] =>
 export const aboutDocs: Record<SupportedLang, AboutDoc> = {
   es: {
     title: "Quiénes somos - Cotrasoft",
+    heading: "Quiénes somos",
     description:
       "Cotrasoft es una cooperativa multiactiva de trabajadores de software de Bogotá, Colombia: historia, servicios y datos registrales de la entidad.",
     lead: "Cotrasoft es una cooperativa multiactiva de aporte y crédito de trabajadores de software colombiana, inscrita el 11 de diciembre de 2024 con registro S0065848 y con domicilio en Bogotá D.C. Somos más de 40 asociados que desarrollamos, diseñamos y gestionamos proyectos de software juntos, como empresa asociativa sin ánimo de lucro.",
@@ -115,6 +116,7 @@ export const aboutDocs: Record<SupportedLang, AboutDoc> = {
   },
   en: {
     title: "About Us - Cotrasoft",
+    heading: "About us",
     description:
       "Cotrasoft is a multi-active cooperative of software workers based in Bogotá, Colombia: our story, our services and the entity's registry information.",
     lead: "Cotrasoft is a Colombian multi-active savings and credit cooperative of software workers, registered on December 11, 2024 under registry S0065848 and domiciled in Bogotá D.C. We are 40+ members who develop, design and manage software projects together, as a non-profit associative enterprise.",

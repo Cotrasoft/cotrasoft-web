@@ -1,5 +1,5 @@
 ---
-import { SITE_URL, SUPPORTED_LOCALES } from "../../consts";
+import { BRAND_NAME, SITE_URL, SUPPORTED_LOCALES } from "../../consts";
 import { organizationId } from "../../lib/jsonld";
 import { ENTITY_VALUES } from "../../lib/legal";
 
@@ -12,7 +12,7 @@ interface Props {
 const {
   description,
   logo = "/cotrasoft.svg",
-  email = "gerencia@cotrasoft.co",
+  email = ENTITY_VALUES.email,
 } = Astro.props;
 
 const siteURL: URL = Astro.site ?? SITE_URL;
@@ -20,7 +20,7 @@ const data = {
   "@context": "https://schema.org",
   "@type": "Organization",
   "@id": organizationId(siteURL),
-  name: "Cotrasoft",
+  name: BRAND_NAME,
   legalName: ENTITY_VALUES.name,
   taxID: ENTITY_VALUES.nit,
   url: siteURL.href,

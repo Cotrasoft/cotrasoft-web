@@ -2,7 +2,7 @@
 import BaseHead from "../components/BaseHead.astro";
 import Footer from "../components/Footer.astro";
 import Navbar from "../components/Navbar.astro";
-import { resolveLocale } from "../consts";
+import { BRAND_NAME, resolveLocale, type SupportedLang } from "../consts";
 import { type HreflangAlternate, localizedAlternates } from "../lib/hreflang";
 import type { LegalDoc, LegalSlug } from "../lib/legal";
 import { legalSlugs } from "../lib/legal";
@@ -16,23 +16,25 @@ const { slug, doc } = Astro.props;
 
 const lang = resolveLocale(Astro.currentLocale);
 
-const alternates: readonly HreflangAlternate[] = localizedAlternates(
-  (code): string => `/${legalSlugs[code][slug]}/`,
-);
+const pathFor = (code: SupportedLang): string => `/${legalSlugs[code][slug]}/`;
+
+const alternates: readonly HreflangAlternate[] = localizedAlternates(pathFor);
+
+const documentTitle = `${doc.title} | ${BRAND_NAME}`;
 ---
 
 <!doctype html>
 <html lang={lang}>
 	<head>
 		<BaseHead
-			title={doc.title}
+			title={documentTitle}
 			description={doc.description}
 			lang={lang}
 			alternates={alternates}
 		/>
 	</head>
 	<body>
-		<Navbar />
+		<Navbar pathFor={pathFor} />
 		<main class="bg-white dark:bg-gray-900">
 			<article class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 pt-32 pb-20">
 				<header class="mb-10">

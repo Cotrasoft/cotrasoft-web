@@ -1,0 +1,92 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+import Footer from "../components/Footer.astro";
+import Navbar from "../components/Navbar.astro";
+import { BRAND_NAME, DEFAULT_LOCALE, type SupportedLang } from "../consts";
+
+// One static file answers every missing route, so the locale is unknown at
+// build time: both are rendered and the script below reveals the match.
+interface NotFoundCopy {
+  heading: string;
+  body: string;
+  home: string;
+  blog: string;
+}
+
+const copy: Record<SupportedLang, NotFoundCopy> = {
+  es: {
+    heading: "Página no encontrada",
+    body: "El enlace que seguiste no existe o la página se movió. Desde la portada puedes llegar a nuestros servicios, al blog y a los datos de la cooperativa.",
+    home: "Ir a la portada",
+    blog: "Ver el blog",
+  },
+  en: {
+    heading: "Page not found",
+    body: "The link you followed does not exist, or the page moved. The homepage will take you to our services, the blog and the cooperative's details.",
+    home: "Go to the homepage",
+    blog: "Read the blog",
+  },
+};
+
+// The blog is Spanish-only: one unprefixed path for both locales.
+const BLOG_HREF = "/blog/";
+---
+
+<!doctype html>
+<html lang={DEFAULT_LOCALE}>
+	<head>
+		<BaseHead
+			title={`404 | ${BRAND_NAME}`}
+			description={copy[DEFAULT_LOCALE].body}
+			lang={DEFAULT_LOCALE}
+			noindex
+		/>
+	</head>
+
+	<body>
+		<Navbar />
+		<main class="bg-white dark:bg-gray-900">
+			<section class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 pt-32 pb-20 text-center">
+				<p class="text-6xl sm:text-7xl font-bold gradient-text">404</p>
+
+				{
+					(Object.keys(copy) as SupportedLang[]).map((locale) => (
+						<div data-not-found={locale} hidden={locale !== DEFAULT_LOCALE}>
+							<h1 class="mt-6 text-3xl sm:text-4xl font-bold dark:text-white">
+								{copy[locale].heading}
+							</h1>
+							<p class="mx-auto mt-4 max-w-xl text-lg text-gray-600 dark:text-gray-300">
+								{copy[locale].body}
+							</p>
+							<div class="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
+								<a
+									href={locale === DEFAULT_LOCALE ? "/" : `/${locale}/`}
+									class="btn-primary inline-flex items-center justify-center"
+								>
+									{copy[locale].home}
+								</a>
+								<a
+									href={BLOG_HREF}
+									class="btn-outlined inline-flex items-center justify-center"
+								>
+									{copy[locale].blog}
+								</a>
+							</div>
+						</div>
+					))
+				}
+			</section>
+		</main>
+		<Footer />
+
+		<script>
+			const locale = location.pathname.startsWith('/en/') ? 'en' : 'es';
+			document.documentElement.lang = locale;
+			document
+				.querySelectorAll<HTMLElement>('[data-not-found]')
+				.forEach((block) => {
+					block.hidden = block.dataset.notFound !== locale;
+				});
+		</script>
+	</body>
+</html>

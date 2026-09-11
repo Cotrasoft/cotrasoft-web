@@ -3,6 +3,8 @@ import { getRelativeLocaleUrl } from "astro:i18n";
 import BaseHead from "../components/BaseHead.astro";
 import Footer from "../components/Footer.astro";
 import Navbar from "../components/Navbar.astro";
+import AboutPageJsonLd from "../components/seo/AboutPageJsonLd.astro";
+import OrganizationJsonLd from "../components/seo/OrganizationJsonLd.astro";
 import { resolveLocale } from "../consts";
 import { aboutDocs } from "../lib/about";
 import { type HreflangAlternate, pageAlternates } from "../lib/hreflang";
@@ -10,7 +12,9 @@ import { type HreflangAlternate, pageAlternates } from "../lib/hreflang";
 const lang = resolveLocale(Astro.currentLocale);
 const doc = aboutDocs[lang];
 
-const alternates: readonly HreflangAlternate[] = pageAlternates("/about/");
+const ABOUT_PATH = "/about/";
+
+const alternates: readonly HreflangAlternate[] = pageAlternates(ABOUT_PATH);
 
 const joinHref = "https://app.cotrasoft.co/registro";
 const servicesMoreHref = `${getRelativeLocaleUrl(lang, "/")}#servicios`;
@@ -25,14 +29,21 @@ const servicesMoreHref = `${getRelativeLocaleUrl(lang, "/")}#servicios`;
 			lang={lang}
 			alternates={alternates}
 		/>
+		<OrganizationJsonLd description={doc.description} />
+		<AboutPageJsonLd
+			lang={lang}
+			path={ABOUT_PATH}
+			name={doc.heading}
+			description={doc.description}
+		/>
 	</head>
 	<body>
-		<Navbar />
+		<Navbar pathFor={() => ABOUT_PATH} />
 		<main class="bg-white dark:bg-gray-900">
 			<article class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 pt-32 pb-20">
 				<header class="mb-10">
 					<h1 class="text-4xl sm:text-5xl font-bold gradient-text leading-tight">
-						{doc.title}
+						{doc.heading}
 					</h1>
 					<p class="mt-4 text-lg text-gray-600 dark:text-gray-300">
 						{doc.lead}

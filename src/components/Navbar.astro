@@ -5,6 +5,8 @@ import {
   SUPPORTED_LOCALES,
   type SupportedLang,
 } from "../consts";
+import type { LocalizedPath } from "../lib/hreflang";
+import { localePath } from "../lib/locale-path";
 
 interface NavbarLabels {
   services: string;
@@ -18,9 +20,12 @@ interface NavbarLabels {
 
 interface Props {
   labels?: Partial<NavbarLabels>;
+  /** Language-switcher target per locale. Defaults to the homepage, for pages
+   * with no localized counterpart. */
+  pathFor?: LocalizedPath;
 }
 
-const { labels = {} } = Astro.props;
+const { labels = {}, pathFor = () => "/" } = Astro.props;
 
 const lang = resolveLocale(Astro.currentLocale);
 
@@ -65,7 +70,7 @@ interface LangLink {
 const langLinks: LangLink[] = SUPPORTED_LOCALES.map(
   (code: SupportedLang): LangLink => ({
     code,
-    href: getRelativeLocaleUrl(code, "/"),
+    href: localePath(code, pathFor(code)),
     active: code === lang,
   }),
 );

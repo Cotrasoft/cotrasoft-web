@@ -9,16 +9,14 @@ interface AlternatePath {
   path: string;
 }
 
-// Sitemap URLs may or may not end in `/` depending on `trailingSlash`
-// config, so table keys and lookups share one slash-insensitive form
-// (the root `/` is already slash-less and passes through untouched).
+// `trailingSlash` config decides whether sitemap URLs end in `/`, so keys and
+// lookups share one slash-insensitive form.
 const normalize = (pathname: string): string =>
   pathname.replace(/(.)\/$/u, "$1");
 
-// Legal pages localize their slugs (`terminos` vs `terms`), so the sitemap
-// integration cannot pair them by stripping the locale prefix. Each set is
-// built from the shared hreflang spec, so it mirrors the `<head>` alternates
-// emitted by `Legal.astro` by construction.
+// The integration pairs URLs by stripping the locale prefix, which cannot
+// match localized slugs (`terminos` vs `terms`). Built from the shared spec so
+// it mirrors `Legal.astro`'s `<head>` by construction.
 const alternateSet = (slug: LegalSlug): readonly AlternatePath[] =>
   alternatePaths((locale): string => `/${legalSlugs[locale][slug]}/`).map(
     ({ locale, lang, path }): AlternatePath => ({
@@ -47,8 +45,7 @@ const LEGAL_ALTERNATES_BY_PATHNAME: ReadonlyMap<
   ),
 );
 
-// Shared empty result: absence is a value here, so consumers never branch on
-// `null` and non-legal items keep their identity.
+// Empty rather than `null` so non-legal items keep their identity.
 const NO_ALTERNATES: readonly AlternatePath[] = [];
 
 const alternatesFor = (url: string): readonly AlternatePath[] =>
@@ -62,10 +59,8 @@ const toLink =
     lang,
   });
 
-// `@astrojs/sitemap`'s i18n option attaches one link per locale before
-// `serialize` runs but never emits `x-default` (`dist/generate-sitemap.js`),
-// so the default-locale link is mirrored as `x-default` to keep the sitemap
-// matching the `<head>` annotations.
+// `@astrojs/sitemap` attaches one link per locale before `serialize` runs but
+// never emits `x-default` (`dist/generate-sitemap.js`), so mirror it here.
 const withXDefault = (item: SitemapItem): SitemapItem => {
   const links: readonly LinkItem[] = item.links ?? [];
   const xDefaults: readonly LinkItem[] = links

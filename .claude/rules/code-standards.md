@@ -8,6 +8,20 @@ The `overrides` block disables `useConst`, `useImportType`, `noUnusedVariables`,
 
 `biome ci ./src` must pass before pushing (enforced by `.githooks/pre-push`).
 
+## Comments
+
+Code should be self-explanatory; keep comments to a minimum. Delete anything that
+restates what the code says, narrates a change ("now reads from X"), or explains
+standard language/framework behavior. Prefer a clearer name or an extracted
+constant over a comment.
+
+Keep only what the code cannot say: a non-obvious *why*, a spec/RFC constraint
+(`locale-path.ts` on the WHATWG URL parser), an external-behavior workaround
+(`sitemap.ts` on `@astrojs/sitemap` never emitting `x-default`), or a footgun
+someone would otherwise "fix" incorrectly (`404.astro` rendering both locales).
+No file-header banners, no section dividers, no commit-message prose in source —
+the commit message is where the narrative belongs.
+
 ## TypeScript
 
 `astro/tsconfigs/strict` with `strictNullChecks`, and `jsx: react-jsx` (React 19 is installed via `@astrojs/react` for future islands; nothing uses it yet). **Nothing type-checks this repo** — `astro build` strips types without checking them, and `astro check` is unavailable. Type errors surface only in the editor, so a green `pnpm build` says nothing about them.

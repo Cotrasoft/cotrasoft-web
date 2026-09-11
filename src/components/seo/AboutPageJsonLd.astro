@@ -1,0 +1,32 @@
+---
+import { DEFAULT_LOCALE, SITE_URL, type SupportedLang } from "../../consts";
+import { organizationId } from "../../lib/jsonld";
+
+// `mainEntity` reuses the Organization `@id` so this describes the same entity
+// as the homepage rather than a second one.
+interface Props {
+  lang?: SupportedLang;
+  path: string;
+  name: string;
+  description: string;
+}
+
+const { lang = DEFAULT_LOCALE, path, name, description } = Astro.props;
+
+const siteURL: URL = Astro.site ?? SITE_URL;
+const data = {
+  "@context": "https://schema.org",
+  "@type": "AboutPage",
+  url: new URL(path, siteURL).href,
+  name,
+  description,
+  inLanguage: lang,
+  mainEntity: { "@id": organizationId(siteURL) },
+};
+---
+
+<script
+	type="application/ld+json"
+	is:inline
+	set:html={JSON.stringify(data).replaceAll("<", "\\u003c")}
+/>

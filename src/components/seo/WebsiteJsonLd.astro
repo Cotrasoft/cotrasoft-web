@@ -1,5 +1,10 @@
 ---
-import { DEFAULT_LOCALE, SITE_URL, type SupportedLang } from "../../consts";
+import {
+  BRAND_NAME,
+  DEFAULT_LOCALE,
+  SITE_URL,
+  type SupportedLang,
+} from "../../consts";
 import { organizationId } from "../../lib/jsonld";
 
 interface Props {
@@ -12,7 +17,7 @@ const siteURL: URL = Astro.site ?? SITE_URL;
 const data = {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  name: "Cotrasoft",
+  name: BRAND_NAME,
   url: siteURL.href,
   inLanguage: lang,
   publisher: { "@id": organizationId(siteURL) },
