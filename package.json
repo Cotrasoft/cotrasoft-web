@@ -12,6 +12,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
+    "check": "astro check",
     "test": "vitest run",
     "test:e2e": "playwright test",
     "format": "biome format --write ./src astro.config.mjs",
@@ -31,7 +32,7 @@
     "wrangler": "^4.124.0"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.5.9",
+    "@astrojs/check": "^0.9.10",
     "@biomejs/biome": "2.5.9",
     "@playwright/test": "^1.62.1",
     "@tailwindcss/typography": "^0.5.20",
