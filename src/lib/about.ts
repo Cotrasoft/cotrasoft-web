@@ -1,5 +1,5 @@
 import type { SupportedLang } from "../consts";
-import { ENTITY_VALUES } from "./legal";
+import { ENTITY_VALUES, registrationDateDisplay } from "./legal";
 
 export interface AboutEntityField {
   label: string;
@@ -56,10 +56,17 @@ const ENTITY_FIELD_SPECS: ReadonlyArray<EntityFieldSpec> = [
 
 const CONTACT_HREF = `mailto:${ENTITY_VALUES.email}`;
 
+// `ENTITY_VALUES.registrationDate` is an ISO date (reused as JSON-LD
+// `foundingDate`), so it is the one field that must be read through
+// `registrationDateDisplay` — otherwise the table renders `2024-12-11` while
+// the `lead` prose above it says "11 de diciembre de 2024".
 const entityFieldsFor = (lang: SupportedLang): AboutEntityField[] =>
   ENTITY_FIELD_SPECS.map((spec) => ({
     label: spec.labels[lang],
-    value: ENTITY_VALUES[spec.key],
+    value:
+      spec.key === "registrationDate"
+        ? registrationDateDisplay[lang]
+        : ENTITY_VALUES[spec.key],
   }));
 
 export const aboutDocs: Record<SupportedLang, AboutDoc> = {

@@ -3,31 +3,33 @@ import { getAbsoluteLocaleUrl, getRelativeLocaleUrl } from "astro:i18n";
 import BaseHead from "../components/BaseHead.astro";
 import Footer from "../components/Footer.astro";
 import Navbar from "../components/Navbar.astro";
-import { DEFAULT_LOCALE, type SupportedLang } from "../consts";
+import {
+  DEFAULT_LOCALE,
+  HREFLANG,
+  resolveLocale,
+  SUPPORTED_LOCALES,
+  type SupportedLang,
+  X_DEFAULT,
+} from "../consts";
 import { aboutDocs } from "../lib/about";
 
-const lang: SupportedLang =
-  Astro.currentLocale === "en" ? "en" : DEFAULT_LOCALE;
+const lang = resolveLocale(Astro.currentLocale);
 const doc = aboutDocs[lang];
 
-// Kept file-local on purpose: no shared hreflang/locale table exists on this
-// base yet, and `getAbsoluteLocaleUrl` throws for unknown locales (see
-// astro:i18n docs), so every entry here must be an exact `SupportedLang`.
-const HREFLANG = { es: "es-CO", en: "en-US" } as const satisfies Record<
-  SupportedLang,
-  string
->;
-const SUPPORTED_LANGUAGES = [
-  "es",
-  "en",
-] as const satisfies ReadonlyArray<SupportedLang>;
-const alternates = [
-  ...SUPPORTED_LANGUAGES.map((code) => ({
-    hreflang: HREFLANG[code],
-    href: getAbsoluteLocaleUrl(code, "/about/"),
-  })),
+interface HreflangAlternate {
+  hreflang: string;
+  href: string | URL;
+}
+
+const alternates: HreflangAlternate[] = [
+  ...SUPPORTED_LOCALES.map(
+    (code: SupportedLang): HreflangAlternate => ({
+      hreflang: HREFLANG[code],
+      href: getAbsoluteLocaleUrl(code, "/about/"),
+    }),
+  ),
   {
-    hreflang: "x-default",
+    hreflang: X_DEFAULT,
     href: getAbsoluteLocaleUrl(DEFAULT_LOCALE, "/about/"),
   },
 ];
