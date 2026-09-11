@@ -14,6 +14,7 @@ interface FooterLabels {
   links: {
     services: string;
     benefits: string;
+    about: string;
     join: string;
     terms: string;
     privacy: string;
@@ -47,6 +48,7 @@ const defaults: Record<SupportedLang, FooterLabels> = {
     links: {
       services: "Servicios",
       benefits: "Cómo funciona",
+      about: "Quiénes somos",
       join: "Únete",
       terms: "Términos",
       privacy: "Privacidad",
@@ -64,6 +66,7 @@ const defaults: Record<SupportedLang, FooterLabels> = {
     links: {
       services: "Services",
       benefits: "How it works",
+      about: "About us",
       join: "Join us",
       terms: "Terms",
       privacy: "Privacy",
@@ -87,6 +90,7 @@ const homeHref = getRelativeLocaleUrl(lang, "/");
 const navLinks = [
   { label: t.links.services, href: `${homeHref}#servicios` },
   { label: t.links.benefits, href: `${homeHref}#beneficios` },
+  { label: t.links.about, href: getRelativeLocaleUrl(lang, "/about/") },
   { label: t.links.join, href: "https://app.cotrasoft.co/registro" },
   {
     label: t.links.terms,
