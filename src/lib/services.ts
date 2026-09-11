@@ -28,7 +28,7 @@ export interface ServicesContent {
 
 export const servicesContent: Record<SupportedLang, ServicesContent> = {
   es: {
-    heading: "Nuestros servicios",
+    heading: "¿Qué servicios ofrece Cotrasoft?",
     subheading:
       "Equipos senior potenciados con IA que entregan software funcional en días, no meses. Sprints estructurados con alcances claros y resultados predecibles.",
     cta: "Agenda una consulta",
@@ -98,7 +98,7 @@ export const servicesContent: Record<SupportedLang, ServicesContent> = {
     },
   },
   en: {
-    heading: "Our services",
+    heading: "What services does Cotrasoft offer?",
     subheading:
       "Senior teams powered by AI delivering functional software in days, not months. Structured sprints with clear scopes and predictable outcomes.",
     cta: "Schedule a consultation",

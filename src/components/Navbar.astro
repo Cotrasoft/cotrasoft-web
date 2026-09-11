@@ -1,6 +1,10 @@
 ---
 import { getRelativeLocaleUrl } from "astro:i18n";
-import { DEFAULT_LOCALE, type SupportedLang } from "../consts";
+import {
+  resolveLocale,
+  SUPPORTED_LOCALES,
+  type SupportedLang,
+} from "../consts";
 
 interface NavbarLabels {
   services: string;
@@ -18,12 +22,12 @@ interface Props {
 
 const { labels = {} } = Astro.props;
 
-const lang = (Astro.currentLocale ?? DEFAULT_LOCALE) as SupportedLang;
+const lang = resolveLocale(Astro.currentLocale);
 
 const defaultLabels: Record<SupportedLang, NavbarLabels> = {
   es: {
     services: "Servicios",
-    benefits: "Beneficios",
+    benefits: "Cómo funciona",
     join: "Únete",
     login: "Iniciar sesión",
     blog: "Blog",
@@ -32,7 +36,7 @@ const defaultLabels: Record<SupportedLang, NavbarLabels> = {
   },
   en: {
     services: "Services",
-    benefits: "Benefits",
+    benefits: "How it works",
     join: "Join us",
     login: "Sign in",
     blog: "Blog",
@@ -52,13 +56,19 @@ const menuItems = [
 ];
 const loginHref = "https://app.cotrasoft.co/";
 
-const supportedLanguages = ["es", "en"] as const;
+interface LangLink {
+  code: SupportedLang;
+  href: string | URL;
+  active: boolean;
+}
 
-const langLinks = supportedLanguages.map((code) => ({
-  code,
-  href: getRelativeLocaleUrl(code, "/"),
-  active: code === lang,
-}));
+const langLinks: LangLink[] = SUPPORTED_LOCALES.map(
+  (code: SupportedLang): LangLink => ({
+    code,
+    href: getRelativeLocaleUrl(code, "/"),
+    active: code === lang,
+  }),
+);
 ---
 
 <nav
@@ -106,7 +116,7 @@ const langLinks = supportedLanguages.map((code) => ({
 								)}
 								<a
 									href={link.href}
-									aria-current={link.active ? 'true' : undefined}
+									aria-current={link.active ? "true" : null}
 									class:list={[
 										'uppercase transition-colors duration-200',
 										link.active
@@ -132,7 +142,7 @@ const langLinks = supportedLanguages.map((code) => ({
 								)}
 								<a
 									href={link.href}
-									aria-current={link.active ? 'true' : undefined}
+									aria-current={link.active ? "true" : null}
 									class:list={[
 										'uppercase transition-colors duration-200',
 										link.active
@@ -219,22 +229,24 @@ const langLinks = supportedLanguages.map((code) => ({
 </nav>
 
 <script>
-	const navbar = document.querySelector<HTMLElement>('[data-navbar]');
-	if (navbar) {
-		const toggle = navbar.querySelector<HTMLButtonElement>('[data-menu-toggle]');
-		const menu = navbar.querySelector<HTMLElement>('[data-mobile-menu]');
-		const links = navbar.querySelectorAll<HTMLAnchorElement>('[data-menu-link]');
+	document.querySelectorAll<HTMLElement>("[data-navbar]").forEach((navbar) => {
+		const toggle =
+			navbar.querySelector<HTMLButtonElement>("[data-menu-toggle]");
+		const menu = navbar.querySelector<HTMLElement>("[data-mobile-menu]");
+		const links = navbar.querySelectorAll<HTMLAnchorElement>("[data-menu-link]");
 
 		const setOpen = (open: boolean) => {
-			toggle?.setAttribute('aria-expanded', String(open));
-			menu?.setAttribute('data-open', String(open));
+			toggle?.setAttribute("aria-expanded", String(open));
+			menu?.setAttribute("data-open", String(open));
 		};
 
-		toggle?.addEventListener('click', () => {
-			const isOpen = toggle.getAttribute('aria-expanded') === 'true';
+		toggle?.addEventListener("click", () => {
+			const isOpen = toggle.getAttribute("aria-expanded") === "true";
 			setOpen(!isOpen);
 		});
 
-		links.forEach((link) => link.addEventListener('click', () => setOpen(false)));
-	}
+		links.forEach((link) =>
+			link.addEventListener("click", () => setOpen(false)),
+		);
+	});
 </script>

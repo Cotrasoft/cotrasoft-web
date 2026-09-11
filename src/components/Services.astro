@@ -1,5 +1,5 @@
 ---
-import { DEFAULT_LOCALE, type SupportedLang } from "../consts";
+import { resolveLocale } from "../consts";
 import {
   type Service,
   type ServicesContent,
@@ -13,7 +13,7 @@ interface Props {
 }
 
 const { content = {} } = Astro.props;
-const lang = (Astro.currentLocale ?? DEFAULT_LOCALE) as SupportedLang;
+const lang = resolveLocale(Astro.currentLocale);
 
 const t: ServicesContent = { ...servicesContent[lang], ...content };
 

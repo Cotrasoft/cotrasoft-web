@@ -1,4 +1,5 @@
 ---
+import { SITE_URL, SUPPORTED_LOCALES } from "../../consts";
 import { organizationId } from "../../lib/jsonld";
 import { ENTITY_VALUES } from "../../lib/legal";
 
@@ -14,7 +15,7 @@ const {
   email = "gerencia@cotrasoft.co",
 } = Astro.props;
 
-const siteURL = Astro.site!;
+const siteURL: URL = Astro.site ?? SITE_URL;
 const data = {
   "@context": "https://schema.org",
   "@type": "Organization",
@@ -37,9 +38,9 @@ const data = {
     "@type": "ContactPoint",
     contactType: "customer service",
     email,
-    availableLanguage: ["es", "en"],
+    availableLanguage: [...SUPPORTED_LOCALES],
   },
-  knowsLanguage: ["es", "en"],
+  knowsLanguage: [...SUPPORTED_LOCALES],
   areaServed: [
     { "@type": "Country", name: "Colombia" },
     { "@type": "Country", name: "United States" },
