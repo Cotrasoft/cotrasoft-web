@@ -1,6 +1,6 @@
 ---
-import { SITE_URL } from "../../consts";
 import { organizationId } from "../../lib/jsonld";
+import { siteUrl } from "../../lib/site";
 
 interface Service {
   name: string;
@@ -13,7 +13,7 @@ interface Props {
 
 const { services } = Astro.props;
 
-const siteURL: URL = Astro.site ?? SITE_URL;
+const siteURL = siteUrl(Astro.site);
 
 const data = {
   "@context": "https://schema.org",

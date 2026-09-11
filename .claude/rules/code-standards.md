@@ -10,7 +10,7 @@ The `overrides` block disables `useConst`, `useImportType`, `noUnusedVariables`,
 
 ## TypeScript
 
-`astro/tsconfigs/strict` with `strictNullChecks`, and `jsx: react-jsx` (React 19 is installed via `@astrojs/react` for future islands; nothing uses it yet). **Nothing type-checks this repo** — `astro build` strips types without checking them, and `astro check` is unavailable. Type errors surface only in the editor, so a green `pnpm build` says nothing about them.
+`astro/tsconfigs/strict` with `strictNullChecks`. **Nothing type-checks this repo** — `astro build` strips types without checking them, and `astro check` is unavailable. Type errors surface only in the editor, so a green `pnpm build` says nothing about them.
 
 `Astro.site` and `context.site` are `URL | undefined`. `site` *is* set in `astro.config.mjs`, so at build time they are never actually undefined — but do not silence the type, because the failure is real rather than cosmetic: `new URL(path, undefined)` throws instead of degrading, and TS waves it through since the `base` argument is optional.
 
