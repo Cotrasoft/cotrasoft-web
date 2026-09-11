@@ -29,7 +29,7 @@ pnpm cf:prod          # wrangler deploy
 
 ## Verification
 
-Unit tests live under `src/` and run with `pnpm test` (vitest, scoped by `vitest.config.ts` — e2e specs under `e2e/` run separately with `pnpm test:e2e`). There is no type-check script — `@astrojs/check` and `typescript` are not dependencies, so `astro check` is unavailable. The gates are:
+Unit tests live under `src/` and run with `pnpm test` (vitest). There is no type-check script — `@astrojs/check` is not a dependency (`typescript` is installed but no script runs it), so `astro check` is unavailable. The gates are:
 
 1. `pnpm exec biome ci ./src`
 2. `pnpm test`
