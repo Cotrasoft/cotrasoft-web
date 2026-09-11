@@ -5,7 +5,7 @@ import {
   resolveLocale,
   type SupportedLang,
 } from "../consts";
-import { legalSlugs } from "../lib/legal";
+import { ENTITY_VALUES, legalSlugs } from "../lib/legal";
 
 interface FooterLabels {
   description: string;
@@ -53,7 +53,7 @@ const defaults: Record<SupportedLang, FooterLabels> = {
     },
     contact: {
       heading: "Contacto",
-      email: "gerencia@cotrasoft.co",
+      email: ENTITY_VALUES.email,
       location: "Colombia",
     },
   },
@@ -70,7 +70,7 @@ const defaults: Record<SupportedLang, FooterLabels> = {
     },
     contact: {
       heading: "Contact",
-      email: "gerencia@cotrasoft.co",
+      email: ENTITY_VALUES.email,
       location: "Colombia",
     },
   },

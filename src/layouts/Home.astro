@@ -44,7 +44,7 @@ const alternates: readonly HreflangAlternate[] = pageAlternates("/");
 		<ServicesJsonLd services={homeServices} />
 	</head>
 	<body>
-		<Navbar />
+		<Navbar pathFor={() => "/"} />
 		<main>
 			<Hero />
 			<Services content={servicesData} />

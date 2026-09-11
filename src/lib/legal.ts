@@ -54,7 +54,10 @@ export const ENTITY_VALUES = {
   registrationDate: "2024-12-11",
   address: "Cl 22 B No. 54 21 To 3 Ap 601",
   municipality: "Bogotá D.C.",
-  email: "cotrasoft@gmail.com",
+  // Single contact address for the whole site: legal docs, About and the
+  // Footer/Organization JSON-LD all read from here, so the entity cannot
+  // publish two different emails.
+  email: "gerencia@cotrasoft.co",
 } as const;
 
 // Parsed once: date-only ISO (`YYYY-MM-DD`) is UTC by spec, and every

@@ -14,6 +14,11 @@ export const DEFAULT_LOCALE: SupportedLang = "es";
 // (https://docs.astro.build/en/reference/api-reference/#site).
 export const SITE_URL: URL = new URL("https://cotrasoft.co");
 
+// Short brand name, as opposed to `ENTITY_VALUES.name` (the full legal name).
+// Used for `og:site_name`, the JSON-LD `name` fields and the `<title>` brand
+// suffix, so every surface spells the brand the same way.
+export const BRAND_NAME = "Cotrasoft";
+
 // Canonical entity definition, reused verbatim across meta description,
 // hero subheading, footer and Organization JSON-LD so every surface
 // describes Cotrasoft with the same words.

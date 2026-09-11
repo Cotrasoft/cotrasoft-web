@@ -11,9 +11,10 @@ This is the part most likely to trip you up.
   ```
   `resolveLocale`, `DEFAULT_LOCALE` and `SupportedLang` live in `src/consts.ts` and must stay in sync with `astro.config.mjs` (`i18n.defaultLocale`, `i18n.locales`, and the `sitemap()` i18n block). Don't cast `Astro.currentLocale` by hand.
 - **There is no central translation dictionary.** Each component owns its copy in a `defaults: Record<SupportedLang, T>` table in its frontmatter, plus an optional override prop. See `code-standards.md` for the authoring pattern.
+- Entity facts have one source: `ENTITY_VALUES` in `src/lib/legal.ts` (NIT, address, registration, **email**) and `BRAND_NAME` in `src/consts.ts` (the short brand, as opposed to `ENTITY_VALUES.name`, the full legal name). The footer, the Organization JSON-LD, the legal docs and About all read from them — the site shipped two different contact emails before this was enforced, so don't reintroduce a literal.
 - Longer prose is the exception: legal documents live in `src/lib/legal.ts` as a `Record<SupportedLang, LegalContent>`, with shared entity data (NIT, address, registration) factored into `ENTITY_VALUES`.
 - Localized URL slugs are mapped in `legalSlugs` (`terminos`/`privacidad` vs `terms`/`privacy`). Route files pass the doc explicitly (`<Legal slug="terms" doc={legal.es.terms} />`), so both the slug map and the page file must be added per locale.
-- Layouts don't build `hreflang` arrays by hand. `src/lib/hreflang.ts` is the single builder (`localizedAlternates`, `pageAlternates`, plus a `selfAlternates` fallback for pages without a localized copy such as the Spanish-only blog) over the `HREFLANG` / `SUPPORTED_LOCALES` / `X_DEFAULT` tables in `src/consts.ts`; layouts pass the result to `BaseHead`. `Navbar`/`Footer` use `getRelativeLocaleUrl` for the language switcher and internal links; hard-code nothing.
+- Layouts don't build `hreflang` arrays by hand. `src/lib/hreflang.ts` is the single builder (`localizedAlternates`, `pageAlternates`, plus a `selfAlternates` fallback for pages without a localized copy such as the Spanish-only blog) over the `HREFLANG` / `SUPPORTED_LOCALES` / `X_DEFAULT` tables in `src/consts.ts`; layouts pass the result to `BaseHead`. `Navbar` takes the same `pathFor` builder the layout passes to `localizedAlternates`, so the language switcher lands the reader on the current page's counterpart (`/en/terms/` → `/terminos/`) instead of the homepage; it defaults to the homepage for pages with no counterpart (the Spanish-only blog, the 404). `Footer` uses `getRelativeLocaleUrl` for internal links; hard-code nothing.
 - `public/_redirects` 301s legacy `/es/*` URLs to the root.
 
 Adding a locale means touching: `astro.config.mjs` (locales + sitemap), `SupportedLang`, every component's `defaults` table, the `HREFLANG` table (alternates derive from it), `legalSlugs`, and a new `src/pages/<locale>/` tree.
@@ -21,7 +22,7 @@ Adding a locale means touching: `astro.config.mjs` (locales + sitemap), `Support
 ## Routing and content
 
 - `src/pages/*.astro` = Spanish routes; `src/pages/en/*.astro` = English. Page files are deliberately thin — they pick a layout and pass locale-specific data.
-- Layouts: `Home.astro` (landing), `Legal.astro` (terms/privacy), `BlogPost.astro`.
+- Layouts: `Home.astro` (landing), `About.astro`, `Legal.astro` (terms/privacy), `BlogPost.astro`. `src/pages/404.astro` renders both locales and reveals the matching one client-side, since one static file answers every missing route; it passes `noindex` to `BaseHead`, which then also suppresses the canonical link and the hreflang set.
 - The blog is **Spanish-only and not localized**: `src/pages/blog/`, `layouts/BlogPost.astro`, and `FormattedDate.astro` resolve to the default locale and emit no `en` hreflang (`BaseHead` falls back to self-referential alternates there).
 - Blog posts are a content collection (`src/content.config.ts`) with a `published: boolean` (default `false`) gate. `src/lib/blog.ts` is the single accessor: it returns all posts during `astro dev` (`import.meta.env.DEV`) but only `published: true` posts in production builds, newest first. Use `getBlogPosts()` rather than calling `getCollection("blog")` directly, or drafts will leak into production and `rss.xml.ts` / the index / `getStaticPaths` will disagree.
 
@@ -47,4 +48,4 @@ Real state of the repo — don't mistake these for intentional patterns:
 
 - `FaqJsonLd` in `src/components/seo/` is written but referenced by nothing — deliberately, since no FAQ section exists yet and markup must match visible content. The other three (`OrganizationJsonLd`, `WebsiteJsonLd`, `ServicesJsonLd`) are wired from `layouts/Home.astro` and emit on both homes.
 - `FormattedDate.astro` formats with `en-us` even on Spanish pages.
-- Leftovers from the Astro blog starter, **not** real content: `README.md`, `src/pages/about.astro` (lorem ipsum), `first-post.md`, `second-post.md`, `third-post.md`, `markdown-style-guide.md`, `using-mdx.mdx`, and the `blog-placeholder-*.jpg` assets. `dos-anos-cotrasoft.md` is the only genuine post.
+- Leftovers from the Astro blog starter, **not** real content: `README.md`, `first-post.md`, `second-post.md`, `third-post.md`, `markdown-style-guide.md`, `using-mdx.mdx`, and the `blog-placeholder-*.jpg` assets. `dos-anos-cotrasoft.md` is the only genuine post.

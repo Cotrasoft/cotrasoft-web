@@ -5,6 +5,8 @@ import {
   SUPPORTED_LOCALES,
   type SupportedLang,
 } from "../consts";
+import type { LocalizedPath } from "../lib/hreflang";
+import { localePath } from "../lib/locale-path";
 
 interface NavbarLabels {
   services: string;
@@ -18,9 +20,14 @@ interface NavbarLabels {
 
 interface Props {
   labels?: Partial<NavbarLabels>;
+  /** Per-locale path of the current page, so the language switcher keeps the
+   * reader on the same page instead of sending them to the homepage. Same
+   * builder the layout passes to `localizedAlternates`. Defaults to the
+   * homepage for pages with no localized counterpart (the Spanish-only blog). */
+  pathFor?: LocalizedPath;
 }
 
-const { labels = {} } = Astro.props;
+const { labels = {}, pathFor = () => "/" } = Astro.props;
 
 const lang = resolveLocale(Astro.currentLocale);
 
@@ -65,7 +72,7 @@ interface LangLink {
 const langLinks: LangLink[] = SUPPORTED_LOCALES.map(
   (code: SupportedLang): LangLink => ({
     code,
-    href: getRelativeLocaleUrl(code, "/"),
+    href: localePath(code, pathFor(code)),
     active: code === lang,
   }),
 );
