@@ -25,17 +25,17 @@
     "@astrojs/rss": "^4.0.19",
     "@astrojs/sitemap": "^3.7.3",
     "@tailwindcss/vite": "^4.3.3",
-    "@types/react": "^19.2.18",
-    "@types/react-dom": "^19.2.4",
-    "astro": "^6.3.2",
-    "react": "^19.2.8",
-    "react-dom": "^19.2.8",
-    "sharp": "^0.34.3",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "astro": "^6.4.8",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "sharp": "^0.35.5",
     "tailwindcss": "^4.3.3",
-    "wrangler": "^4.90.1"
+    "wrangler": "^4.151.3"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.5.8",
+    "@biomejs/biome": "2.6.2",
     "@tailwindcss/typography": "^0.5.20",
     "typescript": "^5.9.3",
     "vitest": "^5.0.0"
